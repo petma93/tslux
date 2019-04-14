@@ -1,0 +1,1 @@
+Git does not sync empty folders

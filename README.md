@@ -1,20 +1,25 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Extension Title
+Short description of extension.
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## Purpose
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+Detailed description or refer to a Word document in the Documentation folder with a hyperlink.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Version
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+* 1.0.0.0 - *Author*
+    * <<refer to Azure Devops task no. with syntax "#0">>
+
+
+## Prerequisites
+
+## Deployment
+
+
+
+## Contributing
+Respect the [folder structure](FOLDERS.MD) in this repo.
+
+Please consult the guidelines about Extension Development on <a href="https://abecon.sharepoint.com/sites/ABE-NAV/_layouts/OneNote.aspx?id=%2Fsites%2FABE-NAV%2FShared%20Documents%2FGeneral%2FOn_NAV&wd=target%28Development.one%7C2437025D-FCA7-46BD-9F76-308F9F493F8E%2FExtension%20Development%7C5433864C-9BF6-4251-B155-46C1AA2A6CC2%2F%29
+onenote:https://abecon.sharepoint.com/sites/ABE-NAV/Shared%20Documents/General/On_NAV/Development.one#Extension%20Development&section-id={2437025D-FCA7-46BD-9F76-308F9F493F8E}&page-id={5433864C-9BF6-4251-B155-46C1AA2A6CC2}&object-id={46DA83D5-CA7B-0773-345D-A86341D02EE4}&23">MS Teams</a>
+
