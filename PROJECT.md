@@ -1,5 +1,7 @@
 # Objects
 
+Do not modify within repo but only wiki of the Azure DevOps project. 
+
 |Type       |No.        |Name                           |Field Nos  |Task   |Dev|Date    |
 |-----------|-----------|-------------------------------|---------:|-------|---|--------|
 |Tab        |           |                               |   	   |       |...|../../..|

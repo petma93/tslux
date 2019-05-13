@@ -4,14 +4,15 @@
         {
             "type": "al",
             "request": "launch",
-            "name": "Your own server",
-            "server": "http://localhost",
-            "serverInstance": "BC130",
+            "name": "CUS_VANDECASTEELE_BC14",
+            "server": "http://192.168.2.20",
+            "serverInstance": "CUS_VANDECASTEELE_BC14",
+            "port": 9044,
             "authentication": "Windows",
-            "startupObjectId": 22,
+            "startupObjectId": 7340,
             "startupObjectType": "Page",
             "breakOnError": true,
-            "launchBrowser": true
+            "schemaUpdateMode": "Synchronize"
         }
     ]
 }

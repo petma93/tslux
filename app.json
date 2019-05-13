@@ -1,26 +1,50 @@
 {
   "id": "923a9e93-d0ae-4312-a8ab-01458f32b908",
-  "name": "VDCinit",
-  "publisher": "Default publisher",
-  "version": "1.0.0.0",
-  "brief": "",
-  "description": "",
-  "privacyStatement": "",
-  "EULA": "",
-  "help": "",
-  "url": "",
-  "logo": "",
-  "dependencies": [],
-  "screenshots": [],
-  "platform": "14.0.0.0",
-  "application": "14.0.0.0",
-  "idRanges": [
+  "name": "VDC Reports",
+  "publisher": "Abecon Informatiesystemen bvba",
+  "version": "1.0.20190513.1",
+  "brief": "VDC Reports",
+  "description": "Reports",
+  "privacyStatement": "https://abecon.be/privacyStatement",
+  "EULA": "https://abecon.be/EULA",
+  "help": "https://abecon.be/help",
+  "url": "https://abecon.be",
+  "logo": "Media/BroadHorizon2.png",
+  "dependencies": [
     {
-      "from": 50100,
-      "to": 50149
+    "appId" : "d8feaa8a-f09b-4472-841f-bdcfd63fcb64",
+    "name" : "Standard Reports",
+    "publisher" : "Abecon Informatiesystemen bvba",
+    "version" : "1.0.0.5"
+    },
+    {
+      "appId": "e05de681-3b6f-4a28-9164-020b9744efb6",
+      "name": "Perfion sync",
+      "publisher": "Abecon Informatiesystemen bvba",
+      "version": "1.0.0.1"
+    },
+    {
+      "appId": "e68105cb-2e46-4898-ab99-9a4a448a3742",
+      "name": "Transport Management",
+      "publisher": "Abecon Informatiesystemen bvba",
+      "version": "1.0.0.0"
     }
+
+
   ],
-  "contextSensitiveHelpUrl": "https://VDCinit.com/help/",
+  "screenshots": [
+    "Media/BroadHorizon.png"
+  ],
+  "platform": "14.0.2953.0",
+  "application": "14.0.2953.0",
+  "idRange": {
+    "from": 50000,
+    "to": 50010
+  },
   "showMyCode": true,
-  "runtime": "3.0"
+  "features": [
+    "TranslationFile"
+  ],
+  "runtime": "2.2",
+  "target": "Internal"
 }
