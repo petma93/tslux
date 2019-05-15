@@ -149,15 +149,14 @@ report 50005 "VDC Picking List"
 
                         trigger OnAfterGetRecord()
                         begin
-                            with TempDetailBuffer do begin
+                            with TempDetailBuffer do
                                 if Number = 1 then
-                                    FINDSET
+                                    FINDSET()
                                 else
-                                    NEXT;
-                            end; /*with do*/
+                                    NEXT();
 
                             // fill detailline fields
-                            FillDetailLineFds;
+                            FillDetailLineFds();
 
                         end;
 
@@ -165,23 +164,23 @@ report 50005 "VDC Picking List"
                         begin
                             STDR_ReportManagement.CollectLineComments(TempDetailBuffer, TmpLine."No.", TmpLine."Line No.");
                             STDR_ReportManagement.CollectItemResourceComments(TempDetailBuffer, TmpLine."No.", TmpLine."Line No.", 2, TmpLine."Item No.");
-                            SETRANGE(Number, 1, TempDetailBuffer.COUNT);
+                            SETRANGE(Number, 1, TempDetailBuffer.COUNT());
                         end;
                     }
 
                     trigger OnAfterGetRecord()
                     begin
                         if Number = 1 then
-                            TmpLine.FINDSET
+                            TmpLine.FINDSET()
                         else
-                            TmpLine.NEXT;
+                            TmpLine.NEXT();
 
                         // reset detail buffer line
                         CLEAR(TempDetailBuffer);
-                        TempDetailBuffer.DELETEALL;
+                        TempDetailBuffer.DELETEALL();
 
                         // fill line fields
-                        FillLineFds;
+                        FillLineFds();
 
                         // fix performance problem
                         // clear picture after first line, otherwise every line and every vatdetailline will have the picture
@@ -196,7 +195,7 @@ report 50005 "VDC Picking List"
 
                     trigger OnPreDataItem()
                     begin
-                        SETRANGE(Number, 1, TmpLine.COUNT);
+                        SETRANGE(Number, 1, TmpLine.COUNT());
                         LineEntryNo := 0;
                     end;
                 }
@@ -219,10 +218,9 @@ report 50005 "VDC Picking List"
 
                 trigger OnPostDataItem()
                 begin
-                    if not CurrReport.PREVIEW then begin
+                    if not CurrReport.PREVIEW() then
                         // Update field "No. Printed" in header
-                        STDR_ReportManagement.HeaderCountPrinted;
-                    end;
+                        STDR_ReportManagement.HeaderCountPrinted();
                 end;
 
                 trigger OnPreDataItem()
@@ -236,7 +234,7 @@ report 50005 "VDC Picking List"
             trigger OnAfterGetRecord()
             begin
                 // setup report management codeunit with current record values
-                STDR_ReportManagement.SetCurrentRec("Language Code", '', WORKDATE, '', Header);
+                STDR_ReportManagement.SetCurrentRec("Language Code", '', WORKDATE(), '', Header);
 
                 // Set the options set by user on the requestpage
                 STDR_ReportManagement.SetReportOptionItemTracking(ShowItemTracking);
@@ -247,14 +245,14 @@ report 50005 "VDC Picking List"
                 STDR_ReportManagement.GetReportSetup(STDR_ReportSetup);
 
                 // set CurrReport.Language
-                CurrReport.LANGUAGE := STDR_ReportManagement.GetLanguageID;
+                CurrReport.LANGUAGE := STDR_ReportManagement.GetLanguageID();
 
                 // fill buffer with all lines to print. If no lines exists also skip header
                 if not FillWhseActLineBuffer(TmpLine, Header) then
-                    CurrReport.SKIP;
+                    CurrReport.SKIP();
 
                 // fill header fields
-                FillHeaderFds;
+                FillHeaderFds();
             end;
         }
     }
@@ -319,7 +317,7 @@ report 50005 "VDC Picking List"
     trigger OnPreReport()
     begin
         // setup report management codeunit with preview
-        STDR_ReportManagement.SetPreview(CurrReport.PREVIEW);
+        STDR_ReportManagement.SetPreview(CurrReport.PREVIEW());
     end;
 
     var
@@ -343,11 +341,9 @@ report 50005 "VDC Picking List"
         LineEntryNo: Integer;
         LineIndent: Integer;
         LineBold: Boolean;
-        UoMtxt: Text;
         LineTxt: array[20] of Text;
         DetLineTxt: array[20] of Text;
         ItemTrackingType: Option "None",Lot,SN,Both;
-        "Report Setup Code": Code[20];
         "Language Code": Code[20];
         LineTypeNo: Integer;
         DetLineTypeNo: Integer;
@@ -361,20 +357,19 @@ report 50005 "VDC Picking List"
     procedure FillWhseActLineBuffer(var TmpLineBuffer2: Record "Warehouse Activity Line" temporary; Header2: Record "Warehouse Activity Header") LinesExist: Boolean
     var
         WhseActLine: Record "Warehouse Activity Line";
-        WhseActLineLinked: Record "Warehouse Activity Line";
         SerialNoExists: Boolean;
         LotNoExists: Boolean;
     begin
         with WhseActLine do begin
-            TmpLineBuffer2.RESET;
-            TmpLineBuffer2.DELETEALL;
+            TmpLineBuffer2.RESET();
+            TmpLineBuffer2.DELETEALL();
             SETCURRENTKEY("Activity Type", "No.", "Sorting Sequence No.");
             SETRANGE("Activity Type", Header.Type);
             SETRANGE("No.", Header."No.");
             SetRange("Action Type", "Action Type"::Take);
             if STDR_ReportSetup."Set Breakbulk Filter" then
                 SETRANGE("Original Breakbulk", false);
-            if FINDSET then
+            if FINDSET() then
                 repeat
                     if STDR_ReportSetup."Sum up Lines" then begin
                         TmpLineBuffer2.SETCURRENTKEY("Activity Type", "No.", "Bin Code", "Breakbulk No.", "Action Type");
@@ -393,7 +388,7 @@ report 50005 "VDC Picking List"
                             TmpLineBuffer2.SETRANGE("Destination Type", "Destination Type");
                             TmpLineBuffer2.SETRANGE("Destination No.", "Destination No.");
                         end;
-                        if TmpLineBuffer2.FINDFIRST then begin
+                        if TmpLineBuffer2.FINDFIRST() then begin
                             TmpLineBuffer2.Quantity += Quantity;
                             TmpLineBuffer2."Qty. (Base)" += "Qty. (Base)";
                             TmpLineBuffer2."Qty. Outstanding" += "Qty. Outstanding";
@@ -407,18 +402,18 @@ report 50005 "VDC Picking List"
                                 TmpLineBuffer2."Destination Type" := TmpLineBuffer2."Destination Type"::" ";
                                 TmpLineBuffer2."Destination No." := '';
                             end;
-                            TmpLineBuffer2.MODIFY;
+                            TmpLineBuffer2.MODIFY();
                         end else begin
                             TmpLineBuffer2 := WhseActLine;
-                            TmpLineBuffer2.INSERT;
+                            TmpLineBuffer2.INSERT();
                         end;
                     end else begin
                         TmpLineBuffer2 := WhseActLine;
-                        TmpLineBuffer2.INSERT;
+                        TmpLineBuffer2.INSERT();
                     end;
                     SerialNoExists := SerialNoExists or (TmpLineBuffer2."Serial No." <> '');
                     LotNoExists := LotNoExists or (TmpLineBuffer2."Lot No." <> '');
-                until NEXT = 0;
+                until NEXT() = 0;
 
             if (not LotNoExists) and (not SerialNoExists) then
                 ItemTrackingType := ItemTrackingType::None;
@@ -429,8 +424,8 @@ report 50005 "VDC Picking List"
             if (LotNoExists) and (SerialNoExists) then
                 ItemTrackingType := ItemTrackingType::Both;
 
-            TmpLineBuffer2.RESET;
-            exit(not TmpLineBuffer2.ISEMPTY);
+            TmpLineBuffer2.RESET();
+            exit(not TmpLineBuffer2.ISEMPTY());
         end; /*with do*/
 
     end;
@@ -446,14 +441,13 @@ report 50005 "VDC Picking List"
 
         STDR_ReportManagement.DetailLineAdd(TheTempDetailBuffer, TmpLine."No.", TmpLine."Line No.");
         TheTempDetailBuffer."Detail Line Type" := TheTempDetailBuffer."Detail Line Type"::Comment;
-        TheTempDetailBuffer.Description := STDR_ReportManagement.GetLineDesc(1, SpecialEquip.Description, '');
-        TheTempDetailBuffer.INSERT;
+        TheTempDetailBuffer.Description := copystr(STDR_ReportManagement.GetLineDesc(1, SpecialEquip.Description, ''), 1, MaxStrLen(TheTempDetailBuffer.Description));
+        TheTempDetailBuffer.INSERT();
     end;
 
     procedure FillHeaderFds()
     var
         CompanyInfo: Record "STDR_Report Setup";
-        UserManagement: Codeunit "User Management";
         LeftAddr: array[8] of Text[80];
         RightAddr: array[8] of Text[80];
         ExtraAddr: array[8] of Text[80];
@@ -471,7 +465,7 @@ report 50005 "VDC Picking List"
             STDR_ReportManagement.GetOurVatNoOrEnterpriseNo(CompanyInfo, OurVatNoOrEnterpriseNoCap, OurVatNoOrEnterpriseNo);
 
             //Set per document:fontfamily, fontname, fontsize
-            FontFamily := STDR_ReportManagement.GetFontFamily;
+            FontFamily := STDR_ReportManagement.GetFontFamily();
             STDR_ReportManagement.GetFontArray(FontArray);
 
             // 1= Customer Address and ship-to address
@@ -512,7 +506,7 @@ report 50005 "VDC Picking List"
             STDR_ReportManagement.AddTranslValue(1, HeaderFds[3], 'No.');
             STDR_ReportManagement.AddTxtValue(2, HeaderFds[3], "No.");
             STDR_ReportManagement.AddTranslValue(3, HeaderFds[3], 'Filter');
-            STDR_ReportManagement.AddTxtValue(4, HeaderFds[3], Header.GETFILTERS);
+            STDR_ReportManagement.AddTxtValue(4, HeaderFds[3], Header.GETFILTERS());
 
             if "Assigned User ID" <> '' then begin
                 STDR_ReportManagement.AddTranslValue(5, HeaderFds[3], 'Assigned User ID');
@@ -535,13 +529,13 @@ report 50005 "VDC Picking List"
             t[2] := STRSUBSTNO('%1 %2', OurVatNoOrEnterpriseNoCap, OurVatNoOrEnterpriseNo);
             STDR_ReportManagement.AddTxtValue(5, HeaderFds[4], STDR_CommonFunctions.AddMultiTextToText(t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], '%1', 0));
             CLEAR(t);
-            STDR_ReportManagement.AddTxtValue(10, HeaderFds[4], COMPANYNAME);
-            STDR_ReportManagement.AddTxtValue(11, HeaderFds[4], STDR_CommonFunctions.UserIDToFullname(USERID));
-            STDR_ReportManagement.AddTxtValue(11, HeaderFds[4], USERID);
-            STDR_ReportManagement.AddTxtValue(12, HeaderFds[4], FORMAT(CURRENTDATETIME, 0, 0));
+            STDR_ReportManagement.AddTxtValue(10, HeaderFds[4], COMPANYNAME());
+            STDR_ReportManagement.AddTxtValue(11, HeaderFds[4], STDR_CommonFunctions.UserIDToFullname(COPYSTR(USERID(), 1, 250)));
+            STDR_ReportManagement.AddTxtValue(11, HeaderFds[4], USERID());
+            STDR_ReportManagement.AddTxtValue(12, HeaderFds[4], FORMAT(CURRENTDATETIME(), 0, 0));
             //Combine header Text with Customer or Vendor Comment text
             t[1] := STDR_ReportManagement.GetExtTxtAsLongStringForCurrentReport(1);
-            t[2] := STDR_ReportManagement.GetCommAsLongStringForCurrentReport;
+            t[2] := STDR_ReportManagement.GetCommAsLongStringForCurrentReport();
             t[3] := STDR_CommonFunctions.Add2TextsToText(t[1], t[2], '%1', 0);
             if t[3] <> '' then
                 t[3] += '%1';
@@ -580,7 +574,7 @@ report 50005 "VDC Picking List"
 
         GetExtraHeaderInformation();
 
-        STDR_ReportManagement.OnAfterFillHeaderFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode, STDR_ReportManagement.GetReportNo, Header, FontArray, HeaderFds);
+        STDR_ReportManagement.OnAfterFillHeaderFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode(), STDR_ReportManagement.GetReportNo(), Header, FontArray, HeaderFds);
 
     end;
 
@@ -620,7 +614,7 @@ report 50005 "VDC Picking List"
             LineTxt[9] := STDR_ReportManagement.GetUOMText("Unit of Measure Code");
             LineTxt[10] := '';
         end; /*with do*/
-        STDR_ReportManagement.OnAfterFillLineFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode, STDR_ReportManagement.GetReportNo, Header, HeaderFds, Line, LineEntryNo, LineTypeNo, LineTxt, LineFormatTxt);
+        STDR_ReportManagement.OnAfterFillLineFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode(), STDR_ReportManagement.GetReportNo(), Header, HeaderFds, Line, LineEntryNo, LineTypeNo, LineTxt, LineFormatTxt);
 
     end;
 
@@ -653,7 +647,7 @@ report 50005 "VDC Picking List"
             DetLineTxt[9] := STDR_ReportManagement.GetUOMText("Unit of Measure Code");
             DetLineTxt[10] := '';
         end; /*with do*/
-        STDR_ReportManagement.OnAfterFillDetailLineFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode, STDR_ReportManagement.GetReportNo, Header, HeaderFds, Line, LineEntryNo, LineTypeNo, LineTxt, LineFormatTxt, TempDetailBuffer, DetLineTypeNo, DetLineTxt);
+        STDR_ReportManagement.OnAfterFillDetailLineFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode(), STDR_ReportManagement.GetReportNo(), Header, HeaderFds, Line, LineEntryNo, LineTypeNo, LineTxt, LineFormatTxt, TempDetailBuffer, DetLineTypeNo, DetLineTxt);
 
     end;
 

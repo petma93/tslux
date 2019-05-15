@@ -2,7 +2,7 @@
   "id": "923a9e93-d0ae-4312-a8ab-01458f32b908",
   "name": "VDC Reports",
   "publisher": "Abecon Informatiesystemen bvba",
-  "version": "1.0.20190513.1",
+  "version": "1.0.20190515.1",
   "brief": "VDC Reports",
   "description": "Reports",
   "privacyStatement": "https://abecon.be/privacyStatement",
@@ -15,13 +15,13 @@
     "appId" : "d8feaa8a-f09b-4472-841f-bdcfd63fcb64",
     "name" : "Standard Reports",
     "publisher" : "Abecon Informatiesystemen bvba",
-    "version" : "1.0.0.5"
+    "version" : "1.0.0.6"
     },
     {
       "appId": "e05de681-3b6f-4a28-9164-020b9744efb6",
       "name": "Perfion sync",
       "publisher": "Abecon Informatiesystemen bvba",
-      "version": "1.0.0.1"
+      "version": "1.0.0.3"
     },
     {
       "appId": "e68105cb-2e46-4898-ab99-9a4a448a3742",
@@ -35,8 +35,8 @@
   "screenshots": [
     "Media/BroadHorizon.png"
   ],
-  "platform": "14.0.2953.0",
-  "application": "14.0.2953.0",
+  "platform": "14.0.0.0",
+  "application": "14.0.0.0",
   "idRange": {
     "from": 50000,
     "to": 50010

@@ -7,6 +7,7 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>add3d9d2-a99b-4aab-857d-bb787743adcf</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -272,23 +273,27 @@
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox4">
+                                          <Textbox Name="CompanyAddr5">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
-                                                    <Style />
+                                                    <Value>=Fields!CompanyAddr5.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                    </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox4</rd:DefaultName>
+                                            <rd:DefaultName>CompanyAddr4</rd:DefaultName>
                                             <Style>
                                               <Border>
+                                                <Color>LightGrey</Color>
                                                 <Style>None</Style>
                                               </Border>
                                               <PaddingLeft>2pt</PaddingLeft>
@@ -297,6 +302,7 @@
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
                                           </Textbox>
+                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -1536,9 +1542,7 @@
         <PageHeight>10cm</PageHeight>
         <PageWidth>10cm</PageWidth>
         <LeftMargin>0.2cm</LeftMargin>
-        <RightMargin>0cm</RightMargin>
         <TopMargin>0.2cm</TopMargin>
-        <BottomMargin>0cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>
@@ -1729,6 +1733,9 @@ End Function
         </Field>
         <Field Name="CompanyAddr4">
           <DataField>CompanyAddr4</DataField>
+        </Field>
+        <Field Name="CompanyAddr5">
+          <DataField>CompanyAddr5</DataField>
         </Field>
         <Field Name="RefCaption">
           <DataField>RefCaption</DataField>

@@ -100,8 +100,8 @@ report 50001 "Item Dim. Label"
                 STDR_ReportManagement.GetReportSetup(STDR_ReportSetup);
                 CurrReport.LANGUAGE := STDR_ReportManagement.GetLanguageID();
 
-                PFRN_CallPerfionMgt.TempBlobLoadPerfionItemImageName('Image', "No.", "PRFN_Record ID", 'size=400x400', TmpBlob, false);
-
+                //PFRN_CallPerfionMgt.TempBlobLoadPerfionItemImageName('Image', "No.", "PRFN_Record ID", 'size=400x400', TmpBlob, false);
+                PFRN_CallPerfionMgt.TempBlobLoadPerfionItemImageName(stdr_ReportSetup."Custom Parameter1", "No.", "PRFN_Record ID", 'size=400x400', TmpBlob, false);
                 STDR_ReportSetup.CalcFields("Picture 4");
 
                 GetDimensions();
@@ -146,7 +146,6 @@ report 50001 "Item Dim. Label"
         STDR_ReportManagement: Codeunit "STDR_Report Management";
         PFRN_CallPerfionMgt: codeunit "PRFN_Call Perfion Mgt";
         DocNo: Code[20];
-        PurchNoCaption: text;
         ItemNoCaption: text;
         DescriptionCaption: Text;
         DimensionCaption: text;

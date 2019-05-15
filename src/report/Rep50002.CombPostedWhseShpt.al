@@ -19,7 +19,7 @@ report 50002 "Comb. Posted Whse. Shpt."
 
                 trigger OnAfterGetRecord()
                 begin
-                    CreateTempData;
+                    CreateTempData();
                 end;
             }
 
@@ -27,23 +27,23 @@ report 50002 "Comb. Posted Whse. Shpt."
             begin
                 if not TmpWhseShpt.GET("Whse. Shipment No.") then begin
                     TmpWhseShpt."No." := "Whse. Shipment No.";
-                    TmpWhseShpt.INSERT;
+                    TmpWhseShpt.INSERT();
                 end else
-                    CurrReport.SKIP;
+                    CurrReport.SKIP();
             end;
 
             trigger OnPreDataItem()
             begin
-                TmpWhseShpt.RESET;
-                TmpWhseShpt.DELETEALL;
-                TmpHeader.RESET;
-                TmpHeader.DELETEALL;
-                TmpLine.RESET;
-                TmpLine.DELETEALL;
-                TmpHeader2.RESET;
-                TmpHeader2.DELETEALL;
-                TmpLine2.RESET;
-                TmpLine2.DELETEALL;
+                TmpWhseShpt.RESET();
+                TmpWhseShpt.DELETEALL();
+                TmpHeader.RESET();
+                TmpHeader.DELETEALL();
+                TmpLine.RESET();
+                TmpLine.DELETEALL();
+                TmpHeader2.RESET();
+                TmpHeader2.DELETEALL();
+                TmpLine2.RESET();
+                TmpLine2.DELETEALL();
             end;
         }
         dataitem(HeaderLoop; "Integer")
@@ -195,15 +195,14 @@ report 50002 "Comb. Posted Whse. Shpt."
 
                         trigger OnAfterGetRecord()
                         begin
-                            with TempDetailBuffer do begin
+                            with TempDetailBuffer do
                                 if Number = 1 then
-                                    FINDSET
+                                    FINDSET()
                                 else
-                                    NEXT;
-                            end; /*with do*/
+                                    NEXT();
 
                             // fill detailline fields
-                            FillDetailLineFds;
+                            FillDetailLineFds();
 
                         end;
 
@@ -212,8 +211,8 @@ report 50002 "Comb. Posted Whse. Shpt."
                             STDR_ReportDetailMgt: Codeunit "STDR_Report Detail Mgt";
                         begin
                             // don`t print detaillines on coverpage
-                            if (CopyLoop.Number = 1) and STDR_ReportManagement.PrintPACoverPage then
-                                CurrReport.BREAK;
+                            if (CopyLoop.Number = 1) and STDR_ReportManagement.PrintPACoverPage() then
+                                CurrReport.BREAK();
 
                             If HeaderLoop.Number <= TmpHeaders then begin
                                 STDR_ReportDetailMgt.DetailLineAddExtraNo(STDR_ReportSetup, TempDetailBuffer, Line."Document No.", Line."Line No.", Line."Cross-Reference No.");
@@ -234,7 +233,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                                 STDR_ReportManagement.CollectLineComments(TempDetailBuffer, Line2."Document No.", Line2."Line No.");
                                 STDR_ReportManagement.CollectItemResourceComments(TempDetailBuffer, Line2."Document No.", Line2."Line No.", 1, Line2."item No.");
                             end;
-                            SETRANGE(Number, 1, TempDetailBuffer.COUNT);
+                            SETRANGE(Number, 1, TempDetailBuffer.COUNT());
                         end;
                     }
 
@@ -243,25 +242,25 @@ report 50002 "Comb. Posted Whse. Shpt."
                         //Synchronize temp data
                         if HeaderLoop.Number <= TmpHeaders then begin
                             if Number > 1 then
-                                TmpLine.NEXT
+                                TmpLine.NEXT()
                             else
-                                TmpLine.FINDSET;
+                                TmpLine.FINDSET();
                             Line.TRANSFERFIELDS(TmpLine);
                         end else begin
                             if Number > 1 then
-                                TmpLine2.NEXT
+                                TmpLine2.NEXT()
                             else
-                                TmpLine2.FINDSET;
+                                TmpLine2.FINDSET();
                             Line2.TRANSFERFIELDS(TmpLine2);
                         end;
 
 
                         // reset detail buffer line
                         CLEAR(TempDetailBuffer);
-                        TempDetailBuffer.DELETEALL;
+                        TempDetailBuffer.DELETEALL();
 
                         // don`t print lines on coverpage
-                        if (CopyLoop.Number = 1) and STDR_ReportManagement.PrintPACoverPage then begin
+                        if (CopyLoop.Number = 1) and STDR_ReportManagement.PrintPACoverPage() then
                             if LineEntryNo = 0 then begin
                                 LineEntryNo := 1;
                                 LineTypeNo := 0;
@@ -269,8 +268,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                                 CLEAR(LineFormatTxt);
                                 exit;
                             end else
-                                CurrReport.BREAK;
-                        end;
+                                CurrReport.BREAK();
 
                         If HeaderLoop.Number <= TmpHeaders then begin
                             //GLaccount should be presented out side the company
@@ -283,25 +281,25 @@ report 50002 "Comb. Posted Whse. Shpt."
                             //(Line.Type <> Line.Type::" ") and
                             (not STDR_ReportManagement.ShowZerroLineBecauseOfLinkedLines(Line."Document No.", Line."Line No."))
                             then
-                                CurrReport.SKIP;
+                                CurrReport.SKIP();
 
                             // skip linked or attached lines. They will be printen in de detaillineloop
                             if STDR_ReportManagement.RecSkipLineBecauseIsShownAsLinkedToOtherLine(Line) then
-                                CurrReport.SKIP;
+                                CurrReport.SKIP();
                         end else begin
                             if (not STDR_ReportSetup."Show Lines Zerro Qty") and
                                 (Line2.Quantity = 0) and
                                 //(Line.Type <> Line.Type::" ") and
                                 (not STDR_ReportManagement.ShowZerroLineBecauseOfLinkedLines(Line2."Document No.", Line2."Line No."))
                             then
-                                CurrReport.SKIP;
+                                CurrReport.SKIP();
 
                             // skip linked or attached lines. They will be printen in de detaillineloop
                             if STDR_ReportManagement.RecSkipLineBecauseIsShownAsLinkedToOtherLine(Line2) then
-                                CurrReport.SKIP;
+                                CurrReport.SKIP();
                         end;
                         // fill line fields
-                        FillLineFds;
+                        FillLineFds();
 
                         // fix performance problem
                         // clear picture after first line, otherwise every line and every vatdetailline will have the picture
@@ -321,10 +319,10 @@ report 50002 "Comb. Posted Whse. Shpt."
                         // Reset vars en buffer tables
                         LineEntryNo := 0;
                         CLEAR(TempDetailBuffer2);
-                        TempDetailBuffer2.DELETEALL;
+                        TempDetailBuffer2.DELETEALL();
 
                         if HeaderLoop.Number <= TmpHeaders then begin
-                            TmpLine.RESET;
+                            TmpLine.RESET();
                             TmpLine.SETRANGE("Document No.", Header."No.");
 
                             //skip empty lines at the end
@@ -332,13 +330,13 @@ report 50002 "Comb. Posted Whse. Shpt."
                             while MoreLines and (TmpLine.Description = '') and (TmpLine."No." = '') and (TmpLine.Quantity = 0) do
                                 MoreLines := TmpLine.NEXT(-1) <> 0;
                             if not MoreLines then
-                                CurrReport.BREAK;
+                                CurrReport.BREAK();
                             TmpLine.SETRANGE("Line No.", 0, TmpLine."Line No.");
-                            SETRANGE(Number, 1, TmpLine.COUNT);
+                            SETRANGE(Number, 1, TmpLine.COUNT());
 
                             TmpLine.SETCURRENTKEY("Order No.", "Order Line No.");
                         end else begin
-                            TmpLine2.RESET;
+                            TmpLine2.RESET();
                             TmpLine2.SETRANGE("Document No.", Header2."No.");
 
                             //skip empty lines at the end
@@ -346,9 +344,9 @@ report 50002 "Comb. Posted Whse. Shpt."
                             while MoreLines and (TmpLine2.Description = '') and (TmpLine2."item No." = '') and (TmpLine2.Quantity = 0) do
                                 MoreLines := TmpLine2.NEXT(-1) <> 0;
                             if not MoreLines then
-                                CurrReport.BREAK;
+                                CurrReport.BREAK();
                             TmpLine2.SETRANGE("Line No.", 0, TmpLine2."Line No.");
-                            SETRANGE(Number, 1, TmpLine2.COUNT);
+                            SETRANGE(Number, 1, TmpLine2.COUNT());
 
                             TmpLine2.SETCURRENTKEY("Transfer Order No.", "Item No.", "Shipment Date");
                         end;
@@ -399,15 +397,15 @@ report 50002 "Comb. Posted Whse. Shpt."
                     trigger OnAfterGetRecord()
                     begin
                         if Number > 1 then
-                            TempDetailBuffer2.NEXT
+                            TempDetailBuffer2.NEXT()
                         else
-                            TempDetailBuffer2.FINDSET;
+                            TempDetailBuffer2.FINDSET();
                     end;
 
                     trigger OnPreDataItem()
                     begin
-                        TempDetailBuffer2.RESET;
-                        SETRANGE(Number, 1, TempDetailBuffer2.COUNT);
+                        TempDetailBuffer2.RESET();
+                        SETRANGE(Number, 1, TempDetailBuffer2.COUNT());
                     end;
                 }
 
@@ -423,10 +421,10 @@ report 50002 "Comb. Posted Whse. Shpt."
                     end;
 
                     // fill header fields
-                    if (Number = 1) and STDR_ReportManagement.PrintPACoverPage then
-                        FillPACoverPageHeaderFds
+                    if (Number = 1) and STDR_ReportManagement.PrintPACoverPage() then
+                        FillPACoverPageHeaderFds()
                     else begin
-                        FillHeaderFds;
+                        FillHeaderFds();
                         //determine document name and add copy text if number is bigger then one
                         DocName := STDR_ReportManagement.GetTranslCurrRep('Combined Whse. Shipment');
                         STDR_ReportManagement.AddTxtValue(1, HeaderFds[4], DocName);
@@ -435,10 +433,9 @@ report 50002 "Comb. Posted Whse. Shpt."
 
                 trigger OnPostDataItem()
                 begin
-                    if not CurrReport.PREVIEW then begin
+                    if not CurrReport.PREVIEW() then
                         // Update field "No. Printed" in header
-                        STDR_ReportManagement.HeaderCountPrinted;
-                    end;
+                        STDR_ReportManagement.HeaderCountPrinted();
                 end;
 
                 trigger OnPreDataItem()
@@ -488,21 +485,21 @@ report 50002 "Comb. Posted Whse. Shpt."
                 STDR_ReportManagement.GetReportSetup(STDR_ReportSetup);
 
                 // set CurrReport.Language
-                CurrReport.LANGUAGE := STDR_ReportManagement.GetLanguageID;
+                CurrReport.LANGUAGE := STDR_ReportManagement.GetLanguageID();
 
                 // possibly Archive Document and/or Log Interaction
-                if not CurrReport.PREVIEW then begin
-                    STDR_ReportManagement.ArchiveDocument;
-                    STDR_ReportManagement.LogInteraction;
+                if not CurrReport.PREVIEW() then begin
+                    STDR_ReportManagement.ArchiveDocument();
+                    STDR_ReportManagement.LogInteraction();
                 end;
             end;
 
             trigger OnPreDataItem()
             begin
-                TmpHeader.RESET;
-                TmpHeader2.Reset;
-                TmpHeaders := TmpHeader.count;
-                TmpHeader2s := TmpHeader2.count;
+                TmpHeader.RESET();
+                TmpHeader2.Reset();
+                TmpHeaders := TmpHeader.count();
+                TmpHeader2s := TmpHeader2.count();
                 setrange(Number, 1, TmpHeaders + TmpHeader2s);
             end;
         }
@@ -591,7 +588,7 @@ report 50002 "Comb. Posted Whse. Shpt."
     trigger OnPreReport()
     begin
         // setup report management codeunit with preview
-        STDR_ReportManagement.SetPreview(CurrReport.PREVIEW);
+        STDR_ReportManagement.SetPreview(CurrReport.PREVIEW());
     end;
 
     var
@@ -647,8 +644,8 @@ report 50002 "Comb. Posted Whse. Shpt."
 
     procedure FillHeaderFds()
     var
-        FormatAddress: Codeunit "Format Address";
         CompanyInfo: Record "STDR_Report Setup";
+        FormatAddress: Codeunit "Format Address";
         LeftAddr: array[8] of Text[80];
         RightAddr: array[8] of Text[80];
         ExtraAddr: array[8] of Text[80];
@@ -661,16 +658,6 @@ report 50002 "Comb. Posted Whse. Shpt."
         ExtDocNo: Text;
         CustVendCap: Text;
         CustVendNo: Text;
-        SalesPersonCap: Text;
-        SalesPersonNo: Text;
-        SalesPersonTxt: Text;
-        TotalInclVATText: Text;
-        TotalExclVATText: Text;
-        VatTotalInclVATText: Text;
-        VatTotalExclVATText: Text;
-        VATHeaderCaption: Text;
-        VATExchRate: Text;
-        CalculatedExchRate: Decimal;
         i: Integer;
         t: array[10] of Text;
     begin
@@ -694,7 +681,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         STDR_ReportManagement.GetOurVatNoOrEnterpriseNo(CompanyInfo, OurVatNoOrEnterpriseNoCap, OurVatNoOrEnterpriseNo);
 
         //Set per document:fontfamily, fontname, fontsize
-        FontFamily := STDR_ReportManagement.GetFontFamily;
+        FontFamily := STDR_ReportManagement.GetFontFamily();
         STDR_ReportManagement.GetFontArray(FontArray);
 
         // 1= Customer Address and ship-to address
@@ -766,7 +753,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         STDR_ReportManagement.GetCustVendNo(CustVendCap, CustVendNo, 1);
         STDR_ReportManagement.AddTxtValue(1, HeaderFds[3], CustVendCap);
         STDR_ReportManagement.AddTxtValue(2, HeaderFds[3], CustVendNo);
-        STDR_ReportManagement.AddTxtValue(3, HeaderFds[3], STDR_ReportManagement.GetDocNoCap);
+        STDR_ReportManagement.AddTxtValue(3, HeaderFds[3], STDR_ReportManagement.GetDocNoCap());
         if HeaderLoop.Number <= TmpHeaders then
             STDR_ReportManagement.AddTxtValue(4, HeaderFds[3], Header."Shortcut Dimension 2 Code")
         else
@@ -819,7 +806,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         CLEAR(t);
         //Combine header Text with Customer or Vendor Comment text
         t[1] := STDR_ReportManagement.GetExtTxtAsLongStringForCurrentReport(1);
-        t[2] := STDR_ReportManagement.GetCommAsLongStringForCurrentReport;
+        t[2] := STDR_ReportManagement.GetCommAsLongStringForCurrentReport();
         t[3] := STDR_CommonFunctions.Add2TextsToText(t[1], t[2], '%1', 0);
         if t[3] <> '' then
             t[3] += '%1';
@@ -855,22 +842,21 @@ report 50002 "Comb. Posted Whse. Shpt."
 
     procedure FillPACoverPageHeaderFds()
     begin
-        FontFamily := STDR_ReportManagement.GetFontFamily;
+        FontFamily := STDR_ReportManagement.GetFontFamily();
         STDR_ReportManagement.GetFontArray(FontArray);
         STDR_ReportManagement.AddTxtValue(11, FontFamily, 'White');
         STDR_ReportManagement.FormatPACoverPageAddresses(HeaderFds);
 
         if HeaderLoop.Number <= TmpHeaders then
-            STDR_ReportManagement.OnAfterFillPACoverPageHeaderFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode, STDR_ReportManagement.GetReportNo, Header, FontArray, HeaderFds)
+            STDR_ReportManagement.OnAfterFillPACoverPageHeaderFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode(), STDR_ReportManagement.GetReportNo(), Header, FontArray, HeaderFds)
         else
-            STDR_ReportManagement.OnAfterFillPACoverPageHeaderFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode, STDR_ReportManagement.GetReportNo, Header2, FontArray, HeaderFds);
+            STDR_ReportManagement.OnAfterFillPACoverPageHeaderFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode(), STDR_ReportManagement.GetReportNo(), Header2, FontArray, HeaderFds);
 
     end;
 
     procedure FillLineFds()
     var
         SalesHeader: Record "Sales Header";
-        Item: Record Item;
         ItemUOM: Record "Item Unit of Measure";
         LineDisc: Text;
         UoMtxt: Text;
@@ -882,7 +868,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         QtyFactorPriceUoM: Decimal;
         PriceUnitofMeasure: Text;
     begin
-        if HeaderLoop.Number <= TmpHeaders then begin
+        if HeaderLoop.Number <= TmpHeaders then
             with Line do begin
                 LineEntryNo += 1;
                 LineTypeNo := Type;
@@ -924,18 +910,17 @@ report 50002 "Comb. Posted Whse. Shpt."
                 end;
 
                 OrderRef := '';
-                if "Order No." <> '' then begin
+                if "Order No." <> '' then
                     if SalesHeader.GET(1, "Order No.") then
                         if SalesHeader."Your Reference" <> '' then
                             //gOrderRef := ' - ' + gRepMgt.GetTranslCurrRep('Your Reference') + ': ' + aSalesHdr."Your Reference";
                             OrderRef := SalesHeader."Your Reference";
-                end;
 
                 OrderNo := "Order No.";
                 if OrderRef <> '' then
                     OrderNo := OrderNo + ':%1' + OrderRef;
-            end; /*with do*/
-        end else begin
+            end /*with do*/
+        else
             with Line2 do begin
                 LineEntryNo += 1;
                 LineTypeNo := 1;
@@ -972,20 +957,16 @@ report 50002 "Comb. Posted Whse. Shpt."
                 END;
 
                 OrderRef := '';
-                if "transfer Order No." <> '' then begin
+                if "transfer Order No." <> '' then
                     if SalesHeader.GET(1, "transfer Order No.") then
                         if SalesHeader."Your Reference" <> '' then
                             //gOrderRef := ' - ' + gRepMgt.GetTranslCurrRep('Your Reference') + ': ' + aSalesHdr."Your Reference";
                             OrderRef := SalesHeader."Your Reference";
-                end;
 
                 OrderNo := "transfer Order No.";
                 if OrderRef <> '' then
                     OrderNo := OrderNo + ':%1' + OrderRef;
             end; /*with do*/
-        end;
-
-
     end;
 
     procedure FillDetailLineFds()
@@ -1024,18 +1005,16 @@ report 50002 "Comb. Posted Whse. Shpt."
     var
         SalesShptHeader: Record "Sales Shipment Header";
         SalesShptLine: Record "Sales Shipment Line";
-        AttSalesShptLine: Record "Sales Shipment Line";
         TransferShptHdr: record "Transfer shipment header";
         TransfershptLine: record "Transfer Shipment Line";
         RegWhseActLine: Record "Registered Whse. Activity Line";
         PostedWhseShptLine2: Record "Posted Whse. Shipment Line";
         NoOfPackages: Integer;
-        i: Integer;
     begin
         SalesShptHeader.SETRANGE("No.", PostedWhseShptLine."Posted Source No.");
-        if SalesShptHeader.FINDSET then
+        if SalesShptHeader.FINDSET() then
             repeat
-                TmpHeader.RESET;
+                TmpHeader.RESET();
                 TmpHeader.SETRANGE("Sell-to Customer No.", SalesShptHeader."Sell-to Customer No.");
                 TmpHeader.SETRANGE("Shipment Method Code", SalesShptHeader."Shipment Method Code");
                 TmpHeader.SETRANGE("Ship-to Address", SalesShptHeader."Ship-to Address");
@@ -1045,26 +1024,26 @@ report 50002 "Comb. Posted Whse. Shpt."
                 TmpHeader.SETRANGE("Ship-to County", SalesShptHeader."Ship-to County");
                 TmpHeader.SETRANGE("Ship-to Country/Region Code", SalesShptHeader."Ship-to Country/Region Code");
                 TmpHeader.SETRANGE("Shortcut Dimension 1 Code", PostedWhseShptLine."Whse. Shipment No.");
-                if not TmpHeader.FINDFIRST then begin
-                    TmpHeader.RESET;
-                    TmpHeader.INIT;
+                if not TmpHeader.FINDFIRST() then begin
+                    TmpHeader.RESET();
+                    TmpHeader.INIT();
                     TmpHeader := SalesShptHeader;
                     TmpHeader."Shortcut Dimension 1 Code" := PostedWhseShptLine."Whse. Shipment No.";
                     TmpHeader."Shortcut Dimension 2 Code" := PostedWhseShptLine."No.";
                     TmpHeader."Dimension Set ID" := 0;
-                    TmpHeader.INSERT;
+                    TmpHeader.INSERT();
                 end;
 
-                SalesShptLine.RESET;
+                SalesShptLine.RESET();
                 SalesShptLine.SETRANGE("Document No.", SalesShptHeader."No.");
-                if SalesShptLine.FINDSET then begin
+                if SalesShptLine.FINDSET() then begin
                     NextLineNo := TmpHeader."Dimension Set ID";  //Abuse
                     repeat
                         NoOfPackages := 0;
                         PostedWhseShptLine2.setrange("Posted Source Document", PostedWhseShptLine2."Posted Source Document"::"Posted Shipment");
                         PostedWhseShptLine2.Setrange("Posted Source No.", SalesShptLine."Document No.");
                         postedwhseshptline2.Setrange("Source Line No.", SalesShptLine."Order Line No.");
-                        If PostedWhseShptLine2.findlast then begin
+                        If PostedWhseShptLine2.findlast() then begin
                             RegWhseActLine.setrange("Whse. Document Type", RegWhseActLine."Whse. Document Type"::Shipment);
                             RegWhseActLine.setrange("Whse. Document NO.", PostedWhseShptLine2."Whse. Shipment No.");
                             RegWhseActLine.setrange("Whse. Document Line No.", PostedWhseShptLine2."Whse Shipment Line No.");
@@ -1075,25 +1054,25 @@ report 50002 "Comb. Posted Whse. Shpt."
                                 until RegWhseActLine.Next() = 0;
                         end;
 
-                        TmpLine.RESET;
+                        TmpLine.RESET();
                         TmpLine.SETRANGE("Document No.", TmpHeader."No.");
                         TmpLine.SETRANGE("Order No.", SalesShptLine."Order No.");
                         TmpLine.SETRANGE(Type, SalesShptLine.Type);
                         TmpLine.SETRANGE("No.", SalesShptLine."No.");
                         TmpLine.SETRANGE("Variant Code", SalesShptLine."Variant Code");
                         TmpLine.SETRANGE("Unit of Measure Code", SalesShptLine."Unit of Measure Code");
-                        if not TmpLine.FINDFIRST then begin
+                        if not TmpLine.FINDFIRST() then begin
                             NextLineNo := NextLineNo + 10000;
-                            TmpLine.RESET;
-                            TmpLine.INIT;
+                            TmpLine.RESET();
+                            TmpLine.INIT();
                             TmpLine.TRANSFERFIELDS(SalesShptLine);
                             TmpLine."Document No." := TmpHeader."No.";
                             TmpLine."Line No." := NextLineNo;
                             Tmpline."Dimension Set ID" := NoOfPackages; //Abuse
-                            TmpLine.INSERT;
+                            TmpLine.INSERT();
 
                             TmpHeader."Dimension Set ID" := NextLineNo;
-                            TmpHeader.MODIFY;
+                            TmpHeader.MODIFY();
 
                             /*
                             AttSalesShptLine.RESET;
@@ -1113,20 +1092,21 @@ report 50002 "Comb. Posted Whse. Shpt."
                                 until AttSalesShptLine.NEXT = 0;
                             end;
                             */
-                        end else begin
-                            //TmpLine.Quantity := TmpLine.Quantity + SalesShptLine.Quantity;
-                            //TmpLine."Quantity (Base)" := TmpLine."Quantity (Base)" + SalesShptLine."Quantity (Base)";
-                            //TmpLine.MODIFY;
                         end;
-                    until SalesShptLine.NEXT = 0;
+                        //end else begin
+                        //    //TmpLine.Quantity := TmpLine.Quantity + SalesShptLine.Quantity;
+                        //    //TmpLine."Quantity (Base)" := TmpLine."Quantity (Base)" + SalesShptLine."Quantity (Base)";
+                        //    //TmpLine.MODIFY;
+                        //end;
+                    until SalesShptLine.NEXT() = 0;
                 end;
             until SalesShptHeader.NEXT() = 0
         else begin
             //transfers
             TransferShptHdr.SETRANGE("No.", PostedWhseShptLine."Posted Source No.");
-            if TransferShptHdr.FINDSET then
+            if TransferShptHdr.FINDSET() then
                 repeat
-                    TmpHeader2.RESET;
+                    TmpHeader2.RESET();
                     TmpHeader2.SETRANGE("Transfer-to Code", TransferShptHdr."transfer-to code");
                     TmpHeader2.SETRANGE("Shipment Method Code", TransferShptHdr."Shipment Method Code");
                     TmpHeader2.SETRANGE("Transfer-to Address", TransferShptHdr."transfer-to Address");
@@ -1136,26 +1116,26 @@ report 50002 "Comb. Posted Whse. Shpt."
                     TmpHeader2.SETRANGE("Transfer-to County", TransferShptHdr."transfer-to County");
                     TmpHeader2.SETRANGE("Trsf.-to Country/Region Code", TransferShptHdr."Trsf.-to Country/Region Code");
                     TmpHeader2.SETRANGE("Shortcut Dimension 1 Code", PostedWhseShptLine."Whse. Shipment No.");
-                    if not TmpHeader2.FINDFIRST then begin
-                        TmpHeader2.RESET;
-                        TmpHeader2.INIT;
+                    if not TmpHeader2.FINDFIRST() then begin
+                        TmpHeader2.RESET();
+                        TmpHeader2.INIT();
                         TmpHeader2 := TransferShptHdr;
                         TmpHeader2."Shortcut Dimension 1 Code" := PostedWhseShptLine."Whse. Shipment No.";
                         TmpHeader2."Shortcut Dimension 2 Code" := PostedWhseShptLine."No.";
                         TmpHeader2."Dimension Set ID" := 0;
-                        TmpHeader2.INSERT;
+                        TmpHeader2.INSERT();
                     end;
 
-                    TransfershptLine.RESET;
+                    TransfershptLine.RESET();
                     TransfershptLine.SETRANGE("Document No.", TransferShptHdr."No.");
-                    if TransfershptLine.FINDSET then begin
+                    if TransfershptLine.FINDSET() then begin
                         NextLineNo := TmpHeader2."Dimension Set ID";  //Abuse
                         repeat
                             NoOfPackages := 0;
                             PostedWhseShptLine2.setrange("Posted Source Document", PostedWhseShptLine2."Posted Source Document"::"Posted Transfer Shipment");
                             PostedWhseShptLine2.Setrange("Posted Source No.", TransfershptLine."Document No.");
                             PostedWhseShptLine2.Setrange("source Line No.", TransfershptLine."Line No.");
-                            If PostedWhseShptLine2.findlast then begin
+                            If PostedWhseShptLine2.findlast() then begin
                                 RegWhseActLine.setrange("Whse. Document Type", RegWhseActLine."Whse. Document Type"::Shipment);
                                 RegWhseActLine.setrange("Whse. Document NO.", PostedWhseShptLine2."Whse. Shipment No.");
                                 RegWhseActLine.setrange("Whse. Document Line No.", PostedWhseShptLine2."Whse Shipment Line No.");
@@ -1166,31 +1146,31 @@ report 50002 "Comb. Posted Whse. Shpt."
                                     until RegWhseActLine.Next() = 0;
                             end;
 
-                            TmpLine2.RESET;
+                            TmpLine2.RESET();
                             TmpLine2.SETRANGE("Document No.", TmpHeader."No.");
                             TmpLine2.SETRANGE("transfer Order No.", TransfershptLine."transfer Order No.");
                             TmpLine2.SETRANGE("item No.", TransfershptLine."item No.");
                             TmpLine2.SETRANGE("Variant Code", TransfershptLine."Variant Code");
                             TmpLine2.SETRANGE("Unit of Measure Code", TransfershptLine."Unit of Measure Code");
-                            if not TmpLine2.FINDFIRST then begin
+                            if not TmpLine2.FINDFIRST() then begin
                                 NextLineNo := NextLineNo + 10000;
-                                TmpLine2.RESET;
-                                TmpLine2.INIT;
+                                TmpLine2.RESET();
+                                TmpLine2.INIT();
                                 TmpLine2.TRANSFERFIELDS(TransfershptLine);
                                 TmpLine2."Document No." := TmpHeader2."No.";
                                 TmpLine2."Line No." := NextLineNo;
                                 tmpline2."Dimension Set ID" := NoOfPackages; //Abuse
-                                TmpLine2.INSERT;
+                                TmpLine2.INSERT();
 
                                 TmpHeader2."Dimension Set ID" := NextLineNo;
-                                TmpHeader2.MODIFY;
+                                TmpHeader2.MODIFY();
                             end;
-                        until TransfershptLine.NEXT = 0;
+                        until TransfershptLine.NEXT() = 0;
                     end;
-                until TransferShptHdr.NEXT = 0;
+                until TransferShptHdr.NEXT() = 0;
         end;
-        TmpHeader.RESET;
-        TmpHeader2.Reset;
+        TmpHeader.RESET();
+        TmpHeader2.Reset();
     end;
 
     local procedure FillExtraHeaderfields()
@@ -1207,19 +1187,17 @@ report 50002 "Comb. Posted Whse. Shpt."
             ShipToPhoneNo := ShipToAddr."Phone No.";
             ShipToFaxNo := ShipToAddr."Fax No.";
             ShipToEmail := ShipToAddr."E-Mail";
-        END else begin
+        end else
             If SellTocont.Get(header."Sell-to Contact No.") and (Header."Sell-to Contact No." <> '') THEN begin
                 ShipToPhoneNo := SellToCont."Phone No.";
                 ShipToFaxNo := SellToCont."Fax No.";
                 ShipToEmail := SellToCont."E-Mail";
-            END ELSE begin
+            end else
                 if SellToCust.Get(header."Sell-to Customer No.") then begin
                     ShipToPhoneNo := SellToCust."Phone No.";
                     ShipToFaxNo := SellToCust."Fax No.";
                     ShipToEmail := SellToCust."E-Mail";
                 end;
-            END;
-        end;
 
         i := 35;
         if ShipToPhoneNo <> '' then begin

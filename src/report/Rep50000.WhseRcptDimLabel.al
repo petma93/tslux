@@ -93,8 +93,8 @@ report 50000 "Whse. Rcpt. Dim. Label"
                         GetTranslations();
 
                         if item."No." <> '' then
-                            PFRN_CallPerfionMgt.TempBlobLoadPerfionItemImageName('Image', "Item No.", item."PRFN_Record ID", '&Size=10x10', TmpBlob, false);
-
+                            //PFRN_CallPerfionMgt.TempBlobLoadPerfionItemImageName('Image', "Item No.", item."PRFN_Record ID", '&Size=10x10', TmpBlob, false);
+                            PFRN_CallPerfionMgt.TempBlobLoadPerfionItemImageName(stdr_ReportSetup."Custom Parameter1", "Item No.", item."PRFN_Record ID", '&Size=10x10', TmpBlob, false);
 
                     end;
 
@@ -199,12 +199,15 @@ report 50000 "Whse. Rcpt. Dim. Label"
             Width := ItemUOM.Width;
             Length := ItemUOM.Length;
 
+            /*
             if whseReceiptLine."Unit of Measure Code" = item."Purch. Unit of Measure" then
                 QtyPurchUOM := whseReceiptLine."Qty. to Receive"
             else begin
                 ItemUOM.Get(item."No.", item."Purch. Unit of Measure");
                 QtyPurchUOM := UOMMgt.CalcQtyFromBase(whseReceiptLine."Qty. to Receive (Base)", ItemUOM."Qty. per Unit of Measure");
             end;
+            */
+            QtyPurchUOM := whseReceiptLine."Qty. per Unit of Measure";
         end else
             clear(Item);
 

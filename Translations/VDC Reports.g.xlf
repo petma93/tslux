@@ -133,15 +133,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - Control Language - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Report 1195402496 - NamedType 3114637384" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Report 1195402496 - NamedType 1614022648" size-unit="char" translate="yes" xml:space="preserve">
           <source>Transport Document %1</source>
           <note from="Developer" annotates="general" priority="2">%1 = Document No.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - NamedType Text001</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - NamedType Text001Txt</note>
         </trans-unit>
-        <trans-unit id="Report 1195402496 - NamedType 3752334001" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Report 1195402496 - NamedType 598315961" size-unit="char" translate="yes" xml:space="preserve">
           <source>Page %1</source>
           <note from="Developer" annotates="general" priority="2">%1 = Page No.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - NamedType Text002</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - NamedType Text002Txt</note>
         </trans-unit>
         <trans-unit id="Report 1195402496 - NamedType 650077689" size-unit="char" translate="yes" xml:space="preserve">
           <source>Page</source>
@@ -218,11 +218,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - NamedType CurrentDateLbl</note>
         </trans-unit>
-        <trans-unit id="Report 1195402496 - NamedType 953117829" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Ship-to Address</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - NamedType ShippingAddrLbl</note>
-        </trans-unit>
         <trans-unit id="Report 980825104 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Shipping Label</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -237,36 +232,6 @@
           <source>No. of Extra Copies</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Shipping Label - Control NoOfExtraCopies - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 980825104 - Control 996934947 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Show Serial/Lot Number</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Shipping Label - Control ShowItemTracking - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 980825104 - Control 996934947 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Default,Yes,No</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Shipping Label - Control ShowItemTracking - Property OptionCaption</note>
-        </trans-unit>
-        <trans-unit id="Report 980825104 - Control 667748097 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Set Breakbulk Filter</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Shipping Label - Control Breakbulk - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 980825104 - Control 667748097 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Default,Yes,No</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Shipping Label - Control Breakbulk - Property OptionCaption</note>
-        </trans-unit>
-        <trans-unit id="Report 980825104 - Control 578596445 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Sum up Lines</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Shipping Label - Control SumUpLines - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 980825104 - Control 578596445 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Default,Yes,No</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Shipping Label - Control SumUpLines - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Report 3257064846 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>VDC Picking List</source>

@@ -19,7 +19,7 @@ pageextension 50003 "PageExtension50003" extends "Posted Whse. Shipment List"
                     PostedWhseRcptHdr: Record "Posted Whse. Shipment Header";
                     CombPostedWhseShpt: Report "Comb. Posted Whse. Shpt.";
                 begin
-                    If rec.GetFilters = '' then
+                    If rec.GetFilters() = '' then
                         PostedWhseRcptHdr.SetRange("No.", "No.")
                     else
                         postedWhseRcptHdr.Copy(Rec);

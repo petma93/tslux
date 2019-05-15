@@ -36,10 +36,10 @@ report 50003 "Transport Document"
                 dataitem(PageLoop; "Integer")
                 {
                     DataItemTableView = SORTING (Number) WHERE (Number = CONST (1));
-                    column(ReportTitleCopyText; STRSUBSTNO(Text001, CopyText))
+                    column(ReportTitleCopyText; STRSUBSTNO(Text001Txt, CopyText))
                     {
                     }
-                    column(CurrRepPageNo; Text002)
+                    column(CurrRepPageNo; Text002Txt)
                     {
                     }
                     column(CompanyAddr1; CompanyAddr[1])
@@ -175,7 +175,7 @@ report 50003 "Transport Document"
                 trigger OnAfterGetRecord()
                 begin
                     if Number > 1 then begin
-                        CopyText := FormatDocument.GetCOPYText;
+                        CopyText := FormatDocument.GetCOPYText();
                         clear(CompanyInfo.Picture);
                     end else
                         CompanyInfo.CalcFields(Picture);
@@ -242,8 +242,8 @@ report 50003 "Transport Document"
 
     trigger OnInitReport()
     begin
-        CompanyInfo.GET;
-        CurrentDate := TODAY;
+        CompanyInfo.GET();
+        CurrentDate := TODAY();
     end;
 
     var
@@ -266,8 +266,8 @@ report 50003 "Transport Document"
         CustTptComments: text;
         ShipToPhoneNo: text;
         LanguageCode: Code[10];
-        Text001: Label 'Transport Document %1', Comment = '%1 = Document No.';
-        Text002: Label 'Page %1', Comment = '%1 = Page No.';
+        Text001Txt: Label 'Transport Document %1', Comment = '%1 = Document No.';
+        Text002Txt: Label 'Page %1', Comment = '%1 = Page No.';
         PageCaptionLbl: Label 'Page';
         PackagedVolumeLbl: Label 'Packaged Volume';
         DocumentNoLbl: Label 'Transport No.';
@@ -283,7 +283,7 @@ report 50003 "Transport Document"
         CompanyInfoBankNameCaptionLbl: Label 'Bank';
         CompanyInfoBankAccNoCaptionLbl: Label 'Account No.';
         CurrentDateLbl: Label 'Date';
-        ShippingAddrLbl: Label 'Ship-to Address';
+
 
 
     local procedure InitializeRequest(NewNoOfCopies: Integer)
@@ -324,7 +324,7 @@ report 50003 "Transport Document"
         ShipToPhoneNo := '';
         CustTptComments := '';
 
-        with OUCTTransportCont do begin
+        with OUCTTransportCont do
             If SalesHeader.Get(SalesHeader."Document Type"::Order, "Source No.") then begin
                 ShipToName := SalesHeader."Ship-to Name";
                 ShipToAddress := SalesHeader."Ship-to Address";
@@ -349,12 +349,11 @@ report 50003 "Transport Document"
                         If CustComm.FindSet() then
                             repeat
                                 CustTptComments := CustTptComments + CustComm.Comment;
-                            until CustComm.next = 0;
+                            until CustComm.next() = 0;
                     until Printcode.Next() = 0;
                 end;
 
             end;
-        end;
     end;
 }
 

@@ -1,22 +1,21 @@
 codeunit 50003 "Custom Report Management"
 {
     var
-        WhsePostShipment: Codeunit "Whse.-Post Shipment";
         PostedWhseShptHeader: Record "Posted Whse. Shipment Header";
+        WhsePostShipment: Codeunit "Whse.-Post Shipment";
         Selection: Integer;
         ShipInvoiceQst: Label '&Ship,Ship &and Invoice';
 
     [EventSubscriber(ObjectType::"Codeunit", Codeunit::"Whse.-Post Shipment + Print", 'OnBeforeCode', '', false, false)]
     local procedure PostAndPrintPostedShptOnly(VAR WhseShptLine: Record "Warehouse Shipment Line"; VAR HideDialog: Boolean; VAR Invoice: Boolean; VAR IsPosted: Boolean)
     var
-        WhseDocPrint: Codeunit "Warehouse Document-Print";
-        ReportSelectionMgt: Codeunit "Report Selection Mgt.";
         RepSelWhse: Record "Report Selection Warehouse";
+        ReportSelectionMgt: Codeunit "Report Selection Mgt.";
     begin
         HideDialog := FALSE;
 
         WITH WhseShptLine DO BEGIN
-            IF FIND THEN
+            IF FIND() THEN
                 IF NOT HideDialog THEN BEGIN
                     Selection := STRMENU(ShipInvoiceQst, 1);
                     IF Selection = 0 THEN
@@ -27,27 +26,23 @@ codeunit 50003 "Custom Report Management"
             WhsePostShipment.SetPostingSettings(Invoice);
             WhsePostShipment.SetPrint(FALSE);
             WhsePostShipment.RUN(WhseShptLine);
-            WhsePostShipment.GetResultMessage;
+            WhsePostShipment.GetResultMessage();
 
             IsPosted := true;
             CLEAR(WhsePostShipment);
 
             PostedWhseShptHeader.SETRANGE("Whse. Shipment No.", "No.");
             PostedWhseShptHeader.SETRANGE("Location Code", "Location Code");
-            PostedWhseShptHeader.FINDLAST;
+            PostedWhseShptHeader.FINDLAST();
             PostedWhseshptHeader.SETRANGE("No.", PostedWhseshptHeader."No.");
             //REPORT.RUN(REPORT::"Comb. Posted Whse. Shpt.", FALSE, FALSE, PostedWhseShptHeader);
-            with RepSelWhse do begin
-                SETRANGE(Usage, Usage::"Posted Shipment");
-                IF ISEMPTY THEN
-                    ReportSelectionMgt.InitReportUsageWhse(Usage);
-                IF FINDSET THEN
-                    REPEAT
-                        REPORT.RUN("Report ID", false, FALSE, PostedWhseshptHeader);
-                    UNTIL NEXT = 0;
-            end;
-
-
+            RepSelWhse.SETRANGE(Usage, RepSelWhse.Usage::"Posted Shipment");
+            IF RepSelWhse.ISEMPTY() THEN
+                ReportSelectionMgt.InitReportUsageWhse(RepSelWhse.Usage);
+            IF RepSelWhse.FINDSET() THEN
+                REPEAT
+                    REPORT.RUN(RepSelWhse."Report ID", false, FALSE, PostedWhseshptHeader);
+                UNTIL RepSelWhse.NEXT() = 0;
         END;
     end;
 

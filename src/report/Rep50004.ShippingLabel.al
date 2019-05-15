@@ -23,6 +23,8 @@ report 50004 "Shipping Label"
             { }
             column(CompanyAddr4; CompanyAddr[4])
             { }
+            column(CompanyAddr5; CompanyAddr[5])
+            { }
             column(RefCaption; RefCaption)
             { }
             column(HeaderFds1; HeaderFds[1])
@@ -135,16 +137,16 @@ report 50004 "Shipping Label"
                     trigger OnAfterGetRecord()
                     begin
                         if Number = 1 then
-                            TmpLine.FINDSET
+                            TmpLine.FINDSET()
                         else
-                            TmpLine.NEXT;
+                            TmpLine.NEXT();
 
                         // reset detail buffer line
                         CLEAR(TempDetailBuffer);
-                        TempDetailBuffer.DELETEALL;
+                        TempDetailBuffer.DELETEALL();
 
                         // fill line fields
-                        FillLineFds;
+                        FillLineFds();
 
                         NoOfPackages := TmpLine."No. of Packages";
                         IF NoOfPackages = 0 then
@@ -153,7 +155,7 @@ report 50004 "Shipping Label"
 
                     trigger OnPreDataItem()
                     begin
-                        SETRANGE(Number, 1, TmpLine.COUNT);
+                        SETRANGE(Number, 1, TmpLine.COUNT());
                         LineEntryNo := 0;
                     end;
                 }
@@ -161,9 +163,8 @@ report 50004 "Shipping Label"
                 trigger OnAfterGetRecord()
                 begin
                     //set outputno
-                    if Number > 1 then begin
+                    if Number > 1 then
                         OutputNo += 1;
-                    end;
 
                     //determine document name and add copy text if number is bigger then one
                     DocName := STDR_ReportManagement.GetDocName(Number);
@@ -172,10 +173,9 @@ report 50004 "Shipping Label"
 
                 trigger OnPostDataItem()
                 begin
-                    if not CurrReport.PREVIEW then begin
+                    if not CurrReport.PREVIEW() then
                         // Update field "No. Printed" in header
-                        STDR_ReportManagement.HeaderCountPrinted;
-                    end;
+                        STDR_ReportManagement.HeaderCountPrinted();
                 end;
 
                 trigger OnPreDataItem()
@@ -189,7 +189,7 @@ report 50004 "Shipping Label"
             trigger OnAfterGetRecord()
             begin
                 // setup report management codeunit with current record values
-                STDR_ReportManagement.SetCurrentRec("Language Code", '', WORKDATE, '', Header);
+                STDR_ReportManagement.SetCurrentRec("Language Code", '', WORKDATE(), '', Header);
 
                 // Set the options set by user on the requestpage
                 STDR_ReportManagement.SetReportOptionItemTracking(ShowItemTracking);
@@ -200,14 +200,14 @@ report 50004 "Shipping Label"
                 STDR_ReportManagement.GetReportSetup(STDR_ReportSetup);
 
                 // set CurrReport.Language
-                CurrReport.LANGUAGE := STDR_ReportManagement.GetLanguageID;
+                CurrReport.LANGUAGE := STDR_ReportManagement.GetLanguageID();
 
                 // fill buffer with all lines to print. If no lines exists also skip header
                 if not FillWhseActLineBuffer(TmpLine, Header) then
-                    CurrReport.SKIP;
+                    CurrReport.SKIP();
 
                 // fill header fields
-                FillHeaderFds;
+                FillHeaderFds();
             end;
         }
     }
@@ -227,25 +227,6 @@ report 50004 "Shipping Label"
                     {
                         ApplicationArea = Basic, Suite;
                         Caption = 'No. of Extra Copies';
-                    }
-                    field(ShowItemTracking; ShowItemTracking)
-                    {
-                        ApplicationArea = ItemTracking;
-                        Caption = 'Show Serial/Lot Number';
-                        OptionCaption = 'Default,Yes,No';
-                    }
-                    field(Breakbulk; BreakbulkFilter)
-                    {
-                        ApplicationArea = Advanced, Suite;
-                        Caption = 'Set Breakbulk Filter';
-                        OptionCaption = 'Default,Yes,No';
-                        Visible = BreakbulkFilterVisible;
-                    }
-                    field(SumUpLines; SumUpLines)
-                    {
-                        ApplicationArea = Advanced, Suite;
-                        Caption = 'Sum up Lines';
-                        OptionCaption = 'Default,Yes,No';
                     }
                 }
             }
@@ -272,7 +253,7 @@ report 50004 "Shipping Label"
     trigger OnPreReport()
     begin
         // setup report management codeunit with preview
-        STDR_ReportManagement.SetPreview(CurrReport.PREVIEW);
+        STDR_ReportManagement.SetPreview(CurrReport.PREVIEW());
     end;
 
     var
@@ -280,7 +261,6 @@ report 50004 "Shipping Label"
         TmpLine: Record "Warehouse Activity Line" temporary;
         STDR_ReportSetup: Record "STDR_Report Setup";
         STDR_ReportManagement: Codeunit "STDR_Report Management";
-        STDR_CommonFunctions: Codeunit "STDR_Common Functions";
         ShowItemTracking: Option Default,Yes,No;
         SumUpLines: Option Default,Yes,No;
         BreakbulkFilter: Option Default,Yes,No;
@@ -296,7 +276,7 @@ report 50004 "Shipping Label"
         DestName: text;
         DestAddress: text;
         DestAddress2: text;
-        DestPostCodeCity: text[90];
+        DestPostCodeCity: text[100];
         RefCaption: text;
         DestCountryCode: code[10];
         DestCountryName: text[50];
@@ -306,11 +286,7 @@ report 50004 "Shipping Label"
         LineEntryNo: Integer;
         LineIndent: Integer;
         LineBold: Boolean;
-        UoMtxt: Text;
         LineTxt: array[20] of Text;
-        DetLineTxt: array[20] of Text;
-        ItemTrackingType: Option "None",Lot,SN,Both;
-        "Report Setup Code": Code[20];
         "Language Code": Code[20];
         LineTypeNo: Integer;
         DetLineTypeNo: Integer;
@@ -324,13 +300,10 @@ report 50004 "Shipping Label"
     procedure FillWhseActLineBuffer(var TmpLineBuffer2: Record "Warehouse Activity Line" temporary; Header2: Record "Warehouse Activity Header") LinesExist: Boolean
     var
         WhseActLine: Record "Warehouse Activity Line";
-        WhseActLineLinked: Record "Warehouse Activity Line";
-        SerialNoExists: Boolean;
-        LotNoExists: Boolean;
     begin
         with WhseActLine do begin
-            TmpLineBuffer2.RESET;
-            TmpLineBuffer2.DELETEALL;
+            TmpLineBuffer2.RESET();
+            TmpLineBuffer2.DELETEALL();
             CopyFilters(LineFilter);
             SETCURRENTKEY("Activity Type", "No.", "Sorting Sequence No.");
             SETRANGE("Activity Type", Header.Type);
@@ -338,7 +311,7 @@ report 50004 "Shipping Label"
             SetRange("Action Type", "Action Type"::Take);
             if STDR_ReportSetup."Set Breakbulk Filter" then
                 SETRANGE("Original Breakbulk", false);
-            if FINDSET then
+            if FINDSET() then
                 repeat
                     if STDR_ReportSetup."Sum up Lines" then begin
                         TmpLineBuffer2.SETCURRENTKEY("Activity Type", "No.", "Bin Code", "Breakbulk No.", "Action Type");
@@ -357,7 +330,7 @@ report 50004 "Shipping Label"
                             TmpLineBuffer2.SETRANGE("Destination Type", "Destination Type");
                             TmpLineBuffer2.SETRANGE("Destination No.", "Destination No.");
                         end;
-                        if TmpLineBuffer2.FINDFIRST then begin
+                        if TmpLineBuffer2.FINDFIRST() then begin
                             TmpLineBuffer2.Quantity += Quantity;
                             TmpLineBuffer2."Qty. (Base)" += "Qty. (Base)";
                             TmpLineBuffer2."Qty. Outstanding" += "Qty. Outstanding";
@@ -372,19 +345,19 @@ report 50004 "Shipping Label"
                                 TmpLineBuffer2."Destination Type" := TmpLineBuffer2."Destination Type"::" ";
                                 TmpLineBuffer2."Destination No." := '';
                             end;
-                            TmpLineBuffer2.MODIFY;
+                            TmpLineBuffer2.MODIFY();
                         end else begin
                             TmpLineBuffer2 := WhseActLine;
-                            TmpLineBuffer2.INSERT;
+                            TmpLineBuffer2.INSERT();
                         end;
                     end else begin
                         TmpLineBuffer2 := WhseActLine;
-                        TmpLineBuffer2.INSERT;
+                        TmpLineBuffer2.INSERT();
                     end;
-                until NEXT = 0;
+                until NEXT() = 0;
 
-            TmpLineBuffer2.RESET;
-            exit(not TmpLineBuffer2.ISEMPTY);
+            TmpLineBuffer2.RESET();
+            exit(not TmpLineBuffer2.ISEMPTY());
         end; /*with do*/
 
     end;
@@ -400,18 +373,19 @@ report 50004 "Shipping Label"
 
         STDR_ReportManagement.DetailLineAdd(TheTempDetailBuffer, TmpLine."No.", TmpLine."Line No.");
         TheTempDetailBuffer."Detail Line Type" := TheTempDetailBuffer."Detail Line Type"::Comment;
-        TheTempDetailBuffer.Description := STDR_ReportManagement.GetLineDesc(1, SpecialEquip.Description, '');
-        TheTempDetailBuffer.INSERT;
+        TheTempDetailBuffer.Description := COPYSTR(STDR_ReportManagement.GetLineDesc(1, SpecialEquip.Description, ''), 1, MaxStrLen(TheTempDetailBuffer.Description));
+        TheTempDetailBuffer.INSERT();
     end;
 
     procedure FillHeaderFds()
     var
+        CountryRegion: Record "Country/Region";
         CompanyInfo: Record "STDR_Report Setup";
-        UserManagement: Codeunit "User Management";
         LeftAddr: array[8] of Text[80];
         RightAddr: array[8] of Text[80];
         ExtraAddr: array[8] of Text[80];
         i: Integer;
+        Done: Boolean;
     begin
         with Header do begin
             //sometime the companyinfo is overrulled by the responsibilycenter or report setup code.
@@ -419,8 +393,19 @@ report 50004 "Shipping Label"
             CompanyInfo := STDR_ReportSetup;
             STDR_ReportManagement.FormatAddresses(LeftAddr, RightAddr, ExtraAddr, CompanyAddr);
 
+            for i := 1 TO 5 do
+                if (CompanyAddr[i] = '') and (not done) then begin
+                    IF not CountryRegion.Get(STDR_ReportSetup."Country/Region Code") then
+                        clear(CountryRegion);
+                    IF CountryRegion.Name <> '' then
+                        CompanyAddr[i] := CountryRegion.Name
+                    else
+                        CompanyAddr[i] := CountryRegion.Code;
+                    done := true;
+                end;
+
             //Set per document:fontfamily, fontname, fontsize
-            FontFamily := STDR_ReportManagement.GetFontFamily;
+            FontFamily := STDR_ReportManagement.GetFontFamily();
             STDR_ReportManagement.GetFontArray(FontArray);
 
             CLEAR(HeaderFds);
@@ -435,10 +420,10 @@ report 50004 "Shipping Label"
 
     procedure FillLineFds()
     var
-        FormatAddr: Codeunit "Format Address";
         SalesHeader: Record "Sales Header";
         Country: Record "Country/Region";
         CountryTransl: Record "Country/Region Translation";
+        FormatAddr: Codeunit "Format Address";
         County: text[50];
     begin
         SourceRef := '';
@@ -451,26 +436,24 @@ report 50004 "Shipping Label"
 
         case TmpLine."Source Type" OF
             Database::"Sales Line":
-                begin
-                    IF SalesHeader.Get(tmpLine."Source Subtype", tmpLine."Source No.") then begin
-                        DestName := SalesHeader."Ship-to Name";
-                        DestAddress := SalesHeader."Ship-to Address";
-                        DestAddress2 := SalesHeader."Ship-to Address 2";
-                        FormatAddr.FormatPostCodeCity(DestPostCodeCity, county,
-                            SalesHeader."Ship-to City", SalesHeader."Ship-to Post Code", SalesHeader."Ship-to County", SalesHeader."Ship-to Country/Region Code");
+                IF SalesHeader.Get(tmpLine."Source Subtype", tmpLine."Source No.") then begin
+                    DestName := SalesHeader."Ship-to Name";
+                    DestAddress := SalesHeader."Ship-to Address";
+                    DestAddress2 := SalesHeader."Ship-to Address 2";
+                    FormatAddr.FormatPostCodeCity(DestPostCodeCity, county,
+                        SalesHeader."Ship-to City", SalesHeader."Ship-to Post Code", SalesHeader."Ship-to County", SalesHeader."Ship-to Country/Region Code");
 
-                        DestCountryCode := SalesHeader."Ship-to Country/Region Code";
-                        If CountryTransl.Get(SalesHeader."Ship-to Country/Region Code", STDR_ReportManagement.GetLanguageCode()) then
-                            DestCountryName := CountryTransl.Name
-                        else
-                            if Country.Get(SalesHeader."Ship-to Country/Region Code") then
-                                DestCountryName := Country.Name;
+                    DestCountryCode := SalesHeader."Ship-to Country/Region Code";
+                    If CountryTransl.Get(SalesHeader."Ship-to Country/Region Code", STDR_ReportManagement.GetLanguageCode()) then
+                        DestCountryName := CountryTransl.Name
+                    else
+                        if Country.Get(SalesHeader."Ship-to Country/Region Code") then
+                            DestCountryName := Country.Name;
 
-                        SourceRef := SalesHeader."Your Reference";
-                    end;
+                    SourceRef := SalesHeader."Your Reference";
                 end;
         end;
-
+        /*
         case tmpLine."Destination Type" of
             tmpLine."Destination Type"::Customer:
                 begin
@@ -481,7 +464,7 @@ report 50004 "Shipping Label"
 
                 end;
         end;
-
+        */
         with TmpLine do begin
             LineEntryNo += 1;
             LineTypeNo := "Action Type";
