@@ -164,8 +164,8 @@ report 50003 "Transport Document"
                             GetSourceInformation();
 
                             If ItemUOM.Get("Item No.", "Unit of Measure Code") then begin
-                                Calcfields("Quantity Shipped");
-                                LineVolume := ItemUOM.Cubage * "Quantity Shipped";
+                                Calcfields("Quantity");
+                                LineVolume := ItemUOM.Cubage * "Quantity";
                             end else
                                 LineVolume := 0;
                         end;
