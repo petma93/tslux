@@ -15,7 +15,7 @@ report 50002 "Comb. Posted Whse. Shpt."
             dataitem(PostedWhseShptLine; "Posted Whse. Shipment Line")
             {
                 DataItemLink = "No." = FIELD ("No.");
-                DataItemTableView = SORTING ("No.", "Line No."); //WHERE ("Source Type" = CONST (37), "Source Subtype" = CONST ("1"));
+                DataItemTableView = SORTING ("No.", "Line No.");
 
                 trigger OnAfterGetRecord()
                 begin
@@ -224,7 +224,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                                 end;
                                 STDR_ReportManagement.CollectLineComments(TempDetailBuffer, Line."Document No.", Line."Line No.");
                                 STDR_ReportManagement.CollectItemResourceComments(TempDetailBuffer, Line."Document No.", Line."Line No.", Line.Type, Line."No.");
-                            END else begin
+                            end else begin
                                 STDR_ReportDetailMgt.DetailLineAddExtraNo(STDR_ReportSetup, TempDetailBuffer, Line2."Document No.", Line2."Line No.", ''); //Line2."Cross-Reference No.");
                                 STDR_ReportManagement.CollectLineLinkedLines(TempDetailBuffer, Line2."Document No.", Line2."Line No.");
                                 STDR_ReportManagement.CollectLineItemTracking(TempDetailBuffer, Line2."Document No.", Line2."Line No.", Line2."item No.", Line2."Unit of Measure Code");
@@ -393,6 +393,9 @@ report 50002 "Comb. Posted Whse. Shpt."
                     column(Intrastat_Amount; STDR_ReportManagement.FormatAmountDecimal(TempDetailBuffer2.Amount))
                     {
                     }
+                    column(Intrastat_GrossWeight; STDR_ReportManagement.FormatDecimal(GrossWeight, 2, 2))
+                    {
+                    }
 
                     trigger OnAfterGetRecord()
                     begin
@@ -400,6 +403,12 @@ report 50002 "Comb. Posted Whse. Shpt."
                             TempDetailBuffer2.NEXT()
                         else
                             TempDetailBuffer2.FINDSET();
+
+                        GrossWeight := 0;
+                        TempIntraGrossBuffer.reset;
+                        TempIntraGrossBuffer.setrange("No.", TempDetailBuffer2."No.");
+                        If TempIntraGrossBuffer.FindFirst() then
+                            GrossWeight := TempIntraGrossBuffer.Quantity;
                     end;
 
                     trigger OnPreDataItem()
@@ -594,6 +603,7 @@ report 50002 "Comb. Posted Whse. Shpt."
     var
         TempDetailBuffer: Record "STDR_Report Detail Line Buffer" temporary;
         TempDetailBuffer2: Record "STDR_Report Detail Line Buffer";
+        TempIntraGrossBuffer: Record "STDR_Report Detail Line Buffer" temporary;
         STDR_ReportSetup: Record "STDR_Report Setup";
         TmpWhseShpt: Record "Warehouse Shipment Header" temporary;
         TmpHeader: Record "Sales Shipment Header" temporary;
@@ -632,6 +642,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         [InDataSet]
         ShowAssemblyInfoVisible: Boolean;
         TotalVolume: Decimal;
+        GrossWeight: Decimal;
         OutputNo: Integer;
         LineEntryNo: Integer;
         NoOfExtraCopies: Integer;
@@ -640,6 +651,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         NextLineNo: Integer;
         TmpHeaders: Integer;
         TmpHeader2s: Integer;
+        NextIntraGrossBufferEntryNo: Integer;
         FontArray: array[8] of Text;
 
     procedure FillHeaderFds()
@@ -662,6 +674,9 @@ report 50002 "Comb. Posted Whse. Shpt."
         t: array[10] of Text;
     begin
         TotalVolume := 0;
+        TempIntraGrossBuffer.reset;
+        TempIntraGrossBuffer.DeleteAll();
+        NextIntraGrossBufferEntryNo := 0;
 
         //sometime the companyinfo is overrulled by the responsibilycenter or report setup code.
         //So we use the report_setup var. The report_mgt codeunit has filled/copied this var with the correct values
@@ -670,11 +685,17 @@ report 50002 "Comb. Posted Whse. Shpt."
         if HeaderLoop.Number > TmpHeaders then begin
             CASE STDR_ReportSetup."Left Address" of
                 STDR_ReportSetup."Left Address"::"Ship-To":
-                    FormatAddress.TransferShptTransferTo(LeftAddr, Header2);
+                    begin
+                        FormatAddress.TransferShptTransferTo(LeftAddr, Header2);
+                        clear(RightAddr);
+                    end;
             END;
             CASE STDR_ReportSetup."Right Address" of
                 STDR_ReportSetup."Right Address"::"Ship-To":
-                    FormatAddress.TransferShptTransferTo(RightAddr, Header2);
+                    begin
+                        FormatAddress.TransferShptTransferTo(RightAddr, Header2);
+                        Clear(LeftAddr);
+                    end;
             END;
         end;
 
@@ -688,7 +709,8 @@ report 50002 "Comb. Posted Whse. Shpt."
         CLEAR(HeaderFds);
         case STDR_ReportSetup."Left Address" of
             STDR_ReportSetup."Left Address"::"Bill-To/Pay-To":
-                STDR_ReportManagement.AddTranslValue(1, HeaderFds[1], 'Bill-to Address');
+                if HeaderLoop.Number <= TmpHeaders then
+                    STDR_ReportManagement.AddTranslValue(1, HeaderFds[1], 'Bill-to Address');
             STDR_ReportSetup."Left Address"::"Ship-To":
                 STDR_ReportManagement.AddTranslValue(1, HeaderFds[1], 'Ship-to Address');
             STDR_ReportSetup."Left Address"::"Sell-To/Buy-From":
@@ -704,7 +726,8 @@ report 50002 "Comb. Posted Whse. Shpt."
         STDR_ReportManagement.AddTxtValue(9, HeaderFds[1], LeftAddr[8]);
         case STDR_ReportSetup."Right Address" of
             STDR_ReportSetup."Right Address"::"Bill-To/Pay-To":
-                STDR_ReportManagement.AddTranslValue(10, HeaderFds[1], 'Bill-to Address');
+                if HeaderLoop.Number <= TmpHeaders then
+                    STDR_ReportManagement.AddTranslValue(10, HeaderFds[1], 'Bill-to Address');
             STDR_ReportSetup."Right Address"::"Ship-To":
                 STDR_ReportManagement.AddTranslValue(10, HeaderFds[1], 'Ship-to Address');
             STDR_ReportSetup."Right Address"::"Sell-To/Buy-From":
@@ -774,10 +797,6 @@ report 50002 "Comb. Posted Whse. Shpt."
             STDR_ReportManagement.AddDateValue(10, HeaderFds[3], Header."Document Date")
         else
             STDR_ReportManagement.AddDateValue(10, HeaderFds[3], HEader2."posting Date");
-        //if "Your Reference" <> '' then begin
-        //    STDR_ReportManagement.AddTranslValue(7, HeaderFds[3], 'Your Reference');
-        //    STDR_ReportManagement.AddTxtValue(8, HeaderFds[3], "Your Reference");
-        //end;
         STDR_ReportManagement.AddTranslValue(22, HeaderFds[3], 'Shipment Method');
         STDR_ReportManagement.AddTranslValue(30, HeaderFds[3], 'Order No.');
 
@@ -827,14 +846,19 @@ report 50002 "Comb. Posted Whse. Shpt."
         STDR_ReportManagement.AddTranslValue(5, HeaderFds[5], 'Order Quantity');
         STDR_ReportManagement.AddTranslValue(6, HeaderFds[5], 'Remaining Quantity');
         STDR_ReportManagement.AddTranslValue(8, HeaderFds[5], 'Unit Volume');
+        STDR_ReportManagement.AddTranslValue(9, HeaderFds[5], 'Packages');
 
         // Intrastat totals block
         STDR_ReportManagement.AddTranslValue(10, HeaderFds[5], 'Intrastat Code');
         if STDR_ReportSetup."Show Intrastat in Total Block" in [STDR_ReportSetup."Show Intrastat in Total Block"::NoDescrWeight, STDR_ReportSetup."Show Intrastat in Total Block"::NoDescrWeightAmt] then
             STDR_ReportManagement.AddTranslValue(11, HeaderFds[5], 'Description');
-        STDR_ReportManagement.AddTranslValue(12, HeaderFds[5], 'Weight');
+        STDR_ReportManagement.AddTranslValue(12, HeaderFds[5], 'Net Weight');
         if STDR_ReportSetup."Show Intrastat in Total Block" in [STDR_ReportSetup."Show Intrastat in Total Block"::NoWeightAmt, STDR_ReportSetup."Show Intrastat in Total Block"::NoDescrWeightAmt] then
             STDR_ReportManagement.AddTranslValue(13, HeaderFds[5], 'Amount');
+
+        IF STDR_ReportSetup."Show Intrastat in Details" <> STDR_ReportSetup."Show Intrastat in Details"::" " then
+            STDR_ReportManagement.AddTranslValue(7, HeaderFds[5], 'Gross Weight');
+        STDR_ReportManagement.AddTranslValue(14, HeaderFds[5], 'Gross Weight');
 
         FillExtraHeaderfields();
 
@@ -857,7 +881,10 @@ report 50002 "Comb. Posted Whse. Shpt."
     procedure FillLineFds()
     var
         SalesHeader: Record "Sales Header";
+        item: Record Item;
         ItemUOM: Record "Item Unit of Measure";
+        ItemLedgEntry: Record "Item Ledger Entry";
+        TransferLine: Record "Transfer Line";
         LineDisc: Text;
         UoMtxt: Text;
         LinePrice: Decimal;
@@ -895,25 +922,27 @@ report 50002 "Comb. Posted Whse. Shpt."
                         if RemainingQty <> 0 then
                             LineTxt[6] := STDR_ReportManagement.FormatQuantityDecimal(RemainingQty);
                     end;
-                    LineTxt[7] := '';
-                    LineTxt[8] := '';
-                    LineTxt[9] := '';
-                    LineTxt[10] := '';
+                    IF STDR_ReportSetup."Show Intrastat in Details" <> STDR_ReportSetup."Show Intrastat in Details"::" " then
+                        LineTxt[7] := STDR_ReportManagement.FormatDecimal("Gross Weight", 2, 2);
 
                     If type = Type::Item then begin
+                        Item.get("No.");
+                        AddGrossWeight("No.", Item."Gross Weight" * "Quantity (Base)");
                         ItemUOM.get("No.", "Unit of Measure Code");
                         IF ItemUOM.Cubage <> 0 THEN BEGIN
                             Linetxt[8] := STDR_ReportManagement.FormatQuantityDecimal(Quantity * ItemUOM.Cubage);
                             TotalVolume := TotalVolume + (Quantity * ItemUOM.Cubage);
                         END;
                     end;
+
+                    LineTxt[9] := Format("Dimension Set ID"); //colli
+                    LineTxt[10] := '';
                 end;
 
                 OrderRef := '';
                 if "Order No." <> '' then
                     if SalesHeader.GET(1, "Order No.") then
                         if SalesHeader."Your Reference" <> '' then
-                            //gOrderRef := ' - ' + gRepMgt.GetTranslCurrRep('Your Reference') + ': ' + aSalesHdr."Your Reference";
                             OrderRef := SalesHeader."Your Reference";
 
                 OrderNo := "Order No.";
@@ -928,8 +957,16 @@ report 50002 "Comb. Posted Whse. Shpt."
                 STDR_ReportManagement.GetQtyPriceUoM(Line2, QuantityPriceUnit, QtyFactorPriceUoM, PriceUnitofMeasure);
                 STDR_ReportManagement.GetLineQtyPriceDisc(LinePrice, LineDisc, Qty, UoMtxt, 0, 0, GetQtyPrevTransfer(), Quantity, QuantityPriceUnit, "Unit of Measure", PriceUnitofMeasure);
                 STDR_ReportManagement.GetLineQtyPriceDisc(LinePrice, LineDisc, Qty, UoMtxt, 0, 0, 0, Quantity, Quantity, "Unit of Measure", "Unit of Measure");
-                OrderQty := 0; //Line2."STDR_Order Quantity";
-                RemainingQty := 0; //Line2."STDR_Order Quantity" - Line2."STDR_Quantity Prev. Shipped" - Line2.Quantity;
+
+                ItemLedgEntry.get("Item Shpt. Entry No.");
+                If TransferLine.get(ItemLedgEntry."Order No.", ItemLedgEntry."Order Line No.") then begin
+                    OrderQty := transferline.Quantity; //Line2."STDR_Order Quantity";
+                    RemainingQty := TransferLine."Outstanding Quantity"; //Line2."STDR_Order Quantity" - Line2."STDR_Quantity Prev. Shipped" - Line2.Quantity;
+                end else begin
+                    OrderQty := 0;  //TODO
+                    RemainingQty := 0;  //TODO
+                end;
+
                 if STDR_ReportSetup."Show Unit of Measure" = STDR_ReportSetup."Show Unit of Measure"::"Price UoM" then begin
                     OrderQty := OrderQty * QtyFactorPriceUoM;
                     RemainingQty := RemainingQty * QtyFactorPriceUoM;
@@ -945,28 +982,30 @@ report 50002 "Comb. Posted Whse. Shpt."
                     if RemainingQty <> 0 then
                         LineTxt[6] := STDR_ReportManagement.FormatQuantityDecimal(RemainingQty);
                 end;
-                LineTxt[7] := '';
-                LineTxt[8] := '';
-                LineTxt[9] := '';
-                LineTxt[10] := '';
+                IF STDR_ReportSetup."Show Intrastat in Details" <> STDR_ReportSetup."Show Intrastat in Details"::" " then
+                    LineTxt[7] := STDR_ReportManagement.FormatDecimal("Gross Weight", 2, 2);
 
+                Item.get("Item No.");
+                AddGrossWeight("Item No.", Item."Gross Weight" * "Quantity (Base)");
                 ItemUOM.get("item No.", "Unit of Measure Code");
                 IF ItemUOM.Cubage <> 0 THEN BEGIN
                     Linetxt[8] := STDR_ReportManagement.FormatQuantityDecimal(Quantity * ItemUOM.Cubage);
                     TotalVolume := TotalVolume + (Quantity * ItemUOM.Cubage);
                 END;
 
+                LineTxt[9] := Format("Dimension Set ID"); //colli
+                LineTxt[10] := '';
+
                 OrderRef := '';
                 if "transfer Order No." <> '' then
                     if SalesHeader.GET(1, "transfer Order No.") then
                         if SalesHeader."Your Reference" <> '' then
-                            //gOrderRef := ' - ' + gRepMgt.GetTranslCurrRep('Your Reference') + ': ' + aSalesHdr."Your Reference";
                             OrderRef := SalesHeader."Your Reference";
 
                 OrderNo := "transfer Order No.";
                 if OrderRef <> '' then
                     OrderNo := OrderNo + ':%1' + OrderRef;
-            end; /*with do*/
+            end;
     end;
 
     procedure FillDetailLineFds()
@@ -1009,6 +1048,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         TransfershptLine: record "Transfer Shipment Line";
         RegWhseActLine: Record "Registered Whse. Activity Line";
         PostedWhseShptLine2: Record "Posted Whse. Shipment Line";
+        ItemLedgEntry: Record "Item Ledger Entry";
         NoOfPackages: Integer;
     begin
         SalesShptHeader.SETRANGE("No.", PostedWhseShptLine."Posted Source No.");
@@ -1039,20 +1079,23 @@ report 50002 "Comb. Posted Whse. Shpt."
                 if SalesShptLine.FINDSET() then begin
                     NextLineNo := TmpHeader."Dimension Set ID";  //Abuse
                     repeat
+                        //Get colli from pick lines
                         NoOfPackages := 0;
                         PostedWhseShptLine2.setrange("Posted Source Document", PostedWhseShptLine2."Posted Source Document"::"Posted Shipment");
                         PostedWhseShptLine2.Setrange("Posted Source No.", SalesShptLine."Document No.");
+                        PostedWhseShptLine2.Setrange("Source No.", SalesShptLine."Order No.");
                         postedwhseshptline2.Setrange("Source Line No.", SalesShptLine."Order Line No.");
-                        If PostedWhseShptLine2.findlast() then begin
-                            RegWhseActLine.setrange("Whse. Document Type", RegWhseActLine."Whse. Document Type"::Shipment);
-                            RegWhseActLine.setrange("Whse. Document NO.", PostedWhseShptLine2."Whse. Shipment No.");
-                            RegWhseActLine.setrange("Whse. Document Line No.", PostedWhseShptLine2."Whse Shipment Line No.");
-                            RegWhseActLine.Setrange("Action Type", RegWhseActLine."Action Type"::Take);
-                            IF RegWhseActLine.FindSet() then
-                                repeat
-                                    NoOfPackages := NoOfPackages + RegWhseActLine."No. of Packages";
-                                until RegWhseActLine.Next() = 0;
-                        end;
+                        If PostedWhseShptLine2.FindSet() then
+                            repeat
+                                RegWhseActLine.setrange("Whse. Document Type", RegWhseActLine."Whse. Document Type"::Shipment);
+                                RegWhseActLine.setrange("Whse. Document NO.", PostedWhseShptLine2."Whse. Shipment No.");
+                                RegWhseActLine.setrange("Whse. Document Line No.", PostedWhseShptLine2."Whse Shipment Line No.");
+                                RegWhseActLine.Setrange("Action Type", RegWhseActLine."Action Type"::Take);
+                                IF RegWhseActLine.FindSet() then
+                                    repeat
+                                        NoOfPackages := NoOfPackages + RegWhseActLine."No. of Packages";
+                                    until RegWhseActLine.Next() = 0;
+                            until PostedWhseShptLine2.Next() = 0;
 
                         TmpLine.RESET();
                         TmpLine.SETRANGE("Document No.", TmpHeader."No.");
@@ -1074,30 +1117,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                             TmpHeader."Dimension Set ID" := NextLineNo;
                             TmpHeader.MODIFY();
 
-                            /*
-                            AttSalesShptLine.RESET;
-                            AttSalesShptLine.SETRANGE("Document No.", SalesShptLine."Document No.");
-                            AttSalesShptLine.SETRANGE("Attached to Line No.", SalesShptLine."Line No.");
-                            if AttSalesShptLine.FINDSET then begin
-                                i := 0;
-                                repeat
-                                    i := i + 1;
-                                    TmpLine.RESET;
-                                    TmpLine.INIT;
-                                    TmpLine.TRANSFERFIELDS(AttSalesShptLine);
-                                    TmpLine."Document No." := TmpHeader."No.";
-                                    TmpLine."Line No." := NextLineNo + i;
-                                    TmpLine."Attached to Line No." := NextLineNo;
-                                    TmpLine.INSERT;
-                                until AttSalesShptLine.NEXT = 0;
-                            end;
-                            */
                         end;
-                        //end else begin
-                        //    //TmpLine.Quantity := TmpLine.Quantity + SalesShptLine.Quantity;
-                        //    //TmpLine."Quantity (Base)" := TmpLine."Quantity (Base)" + SalesShptLine."Quantity (Base)";
-                        //    //TmpLine.MODIFY;
-                        //end;
                     until SalesShptLine.NEXT() = 0;
                 end;
             until SalesShptHeader.NEXT() = 0
@@ -1128,23 +1148,27 @@ report 50002 "Comb. Posted Whse. Shpt."
 
                     TransfershptLine.RESET();
                     TransfershptLine.SETRANGE("Document No.", TransferShptHdr."No.");
-                    if TransfershptLine.FINDSET() then begin
-                        NextLineNo := TmpHeader2."Dimension Set ID";  //Abuse
+                    TransfershptLine.setfilter("Item Shpt. Entry No.", '<>%1', 0);
+                    if TransfershptLine.FINDSET() then
                         repeat
+                            //get item ledger entry to have the source line no
+                            ItemLedgEntry.get(TransfershptLine."Item Shpt. Entry No.");
+
+                            NextLineNo := TmpHeader2."Dimension Set ID";  //Abuse
                             NoOfPackages := 0;
                             PostedWhseShptLine2.setrange("Posted Source Document", PostedWhseShptLine2."Posted Source Document"::"Posted Transfer Shipment");
                             PostedWhseShptLine2.Setrange("Posted Source No.", TransfershptLine."Document No.");
-                            PostedWhseShptLine2.Setrange("source Line No.", TransfershptLine."Line No.");
-                            If PostedWhseShptLine2.findlast() then begin
-                                RegWhseActLine.setrange("Whse. Document Type", RegWhseActLine."Whse. Document Type"::Shipment);
-                                RegWhseActLine.setrange("Whse. Document NO.", PostedWhseShptLine2."Whse. Shipment No.");
-                                RegWhseActLine.setrange("Whse. Document Line No.", PostedWhseShptLine2."Whse Shipment Line No.");
-                                RegWhseActLine.Setrange("Action Type", RegWhseActLine."Action Type"::Take);
-                                IF RegWhseActLine.FindSet() then
-                                    repeat
-                                        NoOfPackages := NoOfPackages + RegWhseActLine."No. of Packages";
-                                    until RegWhseActLine.Next() = 0;
-                            end;
+                            If PostedWhseShptLine2.findset() then
+                                repeat
+                                    RegWhseActLine.setrange("Whse. Document Type", RegWhseActLine."Whse. Document Type"::Shipment);
+                                    RegWhseActLine.setrange("Whse. Document NO.", PostedWhseShptLine2."Whse. Shipment No.");
+                                    RegWhseActLine.setrange("Whse. Document Line No.", PostedWhseShptLine2."Whse Shipment Line No.");
+                                    RegWhseActLine.Setrange("Action Type", RegWhseActLine."Action Type"::Take);
+                                    IF RegWhseActLine.FindSet() then
+                                        repeat
+                                            NoOfPackages := NoOfPackages + RegWhseActLine."No. of Packages";
+                                        until RegWhseActLine.Next() = 0;
+                                until PostedWhseShptLine2.Next() = 0;
 
                             TmpLine2.RESET();
                             TmpLine2.SETRANGE("Document No.", TmpHeader."No.");
@@ -1166,7 +1190,6 @@ report 50002 "Comb. Posted Whse. Shpt."
                                 TmpHeader2.MODIFY();
                             end;
                         until TransfershptLine.NEXT() = 0;
-                    end;
                 until TransferShptHdr.NEXT() = 0;
         end;
         TmpHeader.RESET();
@@ -1221,5 +1244,31 @@ report 50002 "Comb. Posted Whse. Shpt."
     local procedure GetQtyPrevTransfer() PrevTransferQty: Decimal
     begin
         exit(0);
+    end;
+
+    local procedure AddGrossWeight(ItemNo: Code[20]; Weight: Decimal)
+    var
+        Item: Record "Item";
+    begin
+        if STDR_ReportSetup."Show Intrastat in Total Block" = STDR_ReportSetup."Show Intrastat in Total Block"::" " then
+            exit;
+
+        IF item.get(ItemNo) then begin
+            if item."tariff No." <> '' then begin
+                TempIntraGrossBuffer.reset;
+                TempIntraGrossBuffer.Setrange("No.", item."Tariff No.");
+                If not TempIntraGrossBuffer.FindFirst() then begin
+                    TempIntraGrossBuffer.init;
+                    TempIntraGrossBuffer."Entry No." := NextIntraGrossBufferEntryNo;
+                    TempIntraGrossBuffer."No." := item."Tariff No.";
+                    TempIntraGrossBuffer.Quantity := Weight;
+                    TempIntraGrossBuffer.Insert();
+                    NextIntraGrossBufferEntryNo := NextIntraGrossBufferEntryNo + 1;
+                end else begin
+                    TempIntraGrossBuffer.Quantity := TempIntraGrossBuffer.Quantity + Weight;
+                    TempIntraGrossBuffer.Modify();
+                end;
+            end;
+        end;
     end;
 }

@@ -359,11 +359,13 @@ report 50005 "VDC Picking List"
         WhseActLine: Record "Warehouse Activity Line";
         SerialNoExists: Boolean;
         LotNoExists: Boolean;
+        Location: Record Location;
     begin
         with WhseActLine do begin
             TmpLineBuffer2.RESET();
             TmpLineBuffer2.DELETEALL();
-            SETCURRENTKEY("Activity Type", "No.", "Sorting Sequence No.");
+
+            SetCurrentKey("Activity Type", "No.", "Sorting Sequence No.");
             SETRANGE("Activity Type", Header.Type);
             SETRANGE("No.", Header."No.");
             SetRange("Action Type", "Action Type"::Take);
@@ -425,6 +427,32 @@ report 50005 "VDC Picking List"
                 ItemTrackingType := ItemTrackingType::Both;
 
             TmpLineBuffer2.RESET();
+            case Header2."Sorting Method" of
+                Header2."Sorting Method"::" ":
+                    TmpLineBuffer2.SetCurrentKey("Activity Type", "No.", "Sorting Sequence No.");
+                Header2."Sorting Method"::Item:
+                    TmpLineBuffer2.SetCurrentKey("Activity Type", "No.", "Item No.");
+                Header2."Sorting Method"::Document:
+                    TmpLineBuffer2.SetCurrentKey("Activity Type", "No.", "Location Code", "Source Document", "Source No.");
+                Header2."Sorting Method"::"Shelf or Bin":
+                    begin
+                        Location.Get(Header2."Location Code");
+                        if Location."Bin Mandatory" then
+                            TmpLineBuffer2.SetCurrentKey("Activity Type", "No.", "Bin Code")
+                        else
+                            TmpLineBuffer2.SetCurrentKey("Activity Type", "No.", "Shelf No.");
+                    end;
+                Header2."Sorting Method"::"Due Date":
+                    TmpLineBuffer2.SetCurrentKey("Activity Type", "No.", "Due Date");
+                Header2."Sorting Method"::"Ship-To":
+                    TmpLineBuffer2.SetCurrentKey("Activity Type", "No.", "Destination Type", "Destination No.");
+                Header2."Sorting Method"::"Bin Ranking":
+                    TmpLineBuffer2.SetCurrentKey("Activity Type", "No.", "Bin Ranking");
+                Header2."Sorting Method"::"Action Type":
+                    TmpLineBuffer2.SetCurrentKey("Activity Type", "No.", "Action Type", "Bin Code");
+                else
+                    TmpLineBuffer2.SetCurrentKey("Activity Type", "No.", "Sorting Sequence No.");
+            end;
             exit(not TmpLineBuffer2.ISEMPTY());
         end; /*with do*/
 
@@ -656,6 +684,7 @@ report 50005 "VDC Picking List"
         SalesHeader: Record "Sales Header";
         WhseActLine: Record "Warehouse Activity Line";
         ShippingAgent: Record "Shipping Agent";
+        WarehouseShipmentHeader: Record "Warehouse Shipment Header";
     begin
         WhseActLine.SetRange("Activity Type", Header.Type);
         WhseActLine.SetRange("No.", header."No.");
@@ -664,16 +693,28 @@ report 50005 "VDC Picking List"
             STDR_ReportManagement.AddTranslValue(9, HeaderFds[3], 'Whse. - Shipment');
             STDR_ReportManagement.AddTxtValue(10, HeaderFds[3], WhseActLine."Whse. Document No.");
 
-            if SalesHeader.Get(WhseActLine."Source Subtype", WhseActLine."Source No.") then
-                IF SalesHeader."Shipping Agent Code" <> '' THEN begin
-                    STDR_ReportManagement.AddTranslValue(11, HeaderFds[3], 'Shipping Agent');
-                    If not ShippingAgent.get(SalesHeader."Shipping Agent Code") then
-                        Clear(ShippingAgent);
-                    If ShippingAgent.Name <> '' then
-                        STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], ShippingAgent.Name)
-                    else
-                        STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], SalesHeader."Shipping Agent Code");
-                end;
+            if (WarehouseShipmentHeader.Get(WhseActLine."Whse. Document No."))
+            and (WarehouseShipmentHeader."Shipping Agent Code" <> '')
+            then begin
+                STDR_ReportManagement.AddTranslValue(11, HeaderFds[3], 'Shipping Agent');
+                If not ShippingAgent.get(WarehouseShipmentHeader."Shipping Agent Code") then
+                    Clear(ShippingAgent);
+                If ShippingAgent.Name <> '' then
+                    STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], ShippingAgent.Name)
+                else
+                    STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], WarehouseShipmentHeader."Shipping Agent Code");
+            end else begin
+                if SalesHeader.Get(WhseActLine."Source Subtype", WhseActLine."Source No.") then
+                    IF SalesHeader."Shipping Agent Code" <> '' THEN begin
+                        STDR_ReportManagement.AddTranslValue(11, HeaderFds[3], 'Shipping Agent');
+                        If not ShippingAgent.get(SalesHeader."Shipping Agent Code") then
+                            Clear(ShippingAgent);
+                        If ShippingAgent.Name <> '' then
+                            STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], ShippingAgent.Name)
+                        else
+                            STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], SalesHeader."Shipping Agent Code");
+                    end;
+            end;
         end;
 
         STDR_ReportManagement.AddTranslValue(10, HeaderFds[5], 'No. of Packages');

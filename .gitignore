@@ -1,5 +1,19 @@
 #Binary files
+
+*.app
+
 *.fob
 
+*.gitignore 
+
 #Config files
+
 rad.json
+
+#folders
+
+.alcache/
+
+.alpackages/
+
+.altemplates/

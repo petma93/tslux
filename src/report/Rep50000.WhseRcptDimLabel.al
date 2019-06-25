@@ -13,7 +13,7 @@ report 50000 "Whse. Rcpt. Dim. Label"
         {
             RequestFilterFields = "No.";
 
-            Column(PurchNoCaption; PurchNoCaption)
+            Column(PurchNoCaption; OrderNoCaption)
             { }
             column(ItemNoCaption; ItemNoCaption)
             { }
@@ -83,7 +83,8 @@ report 50000 "Whse. Rcpt. Dim. Label"
                     begin
                         LineEntryNo := LineEntryNo + 1;
 
-                        if ("Source Type" = 39) and ("Source Subtype" = PurchHdr."Document Type"::Order) then
+
+                        if ("Source Type" IN [Database::"Purchase Line", Database::"Transfer Line"]) and ("Source Subtype" = PurchHdr."Document Type"::Order) then
                             DocNo := "Source No."
                         else
                             DocNo := '';
@@ -159,7 +160,7 @@ report 50000 "Whse. Rcpt. Dim. Label"
         PFRN_CallPerfionMgt: codeunit "PRFN_Call Perfion Mgt";
 
         DocNo: Code[20];
-        PurchNoCaption: text;
+        OrderNoCaption: text;
         ItemNoCaption: text;
         DescriptionCaption: Text;
         DimensionCaption: text;
@@ -216,7 +217,7 @@ report 50000 "Whse. Rcpt. Dim. Label"
 
     local procedure GetTranslations()
     begin
-        PurchNoCaption := UpperCase(STDR_ReportManagement.GetTranslCurrRep('Purchase Order No.'));
+        OrderNoCaption := UpperCase(STDR_ReportManagement.GetTranslCurrRep('Order No.'));
         ItemNoCaption := UpperCase(STDR_ReportManagement.GetTranslCurrRep('Item No.'));
         DescriptionCaption := UpperCase(STDR_ReportManagement.GetTranslCurrRep('Description'));
         DimensionCaption := UpperCase(STDR_ReportManagement.GetTranslCurrRep('Dimension'));

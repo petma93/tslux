@@ -11,18 +11,18 @@ report 50003 "Transport Document"
 
     dataset
     {
-        dataitem(OUCTTransportInfo; "OUCT_Transport Information")
+        dataitem(WhseShptHdr; "Warehouse Shipment Header")
         {
             DataItemTableView = SORTING ("No.") ORDER(Ascending);
-            RequestFilterFields = "No.", Status, "Carrier Name";
+            RequestFilterFields = "No.", Status; //, "Carrier Name";
             RequestFilterHeading = 'Transport Document';
             column(DocumentNo_; "No.")
             {
             }
-            column(PlannedDepartureDate; "Planned Departure Date")
+            column(PlannedDepartureDate; "Shipment Date") //"Planned Departure Date")
             {
             }
-            column(ExpectedDateofArrival; "Expected Date of Arrival")
+            column(ExpectedDateofArrival; 0D) //"Expected Date of Arrival")
             {
             }
             column(ShippingAgentCode; "Shipping Agent Code")
@@ -37,109 +37,78 @@ report 50003 "Transport Document"
                 {
                     DataItemTableView = SORTING (Number) WHERE (Number = CONST (1));
                     column(ReportTitleCopyText; STRSUBSTNO(Text001Txt, CopyText))
-                    {
-                    }
+                    { }
                     column(CurrRepPageNo; Text002Txt)
-                    {
-                    }
+                    { }
                     column(CompanyAddr1; CompanyAddr[1])
-                    {
-                    }
+                    { }
                     column(CompanyAddr2; CompanyAddr[2])
-                    {
-                    }
+                    { }
                     column(CompanyAddr3; CompanyAddr[3])
-                    {
-                    }
+                    { }
                     column(CompanyAddr4; CompanyAddr[4])
-                    {
-                    }
+                    { }
                     column(CompanyAddr5; CompanyAddr[5])
-                    {
-                    }
+                    { }
                     column(CompanyAddr6; CompanyAddr[6])
-                    {
-                    }
+                    { }
                     column(CompanyInfoPhoneNo; CompanyInfo."Phone No.")
-                    {
-                    }
+                    { }
                     column(CompanyInfoFaxNo; CompanyInfo."Fax No.")
-                    {
-                    }
+                    { }
                     column(CompanyInfoVATRegNo; CompanyInfo."VAT Registration No.")
-                    {
-                    }
+                    { }
                     column(CompanyInfoGiroNo; CompanyInfo."Giro No.")
-                    {
-                    }
+                    { }
                     column(CompanyInfoBankName; CompanyInfo."Bank Name")
-                    {
-                    }
+                    { }
                     column(CompanyInfoBankAccNo; CompanyInfo."Bank Account No.")
-                    {
-                    }
+                    { }
                     column(OutputNo; OutputNo)
-                    {
-                    }
+                    { }
                     column(PageCaption; PageCaptionLbl)
-                    {
-                    }
+                    { }
                     column(DocumentNoCaption; DocumentNoLbl)
-                    {
-                    }
+                    { }
                     column(OrderNoCaption; OrderNoLbl)
-                    {
-                    }
+                    { }
                     column(ShipToNameCaption; shiptonameLbl)
-                    {
-                    }
+                    { }
                     column(ShipToAddressCaption; ShipToAddressLbl)
-                    {
-                    }
+                    { }
                     column(PhoneNoCaption; PhoneNoLbl)
-                    {
-                    }
+                    { }
                     column(PackagedVolumeCaption; PackagedVolumeLbl)
                     { }
-
+                    column(NoOfPackagesCaption; NoOfPackagesLbl)
+                    { }
                     column(PlannedDepartureDateCaption; PlannedDepartureDateLbl)
-                    {
-                    }
+                    { }
                     column(ExpedtedDateCaption; ExpedtedDateLbl)
-                    {
-                    }
+                    { }
                     column(CompanyInfoPhoneNoCaption; CompanyInfoPhoneNoCaptionLbl)
-                    {
-                    }
+                    { }
                     column(CompanyInfoVATRegNoCaption; CompanyInfoVATRegNoCaptionLbl)
-                    {
-                    }
+                    { }
                     column(CompanyInfoGiroNoCaption; CompanyInfoGiroNoCaptionLbl)
-                    {
-                    }
+                    { }
                     column(CompanyInfoBankNameCaption; CompanyInfoBankNameCaptionLbl)
-                    {
-                    }
+                    { }
                     column(CompanyInfoBankAccNoCaption; CompanyInfoBankAccNoCaptionLbl)
-                    {
-                    }
+                    { }
                     column(CurrentDateCaption; CurrentDateLbl)
-                    {
-                    }
+                    { }
                     column(CurrentDate; CurrentDate)
+                    { }
+                    dataitem(WhseShptLine; "Warehouse Shipment Line")
                     {
-                    }
-                    dataitem(OUCTTransportCont; "OUCT_Transport Content")
-                    {
-                        DataItemLink = "Transport No." = FIELD ("No.");
-                        DataItemLinkReference = OUCTTransportInfo;
+                        DataItemLink = "No." = FIELD ("No.");
+                        DataItemLinkReference = WhseShptHdr;
                         DataItemTableView = SORTING ("Source No.", "Source Line No.") ORDER(Ascending);
                         column(LineNo; "Line No.")
-                        {
-                        }
+                        { }
                         column(SourceNo; "Source No.")
-                        {
-                        }
+                        { }
                         column(ShipToName; ShipToName)
                         { }
                         column(ShipToAddress; ShipToAddress)
@@ -156,18 +125,33 @@ report 50003 "Transport Document"
                         {
                             DecimalPlaces = 0 : 3;
                         }
+                        column(LinePackages; LinePackages)
+                        { }
 
                         trigger OnAfterGetRecord()
                         var
                             ItemUOM: Record "Item Unit of Measure";
+                            WhseActLine: Record "Warehouse Activity Line";
                         begin
                             GetSourceInformation();
 
                             If ItemUOM.Get("Item No.", "Unit of Measure Code") then begin
-                                Calcfields("Quantity");
-                                LineVolume := ItemUOM.Cubage * "Quantity";
+                                //Calcfields("Quantity Shipped");
+                                LineVolume := ItemUOM.Cubage * "Qty. to Ship"; // "Quantity Shipped";
                             end else
                                 LineVolume := 0;
+
+                            LinePackages := 0;
+                            WhseActLine.reset;
+                            WhseActLine.Setrange("Activity Type", WhseActLine."Activity Type"::Pick);
+                            WhseActLine.SetRange("Whse. Document Type", WhseActLine."Whse. Document Type"::Shipment);
+                            WhseActLine.SetRange("Whse. Document No.", "No.");
+                            WhseActLine.SetRange("Whse. Document Line No.", "Line No.");
+                            WhseActLine.Setrange("Action Type", WhseActLine."Action Type"::Take);
+                            if WhseActLine.FindSet() then
+                                repeat
+                                    LinePackages := LinePackages + WhseActLine."No. of Packages";
+                                until WhseActLine.next = 0;
                         end;
                     }
                 }
@@ -194,7 +178,7 @@ report 50003 "Transport Document"
 
             trigger OnAfterGetRecord()
             begin
-                FormatAddressFields(OUCTTransportInfo);
+                FormatAddressFields();
             end;
 
             trigger OnPreDataItem()
@@ -252,6 +236,7 @@ report 50003 "Transport Document"
         FormatDocument: Codeunit "Format Document";
         FormatAddr: Codeunit "Format Address";
         LineVolume: Decimal;
+        LinePackages: Integer;
         NoOfCopies: Integer;
         NoOfLoops: Integer;
         OutputNo: Integer;
@@ -270,6 +255,7 @@ report 50003 "Transport Document"
         Text002Txt: Label 'Page %1', Comment = '%1 = Page No.';
         PageCaptionLbl: Label 'Page';
         PackagedVolumeLbl: Label 'Packaged Volume';
+        NoOfPackagesLbl: Label 'No. of Packages';
         DocumentNoLbl: Label 'Transport No.';
         OrderNoLbl: label 'Order No.';
         ShipToNameLbl: Label 'Name';
@@ -291,7 +277,7 @@ report 50003 "Transport Document"
         NoOfCopies := NewNoOfCopies;
     end;
 
-    local procedure FormatAddressFields(TransportInformation: Record "OUCT_Transport Information")
+    local procedure FormatAddressFields()
     var
         RespCenter: Record "Responsibility Center";
     begin
@@ -324,8 +310,8 @@ report 50003 "Transport Document"
         ShipToPhoneNo := '';
         CustTptComments := '';
 
-        with OUCTTransportCont do
-            If SalesHeader.Get(SalesHeader."Document Type"::Order, "Source No.") then begin
+        with WhseShptLine do begin
+            IF SalesHeader.Get(SalesHeader."Document Type"::Order, "Source No.") then begin
                 ShipToName := SalesHeader."Ship-to Name";
                 ShipToAddress := SalesHeader."Ship-to Address";
                 ShipToPostCodeCity := DELCHR(SalesHeader."Ship-to Post Code" + ' ' + SalesHeader."Ship-to City", '<', ' ');
@@ -352,8 +338,8 @@ report 50003 "Transport Document"
                             until CustComm.next() = 0;
                     until Printcode.Next() = 0;
                 end;
-
             end;
+        end;
     end;
 }
 

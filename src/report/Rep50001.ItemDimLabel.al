@@ -118,7 +118,7 @@ report 50001 "Item Dim. Label"
         {
             area(Content)
             {
-                group(GroupName)
+                group(options)
                 {
                     field(QtyPackedColli; QtyPurchUOM)
                     {
@@ -131,6 +131,11 @@ report 50001 "Item Dim. Label"
                     {
                         ApplicationArea = Basic, Suite;
                         Caption = 'No. of Labels';
+                    }
+                    field(NoOfExtraCopies; NoCopies)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'No. of Extra Copies';
                     }
                 }
             }

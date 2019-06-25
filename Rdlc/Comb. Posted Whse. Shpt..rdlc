@@ -7,6 +7,7 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>d02a582d-3cc8-496a-8566-25b135781b7d</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -18,7 +19,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>19.19999cm</Width>
+                  <Width>19.20811cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -45,25 +46,28 @@
                                     <Width>0.24105in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.20129in</Width>
+                                    <Width>0.24889in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.68871in</Width>
+                                    <Width>0.6in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.60599in</Width>
+                                    <Width>0.53in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.72593in</Width>
+                                    <Width>0.65in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.88669in</Width>
+                                    <Width>0.65in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.42929in</Width>
+                                    <Width>0.65in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.85644in</Width>
+                                    <Width>0.6in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>0.46865in</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -195,8 +199,8 @@
                                               <BottomBorder>
                                                 <Style>Solid</Style>
                                               </BottomBorder>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
@@ -238,8 +242,8 @@
                                               <BottomBorder>
                                                 <Style>Solid</Style>
                                               </BottomBorder>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
@@ -281,8 +285,8 @@
                                               <BottomBorder>
                                                 <Style>Solid</Style>
                                               </BottomBorder>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
@@ -324,8 +328,8 @@
                                               <BottomBorder>
                                                 <Style>Solid</Style>
                                               </BottomBorder>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
@@ -351,7 +355,7 @@
                                                 </TextRuns>
                                                 <RightIndent>2pt</RightIndent>
                                                 <Style>
-                                                  <TextAlign>Left</TextAlign>
+                                                  <TextAlign>Right</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
@@ -367,8 +371,8 @@
                                               <BottomBorder>
                                                 <Style>Solid</Style>
                                               </BottomBorder>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
@@ -410,8 +414,51 @@
                                               <BottomBorder>
                                                 <Style>Solid</Style>
                                               </BottomBorder>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="LineHeaderCap17">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Code.GetData(9,5) ''</Value>
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <RightIndent>2pt</RightIndent>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <ZIndex>52</ZIndex>
+                                            <Style>
+                                              <Border>
+                                                <Color>=code.GetFontSize(10) ''</Color>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <TopBorder>
+                                                <Style>Solid</Style>
+                                              </TopBorder>
+                                              <BottomBorder>
+                                                <Style>Solid</Style>
+                                              </BottomBorder>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
@@ -495,9 +542,10 @@
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
                                           </Textbox>
-                                          <ColSpan>10</ColSpan>
+                                          <ColSpan>11</ColSpan>
                                         </CellContents>
                                       </TablixCell>
+                                      <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
@@ -595,6 +643,44 @@
                                       <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox12">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                      <FontWeight>=Code.GetLineFontWeight(FIRST(Fields!LineFormatTxt.Value)) ''</FontWeight>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Left</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox12</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <TopBorder>
+                                                <Color>=Code.GetLineFormat(5,FIRST(Fields!LineFormatTxt.Value)) ''</Color>
+                                                <Style>=Code.GetLineFormat(6,FIRST(Fields!LineFormatTxt.Value)) ''</Style>
+                                              </TopBorder>
+                                              <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) '' </BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
                                     </TablixCells>
                                   </TablixRow>
                                   <TablixRow>
@@ -712,8 +798,8 @@
                                                 <Style>=Code.GetLineFormat(6,FIRST(Fields!LineFormatTxt.Value)) ''</Style>
                                               </TopBorder>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -750,8 +836,8 @@
                                                 <Style>=Code.GetLineFormat(6,FIRST(Fields!LineFormatTxt.Value)) ''</Style>
                                               </TopBorder>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -789,8 +875,8 @@
                                                 <Style>=Code.GetLineFormat(6,FIRST(Fields!LineFormatTxt.Value)) ''</Style>
                                               </TopBorder>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -828,8 +914,8 @@
                                                 <Style>=Code.GetLineFormat(6,FIRST(Fields!LineFormatTxt.Value)) ''</Style>
                                               </TopBorder>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -852,7 +938,7 @@
                                                 </TextRuns>
                                                 <RightIndent>2pt</RightIndent>
                                                 <Style>
-                                                  <TextAlign>Left</TextAlign>
+                                                  <TextAlign>Right</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
@@ -866,8 +952,8 @@
                                                 <Style>=Code.GetLineFormat(6,FIRST(Fields!LineFormatTxt.Value)) ''</Style>
                                               </TopBorder>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -905,8 +991,45 @@
                                                 <Style>=Code.GetLineFormat(6,FIRST(Fields!LineFormatTxt.Value)) ''</Style>
                                               </TopBorder>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="DetailLineTxt09">
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!LineTxt09.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                      <FontWeight>=Code.GetLineFontWeight(FIRST(Fields!LineFormatTxt.Value)) ''</FontWeight>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>DetailLineTxt09</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <TopBorder>
+                                                <Color>=Code.GetLineFormat(5,FIRST(Fields!LineFormatTxt.Value)) ''</Color>
+                                                <Style>=Code.GetLineFormat(6,FIRST(Fields!LineFormatTxt.Value)) ''</Style>
+                                              </TopBorder>
+                                              <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -986,6 +1109,36 @@
                                       <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox17">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Left</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox17</rd:DefaultName>
+                                            <Style>
+                                              <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
                                     </TablixCells>
                                   </TablixRow>
                                   <TablixRow>
@@ -1081,8 +1234,8 @@
                                             <DataElementOutput>NoOutput</DataElementOutput>
                                             <Style>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -1111,8 +1264,8 @@
                                             </Paragraphs>
                                             <Style>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -1141,8 +1294,8 @@
                                             </Paragraphs>
                                             <Style>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -1171,8 +1324,8 @@
                                             </Paragraphs>
                                             <Style>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -1195,14 +1348,14 @@
                                                 </TextRuns>
                                                 <RightIndent>2pt</RightIndent>
                                                 <Style>
-                                                  <TextAlign>Left</TextAlign>
+                                                  <TextAlign>Right</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <Style>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
                                         </CellContents>
@@ -1231,10 +1384,40 @@
                                             </Paragraphs>
                                             <Style>
                                               <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="DetailLineTxt091">
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!DetailLineTxt09.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>DetailLineTxt091</rd:DefaultName>
+                                            <Style>
+                                              <BackgroundColor>=Code.GetLineBackgroundColor(FIRST(Fields!LineEntryNo.Value) mod 2,FIRST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
+                                              <PaddingLeft>1pt</PaddingLeft>
+                                              <PaddingRight>1pt</PaddingRight>
+                                            </Style>
+                                          </Textbox>
+                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                     </TablixCells>
@@ -1289,12 +1472,50 @@
                                       <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox19">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Left</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox19</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <BottomBorder>
+                                                <Color>=Code.GetLineFormat(5,FIRST(Fields!LineFormatTxt.Value)) ''</Color>
+                                                <Style>=Code.GetLineFormat(6,FIRST(Fields!LineFormatTxt.Value)) ''</Style>
+                                              </BottomBorder>
+                                              <BackgroundColor>=Code.GetLineBackgroundColor(LAST(Fields!LineEntryNo.Value) mod 2,LAST(Fields!LineFormatTxt.Value)) ''</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
                                     </TablixCells>
                                   </TablixRow>
                                 </TablixRows>
                               </TablixBody>
                               <TablixColumnHierarchy>
                                 <TablixMembers>
+                                  <TablixMember />
                                   <TablixMember />
                                   <TablixMember />
                                   <TablixMember />
@@ -1421,7 +1642,7 @@
                                 </Filter>
                               </Filters>
                               <Height>2.75cm</Height>
-                              <Width>7.55905in</Width>
+                              <Width>7.56225in</Width>
                               <Style />
                             </Tablix>
                             <Tablix Name="FooterTable">
@@ -1985,6 +2206,9 @@
                                   <TablixColumn>
                                     <Width>2.5cm</Width>
                                   </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>2.5cm</Width>
+                                  </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
                                   <TablixRow>
@@ -2108,6 +2332,38 @@
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox5</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox8">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Code.GetData(14,5) ''</Value>
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox8</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2248,6 +2504,38 @@
                                           </Textbox>
                                         </CellContents>
                                       </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Intrastat_GrossWeight">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!Intrastat_GrossWeight.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Intrastat_GrossWeight</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
                                     </TablixCells>
                                   </TablixRow>
                                 </TablixRows>
@@ -2265,6 +2553,7 @@
                                       <Hidden>=iif(Code.GetData(13,5) = "",true,false) ''</Hidden>
                                     </Visibility>
                                   </TablixMember>
+                                  <TablixMember />
                                   <TablixMember />
                                 </TablixMembers>
                               </TablixColumnHierarchy>
@@ -2293,7 +2582,7 @@
                               </Filters>
                               <Top>5.55cm</Top>
                               <Height>0.8cm</Height>
-                              <Width>12.00663cm</Width>
+                              <Width>14.50663cm</Width>
                               <ZIndex>3</ZIndex>
                               <Style>
                                 <Border>
@@ -2487,7 +2776,6 @@
                           <KeepTogether>true</KeepTogether>
                           <Style />
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -2530,7 +2818,7 @@
               <BreakLocation>End</BreakLocation>
             </PageBreak>
             <Height>6.63479cm</Height>
-            <Width>19.19999cm</Width>
+            <Width>19.20811cm</Width>
             <Style>
               <FontFamily>Segoe UI</FontFamily>
               <FontSize>8pt</FontSize>
@@ -4364,6 +4652,9 @@ End Function
         </Field>
         <Field Name="Intrastat_Amount">
           <DataField>Intrastat_Amount</DataField>
+        </Field>
+        <Field Name="Intrastat_GrossWeight">
+          <DataField>Intrastat_GrossWeight</DataField>
         </Field>
       </Fields>
       <Query>

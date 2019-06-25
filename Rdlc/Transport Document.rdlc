@@ -7,6 +7,7 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>b01bc45a-88cc-4cf4-9c0e-b29a42b18c4e</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -23,7 +24,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>3.86458cm</Height>
+                  <Height>3.26458cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -94,6 +95,8 @@ Cstr(Fields!CurrentDateCaption.Value) + Chr(177) +
 Cstr(Fields!CurrentDate.Value) + chr(177) + 
 Cstr(Fields!ShippingAgentCode.Value) + chr(177) +
 Cstr(Fields!PackagedVolumeCaption.Value)
+ + chr(177) +
+Cstr(Fields!NoOfPackagesCaption.Value)
 , 1)</Hidden>
                                             </Visibility>
                                             <Style>
@@ -134,16 +137,19 @@ Cstr(Fields!PackagedVolumeCaption.Value)
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>2.2cm</Width>
+                                    <Width>3.02021cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>4.2cm</Width>
+                                    <Width>4.8404cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>4.2cm</Width>
+                                    <Width>8.19624cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>3cm</Width>
+                                    <Width>3.84667cm</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>2.79648cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
                                     <Width>2.5cm</Width>
@@ -339,6 +345,47 @@ Cstr(Fields!PackagedVolumeCaption.Value)
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <BottomBorder>
+                                                <Color>Black</Color>
+                                                <Style>None</Style>
+                                                <Width>1pt</Width>
+                                              </BottomBorder>
+                                              <BackgroundColor>White</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox2">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Code.GetData(35,1) ''</Value>
+                                                    <Style>
+                                                      <FontFamily>Segoe UI</FontFamily>
+                                                      <FontSize>8pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox2</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>None</Style>
@@ -607,6 +654,46 @@ Cstr(Fields!PackagedVolumeCaption.Value)
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
+                                          <Textbox Name="Textbox7">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=sum(Fields!LinePackages.Value)</Value>
+                                                    <Style>
+                                                      <FontFamily>Segoe UI</FontFamily>
+                                                      <FontSize>8pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>#333333</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox7</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <TopBorder>
+                                                <Style>Solid</Style>
+                                              </TopBorder>
+                                              <BackgroundColor>White</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
                                           <Textbox Name="LineVolume">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
@@ -719,9 +806,10 @@ Cstr(Fields!PackagedVolumeCaption.Value)
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
                                           </Textbox>
-                                          <ColSpan>5</ColSpan>
+                                          <ColSpan>6</ColSpan>
                                         </CellContents>
                                       </TablixCell>
+                                      <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
@@ -759,7 +847,6 @@ Cstr(Fields!PackagedVolumeCaption.Value)
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -872,6 +959,33 @@ Cstr(Fields!PackagedVolumeCaption.Value)
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
+                                          <Textbox Name="Textbox10">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style />
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox10</rd:DefaultName>
+                                            <Style>
+                                              <Border />
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
                                           <Textbox Name="Textbox4">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
@@ -927,7 +1041,6 @@ Cstr(Fields!PackagedVolumeCaption.Value)
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -1040,6 +1153,33 @@ Cstr(Fields!PackagedVolumeCaption.Value)
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
+                                          <Textbox Name="Textbox11">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style />
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox11</rd:DefaultName>
+                                            <Style>
+                                              <Border />
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
                                           <Textbox Name="Textbox5">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
@@ -1071,6 +1211,7 @@ Cstr(Fields!PackagedVolumeCaption.Value)
                               </TablixBody>
                               <TablixColumnHierarchy>
                                 <TablixMembers>
+                                  <TablixMember />
                                   <TablixMember />
                                   <TablixMember />
                                   <TablixMember />
@@ -1157,7 +1298,7 @@ Cstr(Fields!PackagedVolumeCaption.Value)
                               <DataSetName>DataSet_Result</DataSetName>
                               <Top>0.26458cm</Top>
                               <Height>3cm</Height>
-                              <Width>18.6cm</Width>
+                              <Width>27.7cm</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -1210,7 +1351,7 @@ Cstr(Fields!PackagedVolumeCaption.Value)
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Height>3.86458cm</Height>
+            <Height>3.26458cm</Height>
             <Width>27.7cm</Width>
             <Style>
               <Border>
@@ -1219,7 +1360,7 @@ Cstr(Fields!PackagedVolumeCaption.Value)
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>3.86458cm</Height>
+        <Height>3.26458cm</Height>
         <Style />
       </Body>
       <Width>27.7cm</Width>
@@ -1843,6 +1984,9 @@ End Function
         <Field Name="PackagedVolumeCaption">
           <DataField>PackagedVolumeCaption</DataField>
         </Field>
+        <Field Name="NoOfPackagesCaption">
+          <DataField>NoOfPackagesCaption</DataField>
+        </Field>
         <Field Name="PlannedDepartureDateCaption">
           <DataField>PlannedDepartureDateCaption</DataField>
         </Field>
@@ -1899,6 +2043,9 @@ End Function
         </Field>
         <Field Name="LineVolumeFormat">
           <DataField>LineVolumeFormat</DataField>
+        </Field>
+        <Field Name="LinePackages">
+          <DataField>LinePackages</DataField>
         </Field>
       </Fields>
       <Query>
