@@ -132,6 +132,7 @@ report 50003 "Transport Document"
                         var
                             ItemUOM: Record "Item Unit of Measure";
                             WhseActLine: Record "Warehouse Activity Line";
+                            RegisteredWhseActivityLine: Record "Registered Whse. Activity Line";
                         begin
                             GetSourceInformation();
 
@@ -148,10 +149,22 @@ report 50003 "Transport Document"
                             WhseActLine.SetRange("Whse. Document No.", "No.");
                             WhseActLine.SetRange("Whse. Document Line No.", "Line No.");
                             WhseActLine.Setrange("Action Type", WhseActLine."Action Type"::Take);
-                            if WhseActLine.FindSet() then
+                            if WhseActLine.FindSet() then begin
                                 repeat
                                     LinePackages := LinePackages + WhseActLine."No. of Packages";
                                 until WhseActLine.next = 0;
+                            end else begin
+                                RegisteredWhseActivityLine.Reset();
+                                RegisteredWhseActivityLine.Setrange("Activity Type", RegisteredWhseActivityLine."Activity Type"::Pick);
+                                RegisteredWhseActivityLine.SetRange("Whse. Document Type", RegisteredWhseActivityLine."Whse. Document Type"::Shipment);
+                                RegisteredWhseActivityLine.SetRange("Whse. Document No.", "No.");
+                                RegisteredWhseActivityLine.SetRange("Whse. Document Line No.", "Line No.");
+                                RegisteredWhseActivityLine.Setrange("Action Type", RegisteredWhseActivityLine."Action Type"::Take);
+                                if RegisteredWhseActivityLine.FindSet() then
+                                    repeat
+                                        LinePackages := LinePackages + RegisteredWhseActivityLine."No. of Packages";
+                                    until RegisteredWhseActivityLine.next = 0;
+                            end;
                         end;
                     }
                 }
