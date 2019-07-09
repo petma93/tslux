@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
   <file datatype="xml" source-language="en-US" target-language="nl-BE" original="VDC Reports">
     <body>
@@ -345,6 +345,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report VDC Picking List - Control SumUpLines - Property OptionCaption</note>
         </trans-unit>
+        <trans-unit id="Report 3161839289 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VDC Warehouse Receipt</source>
+          <target>VDC Magazijn Ontvangst</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Whse. - Receipt - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3161839289 - RequestPage 2516438534 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Warehouse Posted Receipt</source>
+          <target>Magazijn Geboekte Ontvangst</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Whse. - Receipt - RequestPage RequestOptionsPage - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3161839289 - NamedType 684809554" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <target>Pag.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Whse. - Receipt - NamedType CurrReportPageNoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 3161839289 - NamedType 787656015" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Warehouse - Receipt</source>
+          <target>Magazijn Ontvangst</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Whse. - Receipt - NamedType WarehouseReceiptCaptionLbl</note>
+        </trans-unit>
         <trans-unit id="PageExtension 700083314 - Action 3229512621 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Label</source>
           <target>&amp;Etiket</target>
@@ -410,6 +434,12 @@
           <target>Specifieert het aantal verpakkingen.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50007 - Control NoOfPackages - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3975401297 - Action 2178765744 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transport Document</source>
+          <target>Transport Document</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50011 - Action TransportDocument - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2328407446 - Field 222317169 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Transport Information</source>

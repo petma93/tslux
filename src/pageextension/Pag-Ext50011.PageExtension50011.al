@@ -1,4 +1,4 @@
-pageextension 50011 PageExtension50011 extends "Warehouse Shipment"
+pageextension 50011 "PageExtension50011" extends "Warehouse Shipment"
 {
     actions
     {
@@ -7,6 +7,8 @@ pageextension 50011 PageExtension50011 extends "Warehouse Shipment"
             action("TransportDocument")
             {
                 ApplicationArea = All;
+                Caption = 'Transport Document';
+                Image = PrintCover;
 
                 trigger OnAction()
                 var
