@@ -17,6 +17,30 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "OpenWithReportBuilder",
+            "type": "shell",
+            "windows": {
+                "command": "C:/'Program Files (x86)'/'Microsoft SQL Server'/'Report Builder'/MSReportBuilder.exe",
+                "args": [
+                    "${relativeFile}"
+                ]
+            },
+            
+
+        },
+        {
+            "label": "OpenWithVS2017",
+            "type": "shell",
+            "windows": {
+                "command": "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/Common7/IDE/devenv.exe",
+                "args": [
+                    "${relativeFile}"
+                ]
+            },
+            
+
         }
     ],
     "group": "build"

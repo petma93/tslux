@@ -366,6 +366,10 @@ report 50002 "Comb. Posted Whse. Shpt."
                             TotalVolumeLbl := '';
                             TotalVolumeTxt := '';
                         end;
+                        if TotalRemboursAmount <> 0 then begin
+                            TotalRemboursLbl := STDR_ReportManagement.GetTranslCurrRep('Rembours');
+                            TotalRemboursTxt := '€ ' + STDR_RepFmtMgt.FormatDecimal(TotalRemboursAmount, 0, 2, STDR_ReportManagement.GetLanguageCode(), STDR_ReportManagement.GetReportNo()) + STDR_ReportManagement.GetTranslCurrRep('Incl. BTW');
+                        end;
                     end;
                 }
 
@@ -375,6 +379,10 @@ report 50002 "Comb. Posted Whse. Shpt."
                     column(TotalVolumeLbl; TotalVolumeLbl)
                     { }
                     column(TotalVolumeTxt; TotalVolumeTxt)
+                    { }
+                    column(TotalRemboursLbl; TotalRemboursLbl)
+                    { }
+                    column(TotalRemboursTxt; TotalRemboursTxt)
                     { }
 
                 }
@@ -627,7 +635,9 @@ report 50002 "Comb. Posted Whse. Shpt."
         OrderRef: Text;
         TotalVolumeLbl: text;
         TotalVolumeTxt: text;
-
+        TotalRemboursLbl: text;
+        TotalRemboursAmount: Decimal;
+        TotalRemboursTxt: text;
         LogInteraction: Option Default,Yes,No;
         ShowAssemblyInfo: Option Default,Yes,No;
         ShowItemTracking: Option Default,Yes,No;
@@ -674,6 +684,9 @@ report 50002 "Comb. Posted Whse. Shpt."
         t: array[10] of Text;
     begin
         TotalVolume := 0;
+        TotalRemboursAmount := 0;
+        TotalRemboursTxt := '';
+        TotalRemboursLbl := '';
         TempIntraGrossBuffer.reset;
         TempIntraGrossBuffer.DeleteAll();
         NextIntraGrossBufferEntryNo := 0;
@@ -881,6 +894,8 @@ report 50002 "Comb. Posted Whse. Shpt."
     procedure FillLineFds()
     var
         SalesHeader: Record "Sales Header";
+        SalesLine: Record "Sales Line";
+        PaymentMethod: Record "Payment Method";
         item: Record Item;
         ItemUOM: Record "Item Unit of Measure";
         ItemLedgEntry: Record "Item Ledger Entry";
@@ -935,16 +950,22 @@ report 50002 "Comb. Posted Whse. Shpt."
                         END;
                     end;
 
+
+
+
                     LineTxt[9] := Format("Dimension Set ID"); //colli
                     LineTxt[10] := '';
                 end;
 
                 OrderRef := '';
                 if "Order No." <> '' then
-                    if SalesHeader.GET(1, "Order No.") then
+                    if SalesHeader.GET(1, "Order No.") then begin
                         if SalesHeader."Your Reference" <> '' then
                             OrderRef := SalesHeader."Your Reference";
-
+                        if SalesHeader."Payment Method Code" = 'REMBOURS' then begin
+                            TotalRemboursAmount += "STDR_Amount Including VAT";
+                        end;
+                    end;
                 OrderNo := "Order No.";
                 if OrderRef <> '' then
                     OrderNo := OrderNo + ':%1' + OrderRef;
@@ -992,7 +1013,6 @@ report 50002 "Comb. Posted Whse. Shpt."
                     Linetxt[8] := STDR_ReportManagement.FormatQuantityDecimal(Quantity * ItemUOM.Cubage);
                     TotalVolume := TotalVolume + (Quantity * ItemUOM.Cubage);
                 END;
-
                 LineTxt[9] := Format("Dimension Set ID"); //colli
                 LineTxt[10] := '';
 

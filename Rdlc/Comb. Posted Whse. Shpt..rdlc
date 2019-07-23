@@ -7,7 +7,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>d02a582d-3cc8-496a-8566-25b135781b7d</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -1417,7 +1416,6 @@
                                               <PaddingRight>1pt</PaddingRight>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                     </TablixCells>
@@ -2599,6 +2597,12 @@
                                   <TablixColumn>
                                     <Width>3.56509cm</Width>
                                   </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>8.25438cm</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>3.99866cm</Width>
+                                  </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
                                   <TablixRow>
@@ -2624,6 +2628,9 @@
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox11</rd:DefaultName>
+                                            <Visibility>
+                                              <Hidden>=iif(Fields!TotalVolumeTxt.Value = "",true,false)</Hidden>
+                                            </Visibility>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2655,6 +2662,71 @@
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox15</rd:DefaultName>
+                                            <Visibility>
+                                              <Hidden>=iif(Fields!TotalVolumeTxt.Value = "",true,false)</Hidden>
+                                            </Visibility>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox9">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox9</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="TotalRemboursLbl">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!TotalRemboursLbl.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>TotalRemboursLbl</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -2733,6 +2805,68 @@
                                           </Textbox>
                                         </CellContents>
                                       </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox10">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value />
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox10</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="TotalRemboursTxt">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!TotalRemboursTxt.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>=Fields!Font.value ''</FontFamily>
+                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>TotalRemboursTxt</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                                <Style>None</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
                                     </TablixCells>
                                   </TablixRow>
                                 </TablixRows>
@@ -2741,18 +2875,17 @@
                                 <TablixMembers>
                                   <TablixMember />
                                   <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
                                 </TablixMembers>
                               </TablixColumnHierarchy>
                               <TablixRowHierarchy>
                                 <TablixMembers>
-                                  <TablixMember>
-                                    <Visibility>
-                                      <Hidden>=iif(Fields!TotalVolumeTxt.Value = "",true,false)</Hidden>
-                                    </Visibility>
-                                  </TablixMember>
+                                  <TablixMember />
                                   <TablixMember />
                                 </TablixMembers>
                               </TablixRowHierarchy>
+                              <DataSetName>DataSet_Result</DataSetName>
                               <Filters>
                                 <Filter>
                                   <FilterExpression>=Cstr(Len(Fields!TotalVolumeTxt.Value))</FilterExpression>
@@ -2764,7 +2897,7 @@
                               </Filters>
                               <Top>4.75cm</Top>
                               <Height>0.8cm</Height>
-                              <Width>6.91371cm</Width>
+                              <Width>19.16675cm</Width>
                               <ZIndex>4</ZIndex>
                               <Style>
                                 <Border>
@@ -4640,6 +4773,12 @@ End Function
         </Field>
         <Field Name="TotalVolumeTxt">
           <DataField>TotalVolumeTxt</DataField>
+        </Field>
+        <Field Name="TotalRemboursLbl">
+          <DataField>TotalRemboursLbl</DataField>
+        </Field>
+        <Field Name="TotalRemboursTxt">
+          <DataField>TotalRemboursTxt</DataField>
         </Field>
         <Field Name="Intrastat_TariffNo">
           <DataField>Intrastat_TariffNo</DataField>
