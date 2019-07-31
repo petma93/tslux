@@ -7,7 +7,7 @@
             "name": "Triton CUS_VANDECASTEELE_BC14",
             "server": "http://192.168.2.20",
             "serverInstance": "CUS_VANDECASTEELE_BC14",
-            "port": 9044,
+            "port": 9059,
             "authentication": "Windows",
             "startupObjectId": 7339,
             "startupObjectType": "Page",

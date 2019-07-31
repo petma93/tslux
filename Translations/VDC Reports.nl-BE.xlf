@@ -459,6 +459,31 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension TableExtension50002 - Field No. of Packages - Property Caption</note>
         </trans-unit>
+                <trans-unit id="Report 1975617902 - NamedType 3336188853" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ship-from Address</source>
+          <target>Ophaaladres</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Return Order Confirmation - NamedType ShipFromAddrCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1975617902 - NamedType 280257193" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bill-to Address</source>
+          <target>Facturatie adres</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Return Order Confirmation - NamedType BillToAddrCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 1975617902 - NamedType 2664148306" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total packed volume</source>
+          <target>Totaal verpakt volume</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Return Order Confirmation - NamedType TotalVolumeCaptionLbl</note>
+        </trans-unit>
+        </trans-unit>
+                <trans-unit id="Report 1975617902 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Return Order Confirmation</source>
+          <target>Verkoop retour order</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Return Order Confirmation - Property Caption</note>
+        </trans-unit>
       </group>
     </body>
   </file>

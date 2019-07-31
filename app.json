@@ -2,7 +2,7 @@
   "id": "923a9e93-d0ae-4312-a8ab-01458f32b908",
   "name": "VDC Reports",
   "publisher": "Abecon Informatiesystemen bvba",
-  "version": "1.0.20190709.0",
+  "version": "1.0.20190730.5",
   "brief": "VDC Reports",
   "description": "Reports",
   "privacyStatement": "https://abecon.be/privacyStatement",
@@ -28,6 +28,12 @@
       "name": "Transport Management",
       "publisher": "Abecon Informatiesystemen bvba",
       "version": "1.0.20190613.1"
+    },
+    {
+      "appId": "cf280173-89ef-4b51-a3d8-7b55dc0ba23a",
+      "name": "VDC General Customizations",
+      "publisher": "Abecon Informatiesystemen bvba",
+      "version": "1.0.20190731.1"
     }
   ],
   "screenshots": [

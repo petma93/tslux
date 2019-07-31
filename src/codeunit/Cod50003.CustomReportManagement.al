@@ -51,4 +51,25 @@ codeunit 50003 "Custom Report Management"
     begin
         IsHandled := true;
     end;
+
+
+
+    procedure SalesHeaderShipFrom(VAR AddrArray: ARRAY[8] OF Text; VAR SalesHeader: Record "Sales Header"): Boolean
+    var
+        FormatAddress: Codeunit "Format Address";
+    begin
+
+        WITH SalesHeader DO BEGIN
+            CalcFields("Ship-From Name", "Ship-From Address 2", "Ship-From Country", "Ship-From Address", "Ship-From City", "Ship-From Post Code");
+            FormatAddress.FormatAddr(
+            AddrArray, "Ship-From Name", '', '', "Ship-from Address" + '' + "Ship-From Address 2", '',
+            "Ship-from City", "Ship-from Post Code", '', "Ship-From Country");
+            EXIT(TRUE);
+        END;
+
+    end;
+
+
+
+
 }
