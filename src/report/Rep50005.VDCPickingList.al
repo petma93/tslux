@@ -162,8 +162,10 @@ report 50005 "VDC Picking List"
 
                         trigger OnPreDataItem()
                         begin
+                            Message(format(tmpline."No."));
                             STDR_ReportManagement.CollectLineComments(TempDetailBuffer, TmpLine."No.", TmpLine."Line No.");
                             STDR_ReportManagement.CollectItemResourceComments(TempDetailBuffer, TmpLine."No.", TmpLine."Line No.", 2, TmpLine."Item No.");
+                            Message(format(TempDetailBuffer.Count()));
                             SETRANGE(Number, 1, TempDetailBuffer.COUNT());
                         end;
                     }
@@ -232,9 +234,16 @@ report 50005 "VDC Picking List"
             }
 
             trigger OnAfterGetRecord()
+            var
+                aRecRef: RecordRef;
             begin
                 // setup report management codeunit with current record values
-                STDR_ReportManagement.SetCurrentRec("Language Code", '', WORKDATE(), '', Header);
+                // setup report management codeunit with current record values
+                // setup report management codeunit with current record values
+                CLEAR(aRecRef);
+                aRecRef.GETTABLE(Header);
+                STDR_ReportManagement.SetCurrentRec("Language Code", '', WORKDATE(), '', aRecRef);
+                //STDR_ReportManagement.SetCurrentRec("Language Code", '', WORKDATE(), '', Header);
 
                 // Set the options set by user on the requestpage
                 STDR_ReportManagement.SetReportOptionItemTracking(ShowItemTracking);
@@ -243,7 +252,7 @@ report 50005 "VDC Picking List"
 
                 // get report setup record
                 STDR_ReportManagement.GetReportSetup(STDR_ReportSetup);
-
+                Message(STDR_ReportSetup.Code);
                 // set CurrReport.Language
                 CurrReport.LANGUAGE := STDR_ReportManagement.GetLanguageID();
 
@@ -682,13 +691,14 @@ report 50005 "VDC Picking List"
     local procedure GetExtraHeaderInformation()
     var
         SalesHeader: Record "Sales Header";
+        TransferHeader: Record "Transfer Header";
         WhseActLine: Record "Warehouse Activity Line";
         ShippingAgent: Record "Shipping Agent";
         WarehouseShipmentHeader: Record "Warehouse Shipment Header";
     begin
         WhseActLine.SetRange("Activity Type", Header.Type);
         WhseActLine.SetRange("No.", header."No.");
-        WhseActLine.SetRange("Source Type", Database::"Sales Line");
+        //WhseActLine.SetRange("Source Type", Database::"Sales Line");
         If WhseActLine.FindFirst() then begin
             STDR_ReportManagement.AddTranslValue(9, HeaderFds[3], 'Whse. - Shipment');
             STDR_ReportManagement.AddTxtValue(10, HeaderFds[3], WhseActLine."Whse. Document No.");
@@ -704,16 +714,31 @@ report 50005 "VDC Picking List"
                 else
                     STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], WarehouseShipmentHeader."Shipping Agent Code");
             end else begin
-                if SalesHeader.Get(WhseActLine."Source Subtype", WhseActLine."Source No.") then
-                    IF SalesHeader."Shipping Agent Code" <> '' THEN begin
-                        STDR_ReportManagement.AddTranslValue(11, HeaderFds[3], 'Shipping Agent');
-                        If not ShippingAgent.get(SalesHeader."Shipping Agent Code") then
-                            Clear(ShippingAgent);
-                        If ShippingAgent.Name <> '' then
-                            STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], ShippingAgent.Name)
-                        else
-                            STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], SalesHeader."Shipping Agent Code");
-                    end;
+                If WhseActLine."Source Type" = Database::"Sales Line" then begin
+                    if SalesHeader.Get(WhseActLine."Source Subtype", WhseActLine."Source No.") then
+                        IF SalesHeader."Shipping Agent Code" <> '' THEN begin
+                            STDR_ReportManagement.AddTranslValue(11, HeaderFds[3], 'Shipping Agent');
+                            If not ShippingAgent.get(SalesHeader."Shipping Agent Code") then
+                                Clear(ShippingAgent);
+                            If ShippingAgent.Name <> '' then
+                                STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], ShippingAgent.Name)
+                            else
+                                STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], SalesHeader."Shipping Agent Code");
+                        end;
+                end;
+                If WhseActLine."Source Type" = Database::"Transfer Header" then begin
+                    if TransferHeader.Get(WhseActLine."Source No.") then
+                        IF TransferHeader."Shipping Agent Code" <> '' THEN begin
+                            STDR_ReportManagement.AddTranslValue(11, HeaderFds[3], 'Shipping Agent');
+                            If not ShippingAgent.get(TransferHeader."Shipping Agent Code") then
+                                Clear(ShippingAgent);
+                            If ShippingAgent.Name <> '' then
+                                STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], ShippingAgent.Name)
+                            else
+                                STDR_ReportManagement.AddTxtValue(12, HeaderFds[3], TransferHeader."Shipping Agent Code");
+                        end;
+                end;
+
             end;
         end;
 

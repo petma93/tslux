@@ -2,7 +2,7 @@
   "id": "923a9e93-d0ae-4312-a8ab-01458f32b908",
   "name": "VDC Reports",
   "publisher": "Abecon Informatiesystemen bvba",
-  "version": "1.0.20190730.5",
+  "version": "1.0.20190802.0",
   "brief": "VDC Reports",
   "description": "Reports",
   "privacyStatement": "https://abecon.be/privacyStatement",
@@ -33,7 +33,7 @@
       "appId": "cf280173-89ef-4b51-a3d8-7b55dc0ba23a",
       "name": "VDC General Customizations",
       "publisher": "Abecon Informatiesystemen bvba",
-      "version": "1.0.20190731.1"
+      "version": "1.0.20190802.1"
     }
   ],
   "screenshots": [
