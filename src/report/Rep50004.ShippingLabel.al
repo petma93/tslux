@@ -421,6 +421,8 @@ report 50004 "Shipping Label"
     procedure FillLineFds()
     var
         SalesHeader: Record "Sales Header";
+        TransferHeader: Record "Transfer Header";
+        Location: record Location;
         Country: Record "Country/Region";
         CountryTransl: Record "Country/Region Translation";
         FormatAddr: Codeunit "Format Address";
@@ -451,6 +453,24 @@ report 50004 "Shipping Label"
                             DestCountryName := Country.Name;
 
                     SourceRef := SalesHeader."Your Reference";
+                end;
+            Database::"Transfer Line":
+                IF TransferHeader.Get(tmpLine."Source Subtype", tmpLine."Source No.") then begin
+                    location.Get(TransferHeader."Transfer-to Code");
+                    DestName := location."Name";
+                    DestAddress := location."Address";
+                    DestAddress2 := location."Address 2";
+                    FormatAddr.FormatPostCodeCity(DestPostCodeCity, county,
+                        location."City", location."Post Code", location."County", location."Country/Region Code");
+
+                    DestCountryCode := location."Country/Region Code";
+                    If CountryTransl.Get(location."Country/Region Code", STDR_ReportManagement.GetLanguageCode()) then
+                        DestCountryName := CountryTransl.Name
+                    else
+                        if Country.Get(location."Country/Region Code") then
+                            DestCountryName := Country.Name;
+
+                    SourceRef := TransferHeader."External Document No.";
                 end;
         end;
         /*
