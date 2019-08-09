@@ -20,11 +20,11 @@ pageextension 50024 "PageExtension50024" extends "Assembly Order"
                     Item: Record "Item";
                     AssemblyLabel: Report "Assembly Label";
                 begin
-                    CopyFilters(AssemblyHeader);
-                    AssemblyHeader.FindSet();
-                    AssemblyHeader.SetRecFilter();
+
+                    SetRecFilter();
+
                     clear(AssemblyLabel);
-                    AssemblyLabel.SetTableView(AssemblyHeader);
+                    AssemblyLabel.SetTableView(rec);
                     AssemblyLabel.UseRequestPage(true);
                     AssemblyLabel.Run();
                 end;

@@ -61,10 +61,17 @@ codeunit 50003 "Custom Report Management"
 
         WITH SalesHeader DO BEGIN
             CalcFields("Ship-From Name", "Ship-From Address 2", "Ship-From Country", "Ship-From Address", "Ship-From City", "Ship-From Post Code");
-            FormatAddress.FormatAddr(
-            AddrArray, "Ship-From Name", '', '', "Ship-from Address" + '' + "Ship-From Address 2", '',
-            "Ship-from City", "Ship-from Post Code", '', "Ship-From Country");
-            EXIT(TRUE);
+            if "Ship-From Address" <> '' then begin
+                FormatAddress.FormatAddr(
+                AddrArray, "Ship-From Name", '', '', "Ship-from Address" + '' + "Ship-From Address 2", '',
+                "Ship-from City", "Ship-from Post Code", '', "Ship-From Country");
+                EXIT(TRUE);
+            end else begin
+                FormatAddress.FormatAddr(
+                AddrArray, "Sell-to Customer Name", '', '', "Sell-to Address" + '' + "Sell-to Address 2", '',
+                "Sell-to City", "Sell-to Post Code", '', "Sell-to Country/Region Code");
+                EXIT(TRUE);
+            end;
         END;
 
     end;
