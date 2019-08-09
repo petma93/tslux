@@ -548,6 +548,26 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report VDC Return Order Confirmation - NamedType InvDiscAmtCaptionLbl</note>
         </trans-unit>
+        <trans-unit id="Report 2617856612 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assembly Label</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Assembly Label - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2617856612 - Control 2932782515 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty. Packed in Colli</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Assembly Label - Control QtyPackedColli - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2617856612 - Control 4023335182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Labels</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Assembly Label - Control LabelQty - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2617856612 - Control 3524296763 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Extra Copies</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Assembly Label - Control NoOfExtraCopies - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 700083314 - Action 3229512621 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Label</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -607,6 +627,26 @@
           <source>Transport Document</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50011 - Action TransportDocument - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3128653355 - Action 1728078476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Label</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50024 - Action AssemblyLabel - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3128653355 - Action 1728078476 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prepare to print the label. A report request window for the document opens where you can specify what to include on the print-out.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50024 - Action AssemblyLabel - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3766349972 - Action 1728078476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Label</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50025 - Action AssemblyLabel - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 3766349972 - Action 1728078476 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prepare to print the label. A report request window for the document opens where you can specify what to include on the print-out.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50025 - Action AssemblyLabel - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="TableExtension 2328407446 - Field 222317169 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Transport Information</source>

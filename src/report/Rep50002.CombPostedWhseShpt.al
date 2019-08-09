@@ -11,6 +11,7 @@ report 50002 "Comb. Posted Whse. Shpt."
     {
         dataitem(PostedWhseShptHdr; "Posted Whse. Shipment Header")
         {
+
             RequestFilterFields = "No.", "Whse. Shipment No.", "External Document No.";
             dataitem(PostedWhseShptLine; "Posted Whse. Shipment Line")
             {
@@ -19,6 +20,7 @@ report 50002 "Comb. Posted Whse. Shpt."
 
                 trigger OnAfterGetRecord()
                 begin
+
                     CreateTempData();
                 end;
             }
@@ -406,6 +408,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                     }
 
                     trigger OnAfterGetRecord()
+
                     begin
                         if Number > 1 then
                             TempDetailBuffer2.NEXT()
@@ -427,6 +430,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                 }
 
                 trigger OnAfterGetRecord()
+
                 begin
                     //set outputno
                     if Number > 1 then begin
@@ -449,6 +453,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                 end;
 
                 trigger OnPostDataItem()
+
                 begin
                     if not CurrReport.PREVIEW() then
                         // Update field "No. Printed" in header
@@ -456,6 +461,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                 end;
 
                 trigger OnPreDataItem()
+
                 begin
                     //determine no of copies of this document
                     SETRANGE(Number, 1, STDR_ReportManagement.GetNoOfLoops(NoOfExtraCopies));
@@ -464,6 +470,7 @@ report 50002 "Comb. Posted Whse. Shpt."
             }
 
             trigger OnAfterGetRecord()
+
             begin
                 //Synchronize temp data
                 if Number <= TmpHeaders then
@@ -512,6 +519,7 @@ report 50002 "Comb. Posted Whse. Shpt."
             end;
 
             trigger OnPreDataItem()
+
             begin
                 TmpHeader.RESET();
                 TmpHeader2.Reset();
@@ -519,7 +527,9 @@ report 50002 "Comb. Posted Whse. Shpt."
                 TmpHeader2s := TmpHeader2.count();
                 setrange(Number, 1, TmpHeaders + TmpHeader2s);
             end;
+
         }
+
     }
 
     requestpage
@@ -666,6 +676,7 @@ report 50002 "Comb. Posted Whse. Shpt."
 
     procedure FillHeaderFds()
     var
+
         CompanyInfo: Record "STDR_Report Setup";
         FormatAddress: Codeunit "Format Address";
         LeftAddr: array[8] of Text[80];
@@ -1070,6 +1081,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         PostedWhseShptLine2: Record "Posted Whse. Shipment Line";
         ItemLedgEntry: Record "Item Ledger Entry";
         NoOfPackages: Integer;
+
     begin
         SalesShptHeader.SETRANGE("No.", PostedWhseShptLine."Posted Source No.");
         if SalesShptHeader.FINDSET() then
@@ -1116,7 +1128,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                                         NoOfPackages := NoOfPackages + RegWhseActLine."No. of Packages";
                                     until RegWhseActLine.Next() = 0;
                             until PostedWhseShptLine2.Next() = 0;
-
+                        //TotalNoOfPackages += NoOfPackages;
                         TmpLine.RESET();
                         TmpLine.SETRANGE("Document No.", TmpHeader."No.");
                         TmpLine.SETRANGE("Order No.", SalesShptLine."Order No.");
@@ -1144,6 +1156,8 @@ report 50002 "Comb. Posted Whse. Shpt."
         else begin
             //transfers
             TransferShptHdr.SETRANGE("No.", PostedWhseShptLine."Posted Source No.");
+
+
             if TransferShptHdr.FINDSET() then
                 repeat
                     TmpHeader2.RESET();
@@ -1164,7 +1178,8 @@ report 50002 "Comb. Posted Whse. Shpt."
                         TmpHeader2."Shortcut Dimension 2 Code" := PostedWhseShptLine."No.";
                         TmpHeader2."Dimension Set ID" := 0;
                         TmpHeader2.INSERT();
-                    end;
+                    end else
+                        exit;
 
                     TransfershptLine.RESET();
                     TransfershptLine.SETRANGE("Document No.", TransferShptHdr."No.");
@@ -1178,6 +1193,11 @@ report 50002 "Comb. Posted Whse. Shpt."
                             NoOfPackages := 0;
                             PostedWhseShptLine2.setrange("Posted Source Document", PostedWhseShptLine2."Posted Source Document"::"Posted Transfer Shipment");
                             PostedWhseShptLine2.Setrange("Posted Source No.", TransfershptLine."Document No.");
+                            PostedWhseShptLine2.Setrange("Source No.", TransfershptLine."Transfer Order No.");
+                            postedwhseshptline2.Setrange("Source Line No.", TransfershptLine."Line No.");
+
+
+
                             If PostedWhseShptLine2.findset() then
                                 repeat
                                     RegWhseActLine.setrange("Whse. Document Type", RegWhseActLine."Whse. Document Type"::Shipment);
@@ -1189,6 +1209,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                                             NoOfPackages := NoOfPackages + RegWhseActLine."No. of Packages";
                                         until RegWhseActLine.Next() = 0;
                                 until PostedWhseShptLine2.Next() = 0;
+                            //TotalNoOfPackages += NoOfPackages;
 
                             TmpLine2.RESET();
                             TmpLine2.SETRANGE("Document No.", TmpHeader."No.");

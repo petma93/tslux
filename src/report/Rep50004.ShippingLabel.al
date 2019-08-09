@@ -455,7 +455,7 @@ report 50004 "Shipping Label"
                     SourceRef := SalesHeader."Your Reference";
                 end;
             Database::"Transfer Line":
-                IF TransferHeader.Get(tmpLine."Source Subtype", tmpLine."Source No.") then begin
+                IF TransferHeader.Get(tmpLine."Source No.") then begin
                     location.Get(TransferHeader."Transfer-to Code");
                     DestName := location."Name";
                     DestAddress := location."Address";

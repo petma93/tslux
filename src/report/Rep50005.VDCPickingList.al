@@ -162,10 +162,10 @@ report 50005 "VDC Picking List"
 
                         trigger OnPreDataItem()
                         begin
-                            Message(format(tmpline."No."));
-                            STDR_ReportManagement.CollectLineComments(TempDetailBuffer, TmpLine."No.", TmpLine."Line No.");
-                            STDR_ReportManagement.CollectItemResourceComments(TempDetailBuffer, TmpLine."No.", TmpLine."Line No.", 2, TmpLine."Item No.");
-                            Message(format(TempDetailBuffer.Count()));
+                            //Message(format(tmpline."No."));
+                            STDR_ReportManagement.CollectLineComments(TempDetailBuffer, TmpLine."Source No.", TmpLine."Source Line No.");
+                            STDR_ReportManagement.CollectItemResourceComments(TempDetailBuffer, TmpLine."Source No.", TmpLine."Source Line No.", 2, TmpLine."Item No.");
+                            //Message(format(TempDetailBuffer.Count()));
                             SETRANGE(Number, 1, TempDetailBuffer.COUNT());
                         end;
                     }
@@ -252,7 +252,7 @@ report 50005 "VDC Picking List"
 
                 // get report setup record
                 STDR_ReportManagement.GetReportSetup(STDR_ReportSetup);
-                Message(STDR_ReportSetup.Code);
+                //Message(STDR_ReportSetup.Code);
                 // set CurrReport.Language
                 CurrReport.LANGUAGE := STDR_ReportManagement.GetLanguageID();
 
