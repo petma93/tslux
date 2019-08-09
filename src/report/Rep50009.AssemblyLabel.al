@@ -147,7 +147,12 @@ report 50009 "Assembly Label"
                     }
                 }
             }
+
         }
+        trigger OnOpenPage()
+        begin
+            QtyPurchUOM := AssemblyHeader."Quantity to Assemble";
+        end;
 
     }
 
