@@ -553,11 +553,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Assembly Label - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Report 2617856612 - Control 2932782515 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Qty. Packed in Colli</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Assembly Label - Control QtyPackedColli - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Report 2617856612 - Control 4023335182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Labels</source>
           <note from="Developer" annotates="general" priority="2"></note>

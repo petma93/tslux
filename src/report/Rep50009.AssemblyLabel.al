@@ -116,6 +116,10 @@ report 50009 "Assembly Label"
                 end;
 
             }
+            trigger OnAfterGetRecord()
+            begin
+                QtyPurchUOM := AssemblyHeader."Quantity to Assemble";
+            end;
         }
 
     }
@@ -128,12 +132,7 @@ report 50009 "Assembly Label"
             {
                 group(options)
                 {
-                    field(QtyPackedColli; QtyPurchUOM)
-                    {
-                        ApplicationArea = Basic, Suite;
-                        Caption = 'Qty. Packed in Colli';
 
-                    }
 
                     field(LabelQty; LabelQty)
                     {
