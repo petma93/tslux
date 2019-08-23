@@ -11,8 +11,8 @@
             "authentication": "Windows",
             "startupObjectId": 7339,
             "startupObjectType": "Page",
-            "breakOnError": true,
-            "schemaUpdateMode": "Synchronize"
+            "breakOnError": false,
+            "schemaUpdateMode":"ForceSync"
         
         }
     ]

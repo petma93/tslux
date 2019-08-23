@@ -643,6 +643,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50025 - Action AssemblyLabel - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="PageExtension 746775910 - Action 442473387 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&amp;Purchase-Assembly</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50027 - Action Purchase Assembly Information - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 746775910 - Action 442473387 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Get assembly information from this purchase in excel</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50027 - Action Purchase Assembly Information - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="TableExtension 2328407446 - Field 222317169 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Transport Information</source>
           <note from="Developer" annotates="general" priority="2"></note>

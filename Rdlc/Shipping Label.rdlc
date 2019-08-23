@@ -7,7 +7,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>add3d9d2-a99b-4aab-857d-bb787743adcf</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -302,7 +301,6 @@
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -785,7 +783,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=Fields!AssemblyRef.Value</Value>
                                                     <Style>
                                                       <FontFamily>=Fields!Font.value ''</FontFamily>
                                                       <FontSize>=Fields!FontSize1.value ''</FontSize>
@@ -1820,6 +1818,9 @@ End Function
         </Field>
         <Field Name="SourceRef">
           <DataField>SourceRef</DataField>
+        </Field>
+        <Field Name="AssemblyRef">
+          <DataField>AssemblyRef</DataField>
         </Field>
         <Field Name="Qty">
           <DataField>Qty</DataField>

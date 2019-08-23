@@ -116,6 +116,8 @@ report 50004 "Shipping Label"
                     { }
                     column(SourceRef; SourceRef)
                     { }
+                    column(AssemblyRef; AssemblyRef)
+                    { }
                     column(Qty; NoOfPackages)
                     { }
                     dataitem(DetailLineLoop; "Integer")
@@ -123,6 +125,7 @@ report 50004 "Shipping Label"
                         DataItemTableView = SORTING (Number);
                         column(DetailLineEntryNo; Number)
                         {
+                            //
                         }
                         column(DetailLineType; DetLineTypeNo)
                         {
@@ -273,6 +276,7 @@ report 50004 "Shipping Label"
         FontFamily: Text;
         LineFormatTxt: Text;
         SourceRef: text;
+        AssemblyRef: text;
         DestName: text;
         DestAddress: text;
         DestAddress2: text;
@@ -422,6 +426,9 @@ report 50004 "Shipping Label"
     var
         SalesHeader: Record "Sales Header";
         TransferHeader: Record "Transfer Header";
+        ReservationEntry: Record "Reservation Entry";
+        ReservationEntryAssembly: record "Reservation Entry";
+        AssemblyOrder: record "Assembly Header";
         Location: record Location;
         Country: Record "Country/Region";
         CountryTransl: Record "Country/Region Translation";
@@ -429,6 +436,7 @@ report 50004 "Shipping Label"
         County: text[50];
     begin
         SourceRef := '';
+        AssemblyRef := '';
         DestName := '';
         DestAddress := '';
         DestAddress2 := '';
@@ -471,6 +479,27 @@ report 50004 "Shipping Label"
                             DestCountryName := Country.Name;
 
                     SourceRef := TransferHeader."External Document No.";
+                    //Get Assembly Information
+                    ReservationEntry.reset;
+                    ReservationEntry.SetRange("Source Subtype", 5741);
+                    ReservationEntry.SetRange("Source ID", TmpLine."Source No.");
+                    ReservationEntry.SetRange("Source Ref. No.", TmpLine."Source Line No.");
+                    If ReservationEntry.FindFirst then begin
+                        ReservationEntryAssembly.reset;
+                        ReservationEntryAssembly.SetRange("Entry No.", ReservationEntry."Entry No.");
+                        ReservationEntryAssembly.SetRange("Source Subtype", 901);
+                        if ReservationEntryAssembly.findfirst then begin
+                            AssemblyOrder.reset;
+                            AssemblyOrder.SetRange("Document Type", AssemblyOrder."Document Type"::Order);
+                            AssemblyOrder.SetRange("No.", ReservationEntryAssembly."Source ID");
+                            if AssemblyOrder.findfirst then begin
+                                AssemblyRef := 'ASSEMBLAGEORDER: ' + AssemblyOrder."No." + ' ' + AssemblyOrder."Item No.";
+                            end;
+
+                        end;
+
+                    end;
+
                 end;
         end;
         /*
