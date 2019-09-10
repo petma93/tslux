@@ -480,20 +480,21 @@ report 50004 "Shipping Label"
 
                     SourceRef := TransferHeader."External Document No.";
                     //Get Assembly Information
+                    AssemblyRef := '';
                     ReservationEntry.reset;
-                    ReservationEntry.SetRange("Source Subtype", 5741);
+                    ReservationEntry.SetRange("Source Type", 5741);
                     ReservationEntry.SetRange("Source ID", TmpLine."Source No.");
                     ReservationEntry.SetRange("Source Ref. No.", TmpLine."Source Line No.");
                     If ReservationEntry.FindFirst then begin
                         ReservationEntryAssembly.reset;
                         ReservationEntryAssembly.SetRange("Entry No.", ReservationEntry."Entry No.");
-                        ReservationEntryAssembly.SetRange("Source Subtype", 901);
+                        ReservationEntryAssembly.SetRange("Source Type", 901);
                         if ReservationEntryAssembly.findfirst then begin
                             AssemblyOrder.reset;
                             AssemblyOrder.SetRange("Document Type", AssemblyOrder."Document Type"::Order);
                             AssemblyOrder.SetRange("No.", ReservationEntryAssembly."Source ID");
                             if AssemblyOrder.findfirst then begin
-                                AssemblyRef := 'ASSEMBLAGEORDER: ' + AssemblyOrder."No." + ' ' + AssemblyOrder."Item No.";
+                                AssemblyRef := 'assembly: ' + AssemblyOrder."No." + ' ' + AssemblyOrder."Item No.";
                             end;
 
                         end;
