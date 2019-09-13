@@ -4780,6 +4780,9 @@ End Function
         <Field Name="TotalRemboursTxt">
           <DataField>TotalRemboursTxt</DataField>
         </Field>
+        <Field Name="totalPackagesTxt">
+          <DataField>totalPackagesTxt</DataField>
+        </Field>
         <Field Name="Intrastat_TariffNo">
           <DataField>Intrastat_TariffNo</DataField>
         </Field>

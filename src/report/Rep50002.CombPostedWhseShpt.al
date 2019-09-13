@@ -48,6 +48,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                 TmpLine2.DELETEALL();
             end;
         }
+
         dataitem(HeaderLoop; "Integer")
         {
             DataItemTableView = SORTING (Number);
@@ -105,6 +106,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                 column(FontSize6; FontArray[7])
                 {
                 }
+
 
                 dataitem(LineLoop; "Integer")
                 {
@@ -386,6 +388,8 @@ report 50002 "Comb. Posted Whse. Shpt."
                     { }
                     column(TotalRemboursTxt; TotalRemboursTxt)
                     { }
+                    column(totalPackagesTxt; TotalNoOfPackages)
+                    { }
 
                 }
                 dataitem(IntrastatTotal; "Integer")
@@ -472,6 +476,7 @@ report 50002 "Comb. Posted Whse. Shpt."
             trigger OnAfterGetRecord()
 
             begin
+                TotalNoOfPackages := 0;
                 //Synchronize temp data
                 if Number <= TmpHeaders then
                     IF Number > 1 then
@@ -486,12 +491,14 @@ report 50002 "Comb. Posted Whse. Shpt."
 
                 IF Number <= TmpHeaders then begin
                     Header.TRANSFERFIELDS(TmpHeader);
-                    GroupCode := Header."No.";
+                    //GroupCode := Header."No.";
+                    GroupCode := Header."Ship-to Name" + header."Ship-to Address";
                     STDR_ReportManagement.SetCurrentRec(Header."Language Code", '', Header."Document Date", Header."Currency Code", Header);
 
                 end else begin
                     Header2.TRANSFERFIELDS(TmpHeader2);
-                    GroupCode := Header2."No.";
+                    //GroupCode := Header2."No.";
+                    GroupCode := Header2."Transfer-to Code";
                     STDR_ReportManagement.SetCurrentRec('', '', Header2."posting Date", '', Header2);
                 end;
 
@@ -634,7 +641,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         Line2: Record "Transfer Shipment Line";
         STDR_ReportManagement: Codeunit "STDR_Report Management";
         STDR_CommonFunctions: Codeunit "STDR_Common Functions";
-        GroupCode: Code[20];
+        GroupCode: Code[200];
         DocName: Text;
         HeaderFds: array[5] of Text;
         FontFamily: Text;
@@ -1128,12 +1135,14 @@ report 50002 "Comb. Posted Whse. Shpt."
                                         NoOfPackages := NoOfPackages + RegWhseActLine."No. of Packages";
                                     until RegWhseActLine.Next() = 0;
                             until PostedWhseShptLine2.Next() = 0;
-                        //TotalNoOfPackages += NoOfPackages;
+                        TotalNoOfPackages += NoOfPackages;
+                        TmpHeader."Shipping Agent Code" := format(TotalNoOfPackages); //abuse
+                        tmpheader.modify;
                         TmpLine.RESET();
                         TmpLine.SETRANGE("Document No.", TmpHeader."No.");
                         TmpLine.SETRANGE("Order No.", SalesShptLine."Order No.");
-                        TmpLine.SETRANGE(Type, SalesShptLine.Type);
-                        TmpLine.SETRANGE("No.", SalesShptLine."No.");
+                        //TmpLine.SETRANGE(Type, SalesShptLine.Type);
+                        //TmpLine.SETRANGE("No.", SalesShptLine."No.");
                         TmpLine.SETRANGE("Variant Code", SalesShptLine."Variant Code");
                         TmpLine.SETRANGE("Unit of Measure Code", SalesShptLine."Unit of Measure Code");
                         if not TmpLine.FINDFIRST() then begin
@@ -1170,10 +1179,12 @@ report 50002 "Comb. Posted Whse. Shpt."
                     TmpHeader2.SETRANGE("Transfer-to County", TransferShptHdr."transfer-to County");
                     TmpHeader2.SETRANGE("Trsf.-to Country/Region Code", TransferShptHdr."Trsf.-to Country/Region Code");
                     TmpHeader2.SETRANGE("Shortcut Dimension 1 Code", PostedWhseShptLine."Whse. Shipment No.");
+                    TmpHeader2.SetRange("No.", TransferShptHdr."No.");
                     if not TmpHeader2.FINDFIRST() then begin
                         TmpHeader2.RESET();
                         TmpHeader2.INIT();
                         TmpHeader2 := TransferShptHdr;
+
                         TmpHeader2."Shortcut Dimension 1 Code" := PostedWhseShptLine."Whse. Shipment No.";
                         TmpHeader2."Shortcut Dimension 2 Code" := PostedWhseShptLine."No.";
                         TmpHeader2."Dimension Set ID" := 0;
@@ -1181,8 +1192,16 @@ report 50002 "Comb. Posted Whse. Shpt."
                     end else
                         exit;
 
+
+
+
+
+
+
+
                     TransfershptLine.RESET();
                     TransfershptLine.SETRANGE("Document No.", TransferShptHdr."No.");
+
                     TransfershptLine.setfilter("Item Shpt. Entry No.", '<>%1', 0);
                     if TransfershptLine.FINDSET() then
                         repeat
@@ -1209,14 +1228,16 @@ report 50002 "Comb. Posted Whse. Shpt."
                                             NoOfPackages := NoOfPackages + RegWhseActLine."No. of Packages";
                                         until RegWhseActLine.Next() = 0;
                                 until PostedWhseShptLine2.Next() = 0;
-                            //TotalNoOfPackages += NoOfPackages;
-
+                            TotalNoOfPackages += NoOfPackages;
+                            tmpHeader2."Shipping Agent Code" := FORMAT(TotalNoOfPackages);
+                            tmpheader2.Modify();
                             TmpLine2.RESET();
                             TmpLine2.SETRANGE("Document No.", TmpHeader."No.");
                             TmpLine2.SETRANGE("transfer Order No.", TransfershptLine."transfer Order No.");
                             TmpLine2.SETRANGE("item No.", TransfershptLine."item No.");
                             TmpLine2.SETRANGE("Variant Code", TransfershptLine."Variant Code");
                             TmpLine2.SETRANGE("Unit of Measure Code", TransfershptLine."Unit of Measure Code");
+                            TmpLine2.SETRANGE("Transfer Order No.", TransferShptHdr."No.");
                             if not TmpLine2.FINDFIRST() then begin
                                 NextLineNo := NextLineNo + 10000;
                                 TmpLine2.RESET();
@@ -1286,6 +1307,9 @@ report 50002 "Comb. Posted Whse. Shpt."
     begin
         exit(0);
     end;
+
+    var
+        TotalNoOfPackages: Integer;
 
     local procedure AddGrossWeight(ItemNo: Code[20]; Weight: Decimal)
     var

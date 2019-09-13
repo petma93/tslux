@@ -1,39 +1,39 @@
 {
   "id": "923a9e93-d0ae-4312-a8ab-01458f32b908",
   "name": "VDC Reports",
-  "publisher": "Abecon Informatiesystemen bvba",
-  "version": "1.0.20190905.0",
+  "publisher": "Broad Horizon België",
+  "version": "1.0.20190912.1",
   "brief": "VDC Reports",
   "description": "Reports",
-  "privacyStatement": "https://abecon.be/privacyStatement",
-  "EULA": "https://abecon.be/EULA",
-  "help": "https://abecon.be/help",
-  "url": "https://abecon.be",
+  "privacyStatement": "https://www.broadhorizon.be/privacybeleid",
+  "EULA": "https://www.broadhorizon.be/EULA",
+  "help": "https://www.broadhorizon.be/contact",
+  "url": "https://www.broadhorizon.be",
   "logo": "Media/BroadHorizon2.png",
   "dependencies": [
     {
       "appId": "d8feaa8a-f09b-4472-841f-bdcfd63fcb64",
       "name": "Standard Reports",
-      "publisher": "Abecon Informatiesystemen bvba",
-      "version": "1.0.20190613.1"
+      "publisher": "Broad Horizon België",
+      "version": "1.0.20190912.1"
     },
     {
       "appId": "e05de681-3b6f-4a28-9164-020b9744efb6",
       "name": "Perfion sync",
-      "publisher": "Abecon Informatiesystemen bvba",
-      "version": "1.0.20190613.1"
+      "publisher": "Broad Horizon België",
+      "version": "1.0.20190910.1"
     },
     {
       "appId": "e68105cb-2e46-4898-ab99-9a4a448a3742",
       "name": "Transport Management",
-      "publisher": "Abecon Informatiesystemen bvba",
-      "version": "1.0.20190613.1"
+      "publisher": "Broad Horizon België",
+      "version": "1.0.20190906.1"
     },
     {
       "appId": "cf280173-89ef-4b51-a3d8-7b55dc0ba23a",
       "name": "VDC General Customizations",
-      "publisher": "Abecon Informatiesystemen bvba",
-      "version": "1.0.20190822.0"
+      "publisher": "Broad Horizon België",
+      "version": "1.0.20190912.2"
     }
   ],
   "screenshots": [
@@ -41,14 +41,16 @@
   ],
   "platform": "14.0.0.0",
   "application": "14.0.0.0",
-  "idRange": {
+  "idRanges": [
+    {
     "from": 50000,
     "to": 50099
-  },
+    }
+],
   "showMyCode": true,
   "features": [
     "TranslationFile"
   ],
-  "runtime": "2.2",
+  "runtime": "3.0",
   "target": "Internal"
 }

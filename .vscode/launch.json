@@ -12,8 +12,8 @@
             "startupObjectId": 7339,
             "startupObjectType": "Page",
             "breakOnError": false,
-            "schemaUpdateMode":"Recreate"
-        
+            "schemaUpdateMode":"ForceSync",
+            "dependencyPublishingOption": "Strict"
         }
     ]
 }
