@@ -360,6 +360,14 @@ report 50002 "Comb. Posted Whse. Shpt."
                     var
                         STDR_RepFmtMgt: Codeunit "STDR_Report Format Mgt";
                     begin
+                        if TotalNoOfPackages <> 0 then begin
+
+                            totalPackageslbl := STDR_ReportManagement.GetTranslCurrRep('Total Packages');
+                            TotalPackagesTxt := Format(TotalNoOfPackages);
+                        end else begin
+                            TotalPackagesLbl := '';
+                            TotalPackagesTxt := '';
+                        end;
                         If TotalVolume <> 0 then begin
                             totalvolumelbl := STDR_ReportManagement.GetTranslCurrRep('Total Volume');
                             if HeaderLoop.Number <= TmpHeaders then
@@ -388,8 +396,11 @@ report 50002 "Comb. Posted Whse. Shpt."
                     { }
                     column(TotalRemboursTxt; TotalRemboursTxt)
                     { }
-                    column(totalPackagesTxt; TotalNoOfPackages)
+                    column(TotalPackagesLbl; TotalPackagesLbl)
                     { }
+                    column(TotalPackagesTxt; TotalPackagesTxt)
+                    { }
+
 
                 }
                 dataitem(IntrastatTotal; "Integer")
@@ -651,10 +662,12 @@ report 50002 "Comb. Posted Whse. Shpt."
         OrderNo: Text;
         OrderRef: Text;
         TotalVolumeLbl: text;
+        TotalPackagesLbl: text;
         TotalVolumeTxt: text;
         TotalRemboursLbl: text;
         TotalRemboursAmount: Decimal;
         TotalRemboursTxt: text;
+        TotalPackagesTxt: Text;
         LogInteraction: Option Default,Yes,No;
         ShowAssemblyInfo: Option Default,Yes,No;
         ShowItemTracking: Option Default,Yes,No;
@@ -705,6 +718,8 @@ report 50002 "Comb. Posted Whse. Shpt."
         TotalRemboursAmount := 0;
         TotalRemboursTxt := '';
         TotalRemboursLbl := '';
+        TotalPackagesLbl := '';
+        TotalPackagesTxt := '';
         TempIntraGrossBuffer.reset;
         TempIntraGrossBuffer.DeleteAll();
         NextIntraGrossBufferEntryNo := 0;
@@ -1136,7 +1151,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                                     until RegWhseActLine.Next() = 0;
                             until PostedWhseShptLine2.Next() = 0;
                         TotalNoOfPackages += NoOfPackages;
-                        TmpHeader."Shipping Agent Code" := format(TotalNoOfPackages); //abuse
+                        //TmpHeader."Shipping Agent Code" := format(TotalNoOfPackages); //abuse
                         tmpheader.modify;
                         TmpLine.RESET();
                         TmpLine.SETRANGE("Document No.", TmpHeader."No.");
@@ -1229,7 +1244,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                                         until RegWhseActLine.Next() = 0;
                                 until PostedWhseShptLine2.Next() = 0;
                             TotalNoOfPackages += NoOfPackages;
-                            tmpHeader2."Shipping Agent Code" := FORMAT(TotalNoOfPackages);
+                            //tmpHeader2."Shipping Agent Code" := FORMAT(TotalNoOfPackages);
                             tmpheader2.Modify();
                             TmpLine2.RESET();
                             TmpLine2.SETRANGE("Document No.", TmpHeader."No.");
