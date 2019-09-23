@@ -487,7 +487,6 @@ report 50002 "Comb. Posted Whse. Shpt."
             trigger OnAfterGetRecord()
 
             begin
-                TotalNoOfPackages := 0;
                 //Synchronize temp data
                 if Number <= TmpHeaders then
                     IF Number > 1 then
@@ -682,6 +681,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         [InDataSet]
         ShowAssemblyInfoVisible: Boolean;
         TotalVolume: Decimal;
+        TotalNoOfPackages: Integer;
         GrossWeight: Decimal;
         OutputNo: Integer;
         LineEntryNo: Integer;
@@ -715,6 +715,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         t: array[10] of Text;
     begin
         TotalVolume := 0;
+        TotalNoOfPackages := 0;
         TotalRemboursAmount := 0;
         TotalRemboursTxt := '';
         TotalRemboursLbl := '';
@@ -983,8 +984,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                         END;
                     end;
 
-
-
+                    TotalNoOfPackages += "Dimension Set ID";
 
                     LineTxt[9] := Format("Dimension Set ID"); //colli
                     LineTxt[10] := '';
@@ -1046,6 +1046,9 @@ report 50002 "Comb. Posted Whse. Shpt."
                     Linetxt[8] := STDR_ReportManagement.FormatQuantityDecimal(Quantity * ItemUOM.Cubage);
                     TotalVolume := TotalVolume + (Quantity * ItemUOM.Cubage);
                 END;
+
+                TotalNoOfPackages += "Dimension Set ID";
+
                 LineTxt[9] := Format("Dimension Set ID"); //colli
                 LineTxt[10] := '';
 
@@ -1150,7 +1153,6 @@ report 50002 "Comb. Posted Whse. Shpt."
                                         NoOfPackages := NoOfPackages + RegWhseActLine."No. of Packages";
                                     until RegWhseActLine.Next() = 0;
                             until PostedWhseShptLine2.Next() = 0;
-                        TotalNoOfPackages += NoOfPackages;
                         //TmpHeader."Shipping Agent Code" := format(TotalNoOfPackages); //abuse
                         tmpheader.modify;
                         TmpLine.RESET();
@@ -1160,6 +1162,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                         //TmpLine.SETRANGE("No.", SalesShptLine."No.");
                         TmpLine.SETRANGE("Variant Code", SalesShptLine."Variant Code");
                         TmpLine.SETRANGE("Unit of Measure Code", SalesShptLine."Unit of Measure Code");
+                        TmpLine.SetRange("Order Line No.", SalesShptLine."Order Line No.");
                         if not TmpLine.FINDFIRST() then begin
                             NextLineNo := NextLineNo + 10000;
                             TmpLine.RESET();
@@ -1243,7 +1246,6 @@ report 50002 "Comb. Posted Whse. Shpt."
                                             NoOfPackages := NoOfPackages + RegWhseActLine."No. of Packages";
                                         until RegWhseActLine.Next() = 0;
                                 until PostedWhseShptLine2.Next() = 0;
-                            TotalNoOfPackages += NoOfPackages;
                             //tmpHeader2."Shipping Agent Code" := FORMAT(TotalNoOfPackages);
                             tmpheader2.Modify();
                             TmpLine2.RESET();
@@ -1322,9 +1324,6 @@ report 50002 "Comb. Posted Whse. Shpt."
     begin
         exit(0);
     end;
-
-    var
-        TotalNoOfPackages: Integer;
 
     local procedure AddGrossWeight(ItemNo: Code[20]; Weight: Decimal)
     var

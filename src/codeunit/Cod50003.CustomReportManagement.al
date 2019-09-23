@@ -54,12 +54,12 @@ codeunit 50003 "Custom Report Management"
 
     procedure AssemblyInfoFromPurchOrder(var PurchaseHeader: record "Purchase Header")
     var
-        previd: code[20];
         ReservationEntry: record "Reservation Entry";
         ReservationEntry2: record "Reservation Entry";
         AssemblyHeader: Record "Assembly Header";
         AssemblyLine: Record "Assembly Line";
         ExcelBuffer: Record "Excel Buffer" temporary;
+        previd: code[20];
     begin
         ExcelBuffer.DeleteAll();
         ExcelBuffer.reset;

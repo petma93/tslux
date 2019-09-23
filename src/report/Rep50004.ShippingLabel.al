@@ -118,8 +118,11 @@ report 50004 "Shipping Label"
                     { }
                     column(AssemblyRef; AssemblyRef)
                     { }
+                    column(AssemblyQty; AssemblyQty)
+                    { }
                     column(Qty; NoOfPackages)
                     { }
+
                     dataitem(DetailLineLoop; "Integer")
                     {
                         DataItemTableView = SORTING (Number);
@@ -294,6 +297,7 @@ report 50004 "Shipping Label"
         "Language Code": Code[20];
         LineTypeNo: Integer;
         DetLineTypeNo: Integer;
+        AssemblyQty: Text;
         FontArray: array[8] of Text;
 
     procedure SetInventory(NewValue: Boolean)
@@ -443,6 +447,7 @@ report 50004 "Shipping Label"
         DestPostCodeCity := '';
         DestCountryCode := '';
         DestCountryName := '';
+        AssemblyQty := '';
 
         case TmpLine."Source Type" OF
             Database::"Sales Line":
@@ -495,6 +500,7 @@ report 50004 "Shipping Label"
                             AssemblyOrder.SetRange("No.", ReservationEntryAssembly."Source ID");
                             if AssemblyOrder.findfirst then begin
                                 AssemblyRef := 'assembly: ' + AssemblyOrder."No." + ' ' + AssemblyOrder."Item No.";
+                                AssemblyQty := StrSubstNo('%1 %2', tmpLine.Quantity, tmpLine."Unit of Measure Code");
                             end;
 
                         end;

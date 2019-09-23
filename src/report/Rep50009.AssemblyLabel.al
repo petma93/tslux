@@ -57,6 +57,8 @@ report 50009 "Assembly Label"
 
                         column(DocNo; DocNo)
                         { }
+                        column(DocNoCaption; DocNoCaption)
+                        { }
 
                         column(LineEntryNo; LineEntryNo)
                         { }
@@ -79,6 +81,7 @@ report 50009 "Assembly Label"
                         trigger OnAfterGetRecord()
                         begin
                             LineEntryNo := LineEntryNo + 1;
+                            DocNo := AssemblyHeader."No.";
                         end;
                     }
 
@@ -117,8 +120,14 @@ report 50009 "Assembly Label"
 
             }
             trigger OnAfterGetRecord()
+            var
+                ItemUnitOfMeasure: Record "Item Unit of Measure";
             begin
-                QtyPurchUOM := AssemblyHeader."Quantity to Assemble";
+                //Message(AssemblyHeader."No.");
+                QtyPurchUOM := 0;
+                if ItemUnitOfMeasure.get(AssemblyHeader."Item No.", AssemblyHeader."Unit of Measure Code") then
+                    QtyPurchUOM := ItemUnitOfMeasure."Qty. per Unit of Measure";
+                LabelQty := AssemblyHeader."Quantity to Assemble";
             end;
         }
 
@@ -133,12 +142,6 @@ report 50009 "Assembly Label"
                 group(options)
                 {
 
-
-                    field(LabelQty; LabelQty)
-                    {
-                        ApplicationArea = Basic, Suite;
-                        Caption = 'No. of Labels';
-                    }
                     field(NoOfExtraCopies; NoCopies)
                     {
                         ApplicationArea = Basic, Suite;
@@ -150,7 +153,7 @@ report 50009 "Assembly Label"
         }
         trigger OnOpenPage()
         begin
-            QtyPurchUOM := AssemblyHeader."Quantity to Assemble";
+
         end;
 
     }
@@ -170,6 +173,7 @@ report 50009 "Assembly Label"
         ColliCaption: text;
         PackagingCaption: text;
         FrontBackCaption: text;
+        DocNoCaption: Text;
         NoCopies: Integer;
         OutputNo: Integer;
         LabelQty: Integer;
@@ -211,5 +215,6 @@ report 50009 "Assembly Label"
         ColliCaption := UpperCase(STDR_ReportManagement.GetTranslCurrRep('Qty. Packed in Colli'));
         PackagingCaption := UpperCase(STDR_ReportManagement.GetTranslCurrRep('Packing Code'));
         FrontBackCaption := UpperCase(STDR_ReportManagement.GetTranslCurrRep('Front/Back'));
+        DocNoCaption := UpperCase(STDR_ReportManagement.GetTranslCurrRep('Assembly Order'));
     end;
 }

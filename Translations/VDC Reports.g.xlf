@@ -573,117 +573,112 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Assembly Label - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Report 2617856612 - Control 4023335182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No. of Labels</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Assembly Label - Control LabelQty - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Report 2617856612 - Control 3524296763 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Extra Copies</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Assembly Label - Control NoOfExtraCopies - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 700083314 - Action 3229512621 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4178721393">
+        <trans-unit id="PageExtension 1245944776 - Action 3229512621 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Label</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50001 - Action ItemLabel - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemListExt2 - Action ItemLabel - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 700083314 - Action 3229512621 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4178721393">
+        <trans-unit id="PageExtension 1245944776 - Action 3229512621 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Prepare to print the label. A report request window for the document opens where you can specify what to include on the print-out.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50001 - Action ItemLabel - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension ItemListExt2 - Action ItemLabel - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3081960759 - Action 1407847062 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2447066187">
+        <trans-unit id="PageExtension 3686622316 - Action 1407847062 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Labels</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50002 - Action WhseRcptLabel - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension WarehouseReceiptExt - Action WhseRcptLabel - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3081960759 - Action 1407847062 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2447066187">
+        <trans-unit id="PageExtension 3686622316 - Action 1407847062 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Prepare to print the labels. A report request window for the document opens where you can specify what to include on the print-out.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50002 - Action WhseRcptLabel - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension WarehouseReceiptExt - Action WhseRcptLabel - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3719657376 - Action 1279478070 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 928172480">
+        <trans-unit id="PageExtension 3347614391 - Action 1279478070 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Combined Posted Whse. Shipment</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50003 - Action CombinedPostedWhseShpt - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PostedWhse.ShipmentListExt - Action CombinedPostedWhseShpt - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3719657376 - Action 1279478070 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 928172480">
+        <trans-unit id="PageExtension 3347614391 - Action 1279478070 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Prepare to print the combined shipment. A report request window for the document opens where you can specify what to include on the print-out.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50003 - Action CombinedPostedWhseShpt - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PostedWhse.ShipmentListExt - Action CombinedPostedWhseShpt - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 2613173165 - Control 1401078433 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3680971675">
+        <trans-unit id="PageExtension 1446660172 - Control 1401078433 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies if data should be printed on the Transport Information</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50004 - Control TransportInformation - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension STDR_PrintCodesExt - Control TransportInformation - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3250869782 - Action 856250200 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3547390336">
+        <trans-unit id="PageExtension 2428073575 - Action 856250200 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Labels</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50005 - Action ShippingLabel - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension WarehousePickExt - Action ShippingLabel - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3250869782 - Action 856250200 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3547390336">
+        <trans-unit id="PageExtension 2428073575 - Action 856250200 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Prepare to print the labels. A report request window for the document opens where you can specify what to include on the print-out.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50005 - Action ShippingLabel - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension WarehousePickExt - Action ShippingLabel - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 1337779931 - Control 3926289819 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 489589600">
+        <trans-unit id="PageExtension 3931084719 - Control 3926289819 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of packages.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50006 - Control NoOfPackages - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Whse.PickSubformExt - Control NoOfPackages - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 1975476548 - Control 3926289819 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2952916557">
+        <trans-unit id="PageExtension 2809635078 - Control 3926289819 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the number of packages.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50007 - Control NoOfPackages - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension RegisteredPickSubformExt - Control NoOfPackages - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3975401297 - Action 2178765744 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2938519335">
+        <trans-unit id="PageExtension 1558580328 - Action 2178765744 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Transport Document</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50011 - Action TransportDocument - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension WarehouseShipmentExt - Action TransportDocument - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3128653355 - Action 1728078476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1662713252">
+        <trans-unit id="PageExtension 511730069 - Action 1728078476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Label</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50024 - Action AssemblyLabel - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AssemblyOrderExt2 - Action AssemblyLabel - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3128653355 - Action 1728078476 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1662713252">
+        <trans-unit id="PageExtension 511730069 - Action 1728078476 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Prepare to print the label. A report request window for the document opens where you can specify what to include on the print-out.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50024 - Action AssemblyLabel - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AssemblyOrderExt2 - Action AssemblyLabel - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3766349972 - Action 1728078476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1119230149">
+        <trans-unit id="PageExtension 3694904014 - Action 1728078476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Label</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50025 - Action AssemblyLabel - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AssemblyOrdersExt - Action AssemblyLabel - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 3766349972 - Action 1728078476 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1119230149">
+        <trans-unit id="PageExtension 3694904014 - Action 1728078476 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Prepare to print the label. A report request window for the document opens where you can specify what to include on the print-out.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50025 - Action AssemblyLabel - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension AssemblyOrdersExt - Action AssemblyLabel - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="PageExtension 746775910 - Action 442473387 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
+        <trans-unit id="PageExtension 2152357698 - Action 442473387 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>&amp;Purchase-Assembly</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50027 - Action Purchase Assembly Information - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PurchaseOrderExt2 - Action Purchase Assembly Information - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PageExtension 746775910 - Action 442473387 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 387971303">
+        <trans-unit id="PageExtension 2152357698 - Action 442473387 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Get assembly information from this purchase in excel</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PageExtension50027 - Action Purchase Assembly Information - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension PurchaseOrderExt2 - Action Purchase Assembly Information - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="TableExtension 2328407446 - Field 222317169 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 862012238">
+        <trans-unit id="TableExtension 2328407446 - Field 222317169 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Transport Information</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension TableExtension50000 - Field Transport Information - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 1690710829 - Field 2133362361 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2624270058">
+        <trans-unit id="TableExtension 1690710829 - Field 2133362361 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Packages</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension TableExtension50001 - Field No. of Packages - Property Caption</note>
         </trans-unit>
-        <trans-unit id="TableExtension 1053014212 - Field 2133362361 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3893619904">
+        <trans-unit id="TableExtension 1053014212 - Field 2133362361 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Packages</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension TableExtension50002 - Field No. of Packages - Property Caption</note>

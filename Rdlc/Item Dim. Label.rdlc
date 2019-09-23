@@ -7,7 +7,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>774aa406-fdfe-4b5c-a1fa-3b68368e9d8d</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -46,7 +45,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>2.02558cm</Top>
+                              <Top>2.62558cm</Top>
                               <Left>4.20371cm</Left>
                               <Height>0.6cm</Height>
                               <Width>5.79629cm</Width>
@@ -76,7 +75,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>2.62558cm</Top>
+                              <Top>3.22558cm</Top>
                               <Left>4.20371cm</Left>
                               <Height>0.6cm</Height>
                               <Width>5.79629cm</Width>
@@ -106,8 +105,8 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>3.22558cm</Top>
-                              <Left>4.20371cm</Left>
+                              <Top>3.82558cm</Top>
+                              <Left>4.20372cm</Left>
                               <Height>2.47854cm</Height>
                               <Width>5.79629cm</Width>
                               <ZIndex>2</ZIndex>
@@ -137,7 +136,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <Top>5.70412cm</Top>
+                              <Top>6.30412cm</Top>
                               <Left>4.20371cm</Left>
                               <Height>0.6cm</Height>
                               <Width>5.79629cm</Width>
@@ -350,6 +349,37 @@
                                 </Border>
                               </Style>
                             </Image>
+                            <Textbox Name="ItemNo2">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>="&lt;b&gt;" &amp; Fields!DocNoCaption.Value &amp; ": &lt;/b&gt;" &amp; Fields!DocNo.Value</Value>
+                                      <MarkupType>HTML</MarkupType>
+                                      <Style>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <Top>2.02558cm</Top>
+                              <Left>4.20372cm</Left>
+                              <Height>0.6cm</Height>
+                              <Width>5.79629cm</Width>
+                              <ZIndex>12</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
                           </ReportItems>
                           <KeepTogether>true</KeepTogether>
                           <Style>

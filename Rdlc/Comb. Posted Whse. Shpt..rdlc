@@ -2567,7 +2567,7 @@
                                 </TablixColumns>
                                 <TablixRows>
                                   <TablixRow>
-                                    <Height>0.6cm</Height>
+                                    <Height>0.4cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
@@ -2795,6 +2795,7 @@
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
                                           </Textbox>
+                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -2987,7 +2988,7 @@
                                 </Filter>
                               </Filters>
                               <Top>4.115cm</Top>
-                              <Height>1.4cm</Height>
+                              <Height>1.2cm</Height>
                               <Width>19.16675cm</Width>
                               <ZIndex>4</ZIndex>
                               <Style>
