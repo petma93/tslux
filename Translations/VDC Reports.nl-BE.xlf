@@ -477,8 +477,7 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report VDC Return Order Confirmation - NamedType TotalVolumeCaptionLbl</note>
         </trans-unit>
-        </trans-unit>
-                <trans-unit id="Report 1975617902 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Report 1975617902 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Return Order Confirmation</source>
           <target>Verkoop retour order</target>
           <note from="Developer" annotates="general" priority="2"></note>

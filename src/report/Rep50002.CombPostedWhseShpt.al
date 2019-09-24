@@ -1,7 +1,7 @@
 report 50002 "Comb. Posted Whse. Shpt."
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './RDLC/Comb. Posted Whse. Shpt..rdlc';
+    RDLCLayout = './RDLC/Comb. Posted Whse. Shpt.rdlc';
     Caption = 'Combined Posted Whse. Shipment';
     PreviewMode = PrintLayout;
     UsageCategory = ReportsAndAnalysis;

@@ -532,6 +532,9 @@ End Function
         <Field Name="DocNo">
           <DataField>DocNo</DataField>
         </Field>
+        <Field Name="DocNoCaption">
+          <DataField>DocNoCaption</DataField>
+        </Field>
         <Field Name="LineEntryNo">
           <DataField>LineEntryNo</DataField>
         </Field>
