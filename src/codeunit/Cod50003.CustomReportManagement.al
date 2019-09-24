@@ -58,78 +58,110 @@ codeunit 50003 "Custom Report Management"
         ReservationEntry2: record "Reservation Entry";
         AssemblyHeader: Record "Assembly Header";
         AssemblyLine: Record "Assembly Line";
+        PurchaseLine: Record "Purchase Line";
         ExcelBuffer: Record "Excel Buffer" temporary;
-        previd: code[20];
+        STDR_ReportManagement: Codeunit "STDR_Report Management";
+        PrevId: code[20];
+        PrevLineNo: Integer;
     begin
         ExcelBuffer.DeleteAll();
-        ExcelBuffer.reset;
+        ExcelBuffer.reset();
         //Main
-        ExcelBuffer.AddColumn('Inkooporder', false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Purchase Order'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
         ExcelBuffer.AddColumn(PurchaseHeader."No.", false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
         ExcelBuffer.NewRow();
-        ExcelBuffer.AddColumn('Datum', false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Date'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
         ExcelBuffer.AddColumn(PurchaseHeader."Document Date", false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
         ExcelBuffer.NewRow();
-        ExcelBuffer.AddColumn('Leverancier', false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Supplier'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
         ExcelBuffer.AddColumn(PurchaseHeader."Buy-from Vendor Name", false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
         ExcelBuffer.NewRow();
         ExcelBuffer.NewRow();
-        ExcelBuffer.AddColumn('Assemblage artikel', false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
-        ExcelBuffer.AddColumn('Assemblage component', false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
-        ExcelBuffer.AddColumn('Aantal', false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
-        ExcelBuffer.AddColumn('Eenheid', false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
-        ReservationEntry.Reset();
-        Reservationentry2.Reset();
-        ReservationEntry.SetRange("Reservation Status", ReservationEntry."Reservation Status"::Reservation);
-        ReservationEntry.SetRange("Source Type", 39);
-        ReservationEntry.SetRange("Source Subtype", 1);
-        ReservationEntry.SetRange("Source ID", PurchaseHeader."No.");
-        ReservationEntry.SetRange(Positive, true);
-        If ReservationEntry.findset then
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Purchase Item'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Purchase Quantity'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Unit of Measure'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Assembly Order'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Assembly Item'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Description'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Assembly Component'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Description'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Quantity To Consume'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.AddColumn(STDR_ReportManagement.GetTranslCurrRep('Unit of Measure'), false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+        ExcelBuffer.NewRow();
+        PurchaseLine.SetRange("Document Type", PurchaseHeader."Document Type");
+        PurchaseLine.SetRange("Document No.", PurchaseHeader."No.");
+        if PurchaseLine.FindSet() then
             repeat
-                ReservationEntry2.SetRange("Entry No.", ReservationEntry."Entry No.");
-                ReservationEntry2.SetRange(Positive, false);
-                ReservationEntry2.SetRange("Source Type", 901);
-                ReservationEntry2.SetRange("Source Subtype", 1);
-                ReservationEntry2.SetRange(Positive, false);
-                If ReservationEntry2.findset then
+                ReservationEntry.Reset();
+                ReservationEntry.SetRange("Reservation Status", ReservationEntry."Reservation Status"::Reservation);
+                ReservationEntry.SetRange("Source Type", 39);
+                ReservationEntry.SetRange("Source Subtype", 1);
+                ReservationEntry.SetRange("Source ID", PurchaseHeader."No.");
+                ReservationEntry.SetRange("Source Ref. No.", PurchaseLine."Line No.");
+                ReservationEntry.SetRange(Positive, true);
+                If ReservationEntry.findset() then
                     repeat
-                        ReservationEntry2.Mark(true);
-                    until ReservationEntry2.next = 0;
-            until ReservationEntry.next = 0;
-        Reservationentry2.MarkedOnly(true);
-        Reservationentry2.SetCurrentKey("Source ID");
-        if reservationentry2.findfirst then
-            repeat
-                if ReservationEntry2."Source ID" <> previd then begin
-                    AssemblyHeader.reset;
-                    AssemblyHeader.SetRange("No.", ReservationEntry2."Source ID");
-                    if AssemblyHeader.FindFirst() then begin
-                        //Header
-                        ExcelBuffer.NewRow();
-                        ExcelBuffer.NewRow();
-                        ExcelBuffer.AddColumn(AssemblyHeader."Item No." + ' ' + AssemblyHeader.Description, false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
-                        ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
-                        ExcelBuffer.AddColumn(AssemblyHeader."Quantity to Assemble", false, '', true, false, false, '', ExcelBuffer."Cell Type"::Number);
-                        ExcelBuffer.AddColumn(AssemblyHeader."Unit of Measure Code", false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
-                        ExcelBuffer.NewRow();
-
-                        AssemblyLine.reset();
-                        AssemblyLine.SetRange("Document No.", AssemblyHeader."No.");
-                        If AssemblyLine.FindSet() then
+                        Reservationentry2.Reset();
+                        ReservationEntry2.SetRange("Entry No.", ReservationEntry."Entry No.");
+                        ReservationEntry2.SetRange(Positive, false);
+                        ReservationEntry2.SetRange("Source Type", 901);
+                        ReservationEntry2.SetRange("Source Subtype", 1);
+                        ReservationEntry2.SetRange(Positive, false);
+                        If ReservationEntry2.findset() then
                             repeat
-                                ExcelBuffer.AddColumn(AssemblyHeader."Item No." + ' ' + AssemblyHeader.Description, false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
-                                ExcelBuffer.AddColumn(AssemblyLine."No." + ' ' + AssemblyLine.Description, false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
-                                ExcelBuffer.AddColumn(-AssemblyLine."Quantity to Consume", false, '', false, false, false, '', ExcelBuffer."Cell Type"::Number);
-                                ExcelBuffer.AddColumn(AssemblyLine."Unit of Measure Code", false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
-                                ExcelBuffer.NewRow();
-                            until AssemblyLine.next = 0;
+                                ReservationEntry2.Mark(true);
+                            until ReservationEntry2.next() = 0;
+                        Reservationentry2.MarkedOnly(true);
+                        Reservationentry2.SetCurrentKey("Source ID");
+                        if reservationentry2.findfirst() then
+                            repeat
+                                AssemblyHeader.reset();
+                                AssemblyHeader.SetRange("No.", ReservationEntry2."Source ID");
+                                if AssemblyHeader.FindFirst() then begin
+                                    //Header  
+                                    if (ReservationEntry."Source ID" = PrevId)
+                                    and (ReservationEntry."Source Ref. No." = PrevLineNo) then begin
+                                        ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                        ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Number);
+                                        ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                    end else begin
+                                        ExcelBuffer.AddColumn(PurchaseLine."No.", false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                        ExcelBuffer.AddColumn(PurchaseLine.Quantity, false, '', true, false, false, '', ExcelBuffer."Cell Type"::Number);
+                                        ExcelBuffer.AddColumn(PurchaseLine."Unit of Measure Code", false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                        PrevId := ReservationEntry."Source ID";
+                                        PrevLineNo := ReservationEntry."Source Ref. No.";
+                                    end;
+                                    ExcelBuffer.AddColumn(AssemblyHeader."No.", false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                    ExcelBuffer.AddColumn(AssemblyHeader."Item No.", false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                    ExcelBuffer.AddColumn(AssemblyHeader.Description, false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                    ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                    ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                    ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Number);
+                                    ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                    ExcelBuffer.NewRow();
 
-                    end;
-                end;
-                PrevId := ReservationEntry2."Source ID";
-            until ReservationEntry2.next = 0;
-        ExcelBuffer.CreateBookAndOpenExcel('', 'Assemblage', 'Inkoop order - Assemblage info', CompanyName, '');
+                                    AssemblyLine.reset();
+                                    AssemblyLine.SetRange("Document No.", AssemblyHeader."No.");
+                                    If AssemblyLine.FindSet() then
+                                        repeat
+                                            ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                            ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Number);
+                                            ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                            ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                            ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                            ExcelBuffer.AddColumn('', false, '', true, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                            ExcelBuffer.AddColumn(AssemblyLine."No.", false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                            ExcelBuffer.AddColumn(AssemblyLine.Description, false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                            ExcelBuffer.AddColumn(AssemblyLine."Quantity to Consume", false, '', false, false, false, '', ExcelBuffer."Cell Type"::Number);
+                                            ExcelBuffer.AddColumn(AssemblyLine."Unit of Measure Code", false, '', false, false, false, '', ExcelBuffer."Cell Type"::Text);
+                                            ExcelBuffer.NewRow();
+                                        until AssemblyLine.next() = 0;
+
+                                end;
+                            until ReservationEntry2.next() = 0;
+                    until ReservationEntry.next() = 0;
+            until PurchaseLine.Next() = 0;
+        ExcelBuffer.CreateBookAndOpenExcel('', 'Assemblage', 'Inkoop order - Assemblage info', CompanyName(), '');
     end;
 
     procedure SalesHeaderShipFrom(VAR AddrArray: ARRAY[8] OF Text; VAR SalesHeader: Record "Sales Header"): Boolean
