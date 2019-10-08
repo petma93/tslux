@@ -22,7 +22,21 @@ pageextension 50011 "WarehouseShipmentExt" extends "Warehouse Shipment"
                     TransportDocument.Run();
                 end;
             }
+            action("Transfer Assembly Overview")
+            {
+                ApplicationArea = Warehouse;
+                Caption = '&Transfer-Assembly Overview';
+                Ellipsis = true;
+                Image = PrintReport;
+                ToolTip = 'Get assembly information from this purchase in excel';
 
+                trigger OnAction()
+                var
+                    CustomReportMgt: Codeunit "Custom Report Management";
+                begin
+                    CustomReportMgt.AssemblyInfoFromWarehouseShipment(rec);
+                end;
+            }
 
         }
     }

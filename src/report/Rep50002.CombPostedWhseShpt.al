@@ -15,8 +15,8 @@ report 50002 "Comb. Posted Whse. Shpt."
             RequestFilterFields = "No.", "Whse. Shipment No.", "External Document No.";
             dataitem(PostedWhseShptLine; "Posted Whse. Shipment Line")
             {
-                DataItemLink = "No." = FIELD ("No.");
-                DataItemTableView = SORTING ("No.", "Line No.");
+                DataItemLink = "No." = FIELD("No.");
+                DataItemTableView = SORTING("No.", "Line No.");
 
                 trigger OnAfterGetRecord()
                 begin
@@ -51,10 +51,10 @@ report 50002 "Comb. Posted Whse. Shpt."
 
         dataitem(HeaderLoop; "Integer")
         {
-            DataItemTableView = SORTING (Number);
+            DataItemTableView = SORTING(Number);
             dataitem(CopyLoop; "Integer")
             {
-                DataItemTableView = SORTING (Number);
+                DataItemTableView = SORTING(Number);
                 column(GroupCode; GroupCode)
                 {
                 }
@@ -111,7 +111,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                 dataitem(LineLoop; "Integer")
                 {
                     DataItemLinkReference = HeaderLoop;
-                    DataItemTableView = SORTING (Number);
+                    DataItemTableView = SORTING(Number);
                     column(LineEntryNo; LineEntryNo)
                     {
                     }
@@ -159,7 +159,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                     }
                     dataitem(DetailLineLoop; "Integer")
                     {
-                        DataItemTableView = SORTING (Number);
+                        DataItemTableView = SORTING(Number);
                         column(DetailLineEntryNo; TempDetailBuffer."Entry No.")
                         {
                         }
@@ -387,7 +387,7 @@ report 50002 "Comb. Posted Whse. Shpt."
 
                 dataitem(Total; Integer)
                 {
-                    DataItemTableView = SORTING (Number) WHERE (Number = CONST (1));
+                    DataItemTableView = SORTING(Number) WHERE(Number = CONST(1));
                     column(TotalVolumeLbl; TotalVolumeLbl)
                     { }
                     column(TotalVolumeTxt; TotalVolumeTxt)
@@ -405,7 +405,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                 }
                 dataitem(IntrastatTotal; "Integer")
                 {
-                    DataItemTableView = SORTING (Number);
+                    DataItemTableView = SORTING(Number);
                     column(Intrastat_TariffNo; TempDetailBuffer2."No.")
                     {
                     }
@@ -431,7 +431,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                             TempDetailBuffer2.FINDSET();
 
                         GrossWeight := 0;
-                        TempIntraGrossBuffer.reset;
+                        TempIntraGrossBuffer.reset();
                         TempIntraGrossBuffer.setrange("No.", TempDetailBuffer2."No.");
                         If TempIntraGrossBuffer.FindFirst() then
                             GrossWeight := TempIntraGrossBuffer.Quantity;
@@ -595,13 +595,13 @@ report 50002 "Comb. Posted Whse. Shpt."
                     }
                     field(ShowLinkedLineInDetails; ShowLinkedLineInDetails)
                     {
-                        ApplicationArea = Advanced, Suite;
+                        ApplicationArea = Suite, Advanced;
                         Caption = 'Show Linked Line in Details';
                         OptionCaption = 'Default,Yes,No';
                     }
                     field(ShowZerroLines; ShowLinesZerroQty)
                     {
-                        ApplicationArea = Advanced, Suite;
+                        ApplicationArea = Suite, Advanced;
                         Caption = 'Show Lines Zerro Qty';
                         OptionCaption = 'Default,Yes,No';
                     }
@@ -721,7 +721,7 @@ report 50002 "Comb. Posted Whse. Shpt."
         TotalRemboursLbl := '';
         TotalPackagesLbl := '';
         TotalPackagesTxt := '';
-        TempIntraGrossBuffer.reset;
+        TempIntraGrossBuffer.reset();
         TempIntraGrossBuffer.DeleteAll();
         NextIntraGrossBufferEntryNo := 0;
 
@@ -928,8 +928,6 @@ report 50002 "Comb. Posted Whse. Shpt."
     procedure FillLineFds()
     var
         SalesHeader: Record "Sales Header";
-        SalesLine: Record "Sales Line";
-        PaymentMethod: Record "Payment Method";
         item: Record Item;
         ItemUOM: Record "Item Unit of Measure";
         ItemLedgEntry: Record "Item Ledger Entry";
@@ -978,9 +976,9 @@ report 50002 "Comb. Posted Whse. Shpt."
                         Item.get("No.");
                         AddGrossWeight("No.", Item."Gross Weight" * "Quantity (Base)");
                         ItemUOM.get("No.", "Unit of Measure Code");
-                        IF ItemUOM.Cubage <> 0 THEN BEGIN
-                            Linetxt[8] := STDR_ReportManagement.FormatQuantityDecimal(Quantity * ItemUOM.Cubage);
-                            TotalVolume := TotalVolume + (Quantity * ItemUOM.Cubage);
+                        IF ItemUOM."Loading Volume" <> 0 THEN BEGIN
+                            Linetxt[8] := STDR_ReportManagement.FormatQuantityDecimal(Quantity * ItemUOM."Loading Volume");
+                            TotalVolume := TotalVolume + (Quantity * ItemUOM."Loading Volume");
                         END;
                     end;
 
@@ -995,9 +993,8 @@ report 50002 "Comb. Posted Whse. Shpt."
                     if SalesHeader.GET(1, "Order No.") then begin
                         if SalesHeader."Your Reference" <> '' then
                             OrderRef := SalesHeader."Your Reference";
-                        if SalesHeader."Payment Method Code" = 'REMBOURS' then begin
+                        if SalesHeader."Payment Method Code" = 'REMBOURS' then
                             TotalRemboursAmount += "STDR_Amount Including VAT";
-                        end;
                     end;
                 OrderNo := "Order No.";
                 if OrderRef <> '' then
@@ -1042,9 +1039,9 @@ report 50002 "Comb. Posted Whse. Shpt."
                 Item.get("Item No.");
                 AddGrossWeight("Item No.", Item."Gross Weight" * "Quantity (Base)");
                 ItemUOM.get("item No.", "Unit of Measure Code");
-                IF ItemUOM.Cubage <> 0 THEN BEGIN
-                    Linetxt[8] := STDR_ReportManagement.FormatQuantityDecimal(Quantity * ItemUOM.Cubage);
-                    TotalVolume := TotalVolume + (Quantity * ItemUOM.Cubage);
+                IF ItemUOM."Loading Volume" <> 0 THEN BEGIN
+                    Linetxt[8] := STDR_ReportManagement.FormatQuantityDecimal(Quantity * ItemUOM."Loading Volume");
+                    TotalVolume := TotalVolume + (Quantity * ItemUOM."Loading Volume");
                 END;
 
                 TotalNoOfPackages += "Dimension Set ID";
@@ -1154,7 +1151,7 @@ report 50002 "Comb. Posted Whse. Shpt."
                                     until RegWhseActLine.Next() = 0;
                             until PostedWhseShptLine2.Next() = 0;
                         //TmpHeader."Shipping Agent Code" := format(TotalNoOfPackages); //abuse
-                        tmpheader.modify;
+                        tmpheader.modify();
                         TmpLine.RESET();
                         TmpLine.SETRANGE("Document No.", TmpHeader."No.");
                         TmpLine.SETRANGE("Order No.", SalesShptLine."Order No.");
@@ -1332,12 +1329,12 @@ report 50002 "Comb. Posted Whse. Shpt."
         if STDR_ReportSetup."Show Intrastat in Total Block" = STDR_ReportSetup."Show Intrastat in Total Block"::" " then
             exit;
 
-        IF item.get(ItemNo) then begin
+        IF item.get(ItemNo) then
             if item."tariff No." <> '' then begin
-                TempIntraGrossBuffer.reset;
+                TempIntraGrossBuffer.reset();
                 TempIntraGrossBuffer.Setrange("No.", item."Tariff No.");
                 If not TempIntraGrossBuffer.FindFirst() then begin
-                    TempIntraGrossBuffer.init;
+                    TempIntraGrossBuffer.init();
                     TempIntraGrossBuffer."Entry No." := NextIntraGrossBufferEntryNo;
                     TempIntraGrossBuffer."No." := item."Tariff No.";
                     TempIntraGrossBuffer.Quantity := Weight;
@@ -1348,6 +1345,5 @@ report 50002 "Comb. Posted Whse. Shpt."
                     TempIntraGrossBuffer.Modify();
                 end;
             end;
-        end;
     end;
 }
