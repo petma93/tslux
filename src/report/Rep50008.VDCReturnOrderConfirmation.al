@@ -4,12 +4,13 @@ report 50008 "VDC Return Order Confirmation"
     RDLCLayout = './Rdlc/Return Order Confirmation.rdlc';
     Caption = 'Return Order Confirmation';
     UsageCategory = Documents;
+    ApplicationArea = Basic, Suite;
 
     dataset
     {
         dataitem("Sales Header"; "Sales Header")
         {
-            DataItemTableView = SORTING ("Document Type", "No.") WHERE ("Document Type" = CONST ("Return Order"));
+            DataItemTableView = SORTING("Document Type", "No.") WHERE("Document Type" = CONST("Return Order"));
             RequestFilterFields = "No.", "Sell-to Customer No.", "No. Printed";
             RequestFilterHeading = 'Sales Return Order';
             column(DocType_SalesHdr; "Document Type")
@@ -39,12 +40,12 @@ report 50008 "VDC Return Order Confirmation"
             dataitem(CopyLoop; "Integer")
             {
 
-                DataItemTableView = SORTING (Number);
+                DataItemTableView = SORTING(Number);
 
                 dataitem(PageLoop; "Integer")
                 {
 
-                    DataItemTableView = SORTING (Number) WHERE (Number = CONST (1));
+                    DataItemTableView = SORTING(Number) WHERE(Number = CONST(1));
 
                     column(ReportTitleCopyText; StrSubstNo(Text004, CopyText))
                     {
@@ -271,7 +272,7 @@ report 50008 "VDC Return Order Confirmation"
                     dataitem(DimensionLoop1; "Integer")
                     {
                         DataItemLinkReference = "Sales Header";
-                        DataItemTableView = SORTING (Number) WHERE (Number = FILTER (1 ..));
+                        DataItemTableView = SORTING(Number) WHERE(Number = FILTER(1 ..));
                         column(DimText; DimText)
                         {
                         }
@@ -318,9 +319,9 @@ report 50008 "VDC Return Order Confirmation"
                     }
                     dataitem("Sales Line"; "Sales Line")
                     {
-                        DataItemLink = "Document Type" = FIELD ("Document Type"), "Document No." = FIELD ("No.");
+                        DataItemLink = "Document Type" = FIELD("Document Type"), "Document No." = FIELD("No.");
                         DataItemLinkReference = "Sales Header";
-                        DataItemTableView = SORTING ("Document Type", "Document No.", "Line No.");
+                        DataItemTableView = SORTING("Document Type", "Document No.", "Line No.");
                         trigger OnAfterGetRecord()
                         begin
                             totalvolumem += "Sales Line"."Unit Volume";
@@ -333,7 +334,7 @@ report 50008 "VDC Return Order Confirmation"
                     }
                     dataitem(RoundLoop; "Integer")
                     {
-                        DataItemTableView = SORTING (Number);
+                        DataItemTableView = SORTING(Number);
                         column(TypeInt; TypeInt)
                         {
                         }
@@ -439,7 +440,7 @@ report 50008 "VDC Return Order Confirmation"
                         }
                         dataitem(DimensionLoop2; "Integer")
                         {
-                            DataItemTableView = SORTING (Number) WHERE (Number = FILTER (1 ..));
+                            DataItemTableView = SORTING(Number) WHERE(Number = FILTER(1 ..));
                             column(DimText2; DimText)
                             {
                             }
@@ -525,7 +526,7 @@ report 50008 "VDC Return Order Confirmation"
                     }
                     dataitem(VATCounter; "Integer")
                     {
-                        DataItemTableView = SORTING (Number);
+                        DataItemTableView = SORTING(Number);
                         column(VATAmtLineVATBase; VATAmountLine."VAT Base")
                         {
                             AutoFormatExpression = "Sales Header"."Currency Code";
@@ -585,7 +586,7 @@ report 50008 "VDC Return Order Confirmation"
                     }
                     dataitem(VATCounterLCY; "Integer")
                     {
-                        DataItemTableView = SORTING (Number);
+                        DataItemTableView = SORTING(Number);
                         column(VALExchRate; VALExchRate)
                         {
                         }
@@ -643,7 +644,7 @@ report 50008 "VDC Return Order Confirmation"
                     }
                     dataitem(Total; "Integer")
                     {
-                        DataItemTableView = SORTING (Number) WHERE (Number = CONST (1));
+                        DataItemTableView = SORTING(Number) WHERE(Number = CONST(1));
                         column(ShipToAddr8; ShipToAddr[8])
                         {
                         }

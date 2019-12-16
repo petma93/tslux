@@ -228,6 +228,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - NamedType CurrentDateLbl</note>
         </trans-unit>
+        <trans-unit id="Report 1195402496 - NamedType 2410138484" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - NamedType TotalLbl</note>
+        </trans-unit>
         <trans-unit id="Report 980825104 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Shipping Label</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -578,6 +583,126 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Assembly Label - Control NoOfExtraCopies - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 2578581072 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transport Journey Document</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - Control 3192306909 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Copies</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - Control NoofCopies - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - Control 3192306909 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how many copies of the document to print.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - Control NoofCopies - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - Control 4093990710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Language</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - Control Language - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 1614022648" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transport Journey Document %1</source>
+          <note from="Developer" annotates="general" priority="2">%1 = Document No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType Text001Txt</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 598315961" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page %1</source>
+          <note from="Developer" annotates="general" priority="2">%1 = Page No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType Text002Txt</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 650077689" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType PageCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 1496054680" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Packaged Volume</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType PackagedVolumeLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 2921381789" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Packages</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType NoOfPackagesLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 1721277456" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transport No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType DocumentNoLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 1060023023" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Order No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType OrderNoLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 1251293528" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType ShipToNameLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 3657856295" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ship-to Address</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType ShipToAddressLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 4105051417" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Phone No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType PhoneNoLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 3405293018" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Planned Departure Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType PlannedDepartureDateLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 630072657" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Expected Date of Arrival</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType ExpedtedDateLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 2826867220" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Phone No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType CompanyInfoPhoneNoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 322581705" size-unit="char" translate="yes" xml:space="preserve">
+          <source>VAT Registration No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType CompanyInfoVATRegNoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 1454106313" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Giro No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType CompanyInfoGiroNoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 1275674192" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bank</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType CompanyInfoBankNameCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 2438826717" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType CompanyInfoBankAccNoCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 3627177809" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType CurrentDateLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 2578581072 - NamedType 2410138484" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType TotalLbl</note>
+        </trans-unit>
         <trans-unit id="PageExtension 1245944776 - Action 3229512621 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4178721393">
           <source>&amp;Label</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -677,6 +802,11 @@
           <source>Get assembly information from this purchase in excel</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension PurchaseOrderExt2 - Action Purchase Assembly Information - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 2650456421 - Action 4019910672 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1361707048">
+          <source>Transport Journey Document</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension OUCTTransportInforDocExt - Action TransportJourneyDocument - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2328407446 - Field 222317169 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 862012238">
           <source>Transport Information</source>

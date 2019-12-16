@@ -13,7 +13,7 @@ report 50003 "Transport Document"
     {
         dataitem(WhseShptHdr; "Warehouse Shipment Header")
         {
-            DataItemTableView = SORTING ("No.") ORDER(Ascending);
+            DataItemTableView = SORTING("No.") ORDER(Ascending);
             RequestFilterFields = "No.", Status; //, "Carrier Name";
             RequestFilterHeading = 'Transport Document';
             column(DocumentNo_; "No.")
@@ -32,10 +32,10 @@ report 50003 "Transport Document"
             { }
             dataitem(CopyLoop; "Integer")
             {
-                DataItemTableView = SORTING (Number);
+                DataItemTableView = SORTING(Number);
                 dataitem(PageLoop; "Integer")
                 {
-                    DataItemTableView = SORTING (Number) WHERE (Number = CONST (1));
+                    DataItemTableView = SORTING(Number) WHERE(Number = CONST(1));
                     column(ReportTitleCopyText; STRSUBSTNO(Text001Txt, CopyText))
                     { }
                     column(CurrRepPageNo; Text002Txt)
@@ -100,11 +100,13 @@ report 50003 "Transport Document"
                     { }
                     column(CurrentDate; CurrentDate)
                     { }
+                    column(TotalLbl; totalLbl)
+                    { }
                     dataitem(WhseShptLine; "Warehouse Shipment Line")
                     {
-                        DataItemLink = "No." = FIELD ("No.");
+                        DataItemLink = "No." = FIELD("No.");
                         DataItemLinkReference = WhseShptHdr;
-                        DataItemTableView = SORTING ("Source No.", "Source Line No.") ORDER(Ascending);
+                        DataItemTableView = SORTING("Source No.", "Source Line No.") ORDER(Ascending);
                         column(LineNo; "Line No.")
                         { }
                         column(SourceNo; "Source No.")
@@ -127,7 +129,12 @@ report 50003 "Transport Document"
                         }
                         column(LinePackages; LinePackages)
                         { }
-
+                        column(TotalPackages; TotalPackages)
+                        { }
+                        column(TotalVolume; TotalVolume)
+                        {
+                            DecimalPlaces = 0 : 3;
+                        }
                         trigger OnAfterGetRecord()
                         var
                             ItemUOM: Record "Item Unit of Measure";
@@ -138,9 +145,11 @@ report 50003 "Transport Document"
 
                             If ItemUOM.Get("Item No.", "Unit of Measure Code") then begin
                                 //Calcfields("Quantity Shipped");
-                                LineVolume := ItemUOM.Cubage * "Qty. to Ship"; // "Quantity Shipped";
+                                LineVolume := ItemUOM."Loading Volume" * "Qty. to Ship"; // "Quantity Shipped";
                             end else
                                 LineVolume := 0;
+
+                            TotalVolume := TotalVolume + LineVolume;
 
                             LinePackages := 0;
                             WhseActLine.reset;
@@ -165,6 +174,7 @@ report 50003 "Transport Document"
                                         LinePackages := LinePackages + RegisteredWhseActivityLine."No. of Packages";
                                     until RegisteredWhseActivityLine.next = 0;
                             end;
+                            TotalPackages := +TotalPackages + LinePackages;
                         end;
                     }
                 }
@@ -282,8 +292,9 @@ report 50003 "Transport Document"
         CompanyInfoBankNameCaptionLbl: Label 'Bank';
         CompanyInfoBankAccNoCaptionLbl: Label 'Account No.';
         CurrentDateLbl: Label 'Date';
-
-
+        TotalLbl: Label 'Total';
+        TotalVolume: Decimal;
+        TotalPackages: Decimal;
 
     local procedure InitializeRequest(NewNoOfCopies: Integer)
     begin
