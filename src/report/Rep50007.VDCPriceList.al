@@ -616,16 +616,16 @@ report 50007 "VDC Price List"
 
     begin
         if TableNo = 0 then
-          exit(DefaultNLBcaption);
-        
+            exit(DefaultNLBcaption);
+
         RecRef.Open(TableNo);
         if RecRef.FieldExist(FieldNo) then begin
-          FldRef := RecRef.Field(FieldNo);
-          Result := STDR_ReportTranslationMgt.GetTransl(report::"VDC Price List", 'NLB', FldRef.Name());
-          if Result = '' then
-            Result := DefaultNLBcaption;
-          if Result = '' then
-            Result := FldRef.Caption();
+            FldRef := RecRef.Field(FieldNo);
+            Result := STDR_ReportTranslationMgt.GetTransl(report::"VDC Price List", 'NLB', FldRef.Name());
+            if Result = '' then
+                Result := DefaultNLBcaption;
+            if Result = '' then
+                Result := FldRef.Caption();
         end;
     end;
 
@@ -669,9 +669,9 @@ report 50007 "VDC Price List"
     end;
 
     [TryFunction]
-    local procedure PerfionDTtoDT(Txt: Text;var Result: DateTime)
+    local procedure PerfionDTtoDT(Txt: Text; var Result: DateTime)
     var
-    PRFN_ProcessResult: Codeunit "PRFN_Process Result";
+        PRFN_ProcessResult: Codeunit "PRFN_Process Result";
     begin
         //2017-04-20T00:00:00
         //1234567890123456789
@@ -680,11 +680,11 @@ report 50007 "VDC Price List"
 
     local procedure PerfionDTtoDate(Txt: Text) Result: Date
     var
-    dt: DateTime;
+        dt: DateTime;
     begin
-        PerfionDTtoDT(Txt,dt);
-        if dt <> 0DT then       
-          Result := DT2Date(dt);
+        PerfionDTtoDT(Txt, dt);
+        if dt <> 0DT then
+            Result := DT2Date(dt);
     end;
 
     local procedure GetDesc()
@@ -736,24 +736,31 @@ report 50007 "VDC Price List"
         SalesPrice.SetRange("Sales Type", SalesPrice."Sales Type"::"Customer Price Group");
         SalesPrice.SetFilter("Ending Date", '%1|>=%2', 0D, CalculateDate);
         SalesPrice.SetRange("Starting Date", 0D, CalculateDate);
+
+        //get the latest valid price for pricegroup one with "Minimum Quantity" = zerro
         SalesPrice.SetRange("Minimum Quantity", 0);
         SalesPrice.SetRange("Sales Code", 'GR1');
         if SalesPrice.FindLast() then
             GR1Price := SalesPrice."Unit Price";
+
+        //get the latest valid price for pricegroup two with "Minimum Quantity" = zerro
         SalesPrice.SetRange("Sales Code", 'GR2');
         if SalesPrice.FindLast() then
             GR2Price := SalesPrice."Unit Price";
 
+        //get the latest valid price for pricegroup one with a "Minimum Quantity"
         SalesPrice.SetFilter("Minimum Quantity", '>0');
         SalesPrice.SetRange("Sales Code", 'GR1');
         if SalesPrice.FindLast() then begin
             GR1MinPrice := SalesPrice."Unit Price";
             GR1MinQty := SalesPrice."Minimum Quantity";
         end;
+
+        //get the latest valid price for pricegroup two with a "Minimum Quantity"
         SalesPrice.SetRange("Sales Code", 'GR2');
         if SalesPrice.FindLast() then begin
-            GR1MinPrice := SalesPrice."Unit Price";
-            GR1MinQty := SalesPrice."Minimum Quantity";
+            GR2MinPrice := SalesPrice."Unit Price";
+            GR2MinQty := SalesPrice."Minimum Quantity";
         end;
     end;
 

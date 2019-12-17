@@ -2223,9 +2223,6 @@ End Function
         <Field Name="CurrentDate">
           <DataField>CurrentDate</DataField>
         </Field>
-        <Field Name="TotalLbl">
-          <DataField>TotalLbl</DataField>
-        </Field>
         <Field Name="LineNo">
           <DataField>LineNo</DataField>
         </Field>
@@ -2258,18 +2255,6 @@ End Function
         </Field>
         <Field Name="LinePackages">
           <DataField>LinePackages</DataField>
-        </Field>
-        <Field Name="TotalPackages">
-          <DataField>TotalPackages</DataField>
-        </Field>
-        <Field Name="TotalPackagesFormat">
-          <DataField>TotalPackagesFormat</DataField>
-        </Field>
-        <Field Name="TotalVolume">
-          <DataField>TotalVolume</DataField>
-        </Field>
-        <Field Name="TotalVolumeFormat">
-          <DataField>TotalVolumeFormat</DataField>
         </Field>
       </Fields>
       <Query>
