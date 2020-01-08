@@ -5,19 +5,19 @@ report 50009 "Assembly Label"
     ApplicationArea = Basic, Suite;
     PreviewMode = PrintLayout;
     DefaultLayout = RDLC;
-    RDLCLayout = './RDLC/Item Dim. Label.rdlc';
+    RDLCLayout = './RDLC/AssemblyLabel.rdlc';
 
     dataset
     {
         dataitem(AssemblyHeader; "Assembly Header")
         {
-            DataItemTableView = sorting ("No.");
+            DataItemTableView = sorting("No.");
             RequestFilterFields = "No.";
             dataitem(Item; "Item")
             {
-                DataItemLink = "No." = field ("Item No.");
+                DataItemLink = "No." = field("Item No.");
                 DataItemLinkReference = AssemblyHeader;
-                DataItemTableView = sorting ("No.");
+                DataItemTableView = sorting("No.");
                 RequestFilterFields = "No.";
 
                 column(ItemNo; "No.")
@@ -47,13 +47,13 @@ report 50009 "Assembly Label"
 
                 dataitem(Copyloop; Integer)
                 {
-                    DataItemTableView = SORTING (Number);
+                    DataItemTableView = SORTING(Number);
                     column(OutputNo; OutputNo)
                     {
                     }
                     dataitem(QtyLoop; Integer)
                     {
-                        DataItemTableView = SORTING (Number);
+                        DataItemTableView = SORTING(Number);
 
                         column(DocNo; DocNo)
                         { }

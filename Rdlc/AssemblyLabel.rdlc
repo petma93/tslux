@@ -7,7 +7,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>774aa406-fdfe-4b5c-a1fa-3b68368e9d8d</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -356,7 +355,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value EvaluationMode="Constant" />
+                                      <Value>="&lt;b&gt;" &amp; Fields!DocNoCaption.Value &amp; ": &lt;/b&gt;" &amp; Fields!DocNo.Value</Value>
                                       <MarkupType>HTML</MarkupType>
                                       <Style>
                                         <FontSize>9pt</FontSize>
@@ -389,7 +388,6 @@
                             </Border>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -533,6 +531,9 @@ End Function
         </Field>
         <Field Name="DocNo">
           <DataField>DocNo</DataField>
+        </Field>
+        <Field Name="DocNoCaption">
+          <DataField>DocNoCaption</DataField>
         </Field>
         <Field Name="LineEntryNo">
           <DataField>LineEntryNo</DataField>

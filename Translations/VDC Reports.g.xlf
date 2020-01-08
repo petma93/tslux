@@ -228,6 +228,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - NamedType CurrentDateLbl</note>
         </trans-unit>
+        <trans-unit id="Report 1195402496 - NamedType 2410138484" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Transport Document - NamedType TotalLbl</note>
+        </trans-unit>
         <trans-unit id="Report 980825104 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Shipping Label</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -757,6 +762,16 @@
           <source>Transport Document</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension WarehouseShipmentExt - Action TransportDocument - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1558580328 - Action 3742939018 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2938519335">
+          <source>&amp;Transfer-Assembly Overview</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension WarehouseShipmentExt - Action Transfer Assembly Overview - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1558580328 - Action 3742939018 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2938519335">
+          <source>Get assembly information from this purchase in excel</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension WarehouseShipmentExt - Action Transfer Assembly Overview - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="PageExtension 511730069 - Action 1728078476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1662713252">
           <source>&amp;Label</source>
