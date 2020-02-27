@@ -1546,6 +1546,7 @@ Cstr(Fields!TotalLbl.Value)
                     </GroupExpressions>
                     <PageBreak>
                       <BreakLocation>Between</BreakLocation>
+                      <ResetPageNumber>true</ResetPageNumber>
                     </PageBreak>
                   </Group>
                   <SortExpressions>
@@ -2003,7 +2004,7 @@ Cstr(Fields!TotalLbl.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Globals!PageNumber &amp; "/" &amp; Globals!OverallTotalPages</Value>
+                      <Value>=Globals!PageNumber &amp; "/" &amp; Globals!TotalPages</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>8pt</FontSize>

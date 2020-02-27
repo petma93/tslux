@@ -243,6 +243,8 @@ report 50010 "Transport Journey Document"
                         CompanyInfo.CalcFields(Picture);
 
                     OutputNo := OutputNo + 1;
+                    TotalVolume := 0;
+                    TotalPackages := 0;
                 end;
 
                 trigger OnPreDataItem()
@@ -375,6 +377,7 @@ report 50010 "Transport Journey Document"
         SellToCust: Record Customer;
         Printcode: record "STDR_Print Code";
         CustComm: record "Comment Line";
+        TransferHeader: Record "Transfer Header";
     begin
         ShipToName := '';
         ShipToAddress := '';
@@ -411,7 +414,15 @@ report 50010 "Transport Journey Document"
                             until CustComm.next() = 0;
                     until Printcode.Next() = 0;
                 end;
+            end else begin
+                if TransferHeader.Get("Source No.") then begin
+                    ShipToName := TransferHeader."Transfer-to Name";
+                    ShipToAddress := TransferHeader."Transfer-to Address";
+                    ShipToPostCodeCity := DELCHR(TransferHeader."Transfer-to Post Code" + ' ' + TransferHeader."Transfer-to City", '<', ' ');
+                    FullShipToAddress := ShipToName + ShiptoAddress + ShipToPostCodeCity;
+                end;
             end;
+
 
     end;
 }

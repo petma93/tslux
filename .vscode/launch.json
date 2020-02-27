@@ -5,7 +5,7 @@
             "type": "al",
             "request": "launch",
             "name": "Triton CUS_VANDECASTEELE_BC14",
-            "server": "http://192.168.2.20",
+            "server": "http://10.100.2.20",
             "serverInstance": "CUS_VANDECASTEELE_BC14",
             "port": 9059,
             "authentication": "Windows",
