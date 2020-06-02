@@ -2,7 +2,7 @@
   "id": "923a9e93-d0ae-4312-a8ab-01458f32b908",
   "name": "VDC Reports",
   "publisher": "Broad Horizon België",
-  "version": "1.0.20200224.3",
+  "version": "1.0.20200602.0",
   "brief": "VDC Reports",
   "description": "Reports",
   "privacyStatement": "https://www.broadhorizon.be/privacybeleid",
@@ -15,19 +15,19 @@
       "appId": "d8feaa8a-f09b-4472-841f-bdcfd63fcb64",
       "name": "Standard Reports",
       "publisher": "Broad Horizon België",
-      "version": "1.0.20190912.1"
+      "version": "14.0.20200514.0"
     },
     {
       "appId": "e05de681-3b6f-4a28-9164-020b9744efb6",
       "name": "Perfion sync",
       "publisher": "Broad Horizon België",
-      "version": "1.0.20190910.1"
+      "version": "14.0.20200519.0"
     },
     {
       "appId": "e68105cb-2e46-4898-ab99-9a4a448a3742",
       "name": "Transport Management",
       "publisher": "Broad Horizon België",
-      "version": "1.0.20190906.1"
+      "version": "14.0.20200519.0"
     },
     {
       "appId": "cf280173-89ef-4b51-a3d8-7b55dc0ba23a",
@@ -39,7 +39,7 @@
       "appId": "4b767687-ff67-4fe4-97f6-ec8edd45873d",
       "name": "Process Flow",
       "publisher": "Broad Horizon België",
-      "version": "1.0.20190906.1"
+      "version": "14.0.20200529.1"
     }
   ],
   "screenshots": [
