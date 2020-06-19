@@ -9,7 +9,7 @@
             "serverInstance": "CUS_VANDECASTEELE_BC14",
             "port": 9059,
             "authentication": "Windows",
-            "startupObjectId": 11259211,
+            "startupObjectId": 9313,
             "startupObjectType": "Page",
             "breakOnError": false,
             "schemaUpdateMode":"Synchronize"

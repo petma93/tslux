@@ -2,7 +2,7 @@
   "id": "923a9e93-d0ae-4312-a8ab-01458f32b908",
   "name": "VDC Reports",
   "publisher": "Broad Horizon België",
-  "version": "1.0.20200602.0",
+  "version": "1.0.20200619.0",
   "brief": "VDC Reports",
   "description": "Reports",
   "privacyStatement": "https://www.broadhorizon.be/privacybeleid",
@@ -33,7 +33,7 @@
       "appId": "cf280173-89ef-4b51-a3d8-7b55dc0ba23a",
       "name": "VDC General Customizations",
       "publisher": "Broad Horizon België",
-      "version": "1.0.20191016.6"
+      "version": "1.0.20200608.1"
     },
     {
       "appId": "4b767687-ff67-4fe4-97f6-ec8edd45873d",

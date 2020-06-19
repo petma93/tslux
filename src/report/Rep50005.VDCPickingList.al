@@ -11,7 +11,7 @@ report 50005 "VDC Picking List"
     {
         dataitem(Header; "Warehouse Activity Header")
         {
-            DataItemTableView = SORTING (Type, "No.") WHERE (Type = FILTER (Pick | "Invt. Pick"));
+            DataItemTableView = SORTING(Type, "No.") WHERE(Type = FILTER(Pick | "Invt. Pick"));
             RequestFilterFields = "No.", "No. Printed";
             column(DocNo; "No.")
             {
@@ -60,14 +60,14 @@ report 50005 "VDC Picking List"
             }
             dataitem(CopyLoop; "Integer")
             {
-                DataItemTableView = SORTING (Number);
+                DataItemTableView = SORTING(Number);
                 column(OutputNo; OutputNo)
                 {
                 }
                 dataitem(Line; "Integer")
                 {
                     DataItemLinkReference = Header;
-                    DataItemTableView = SORTING (Number);
+                    DataItemTableView = SORTING(Number);
                     column(LineEntryNo; LineEntryNo)
                     {
                     }
@@ -109,7 +109,7 @@ report 50005 "VDC Picking List"
                     }
                     dataitem(DetailLineLoop; "Integer")
                     {
-                        DataItemTableView = SORTING (Number);
+                        DataItemTableView = SORTING(Number);
                         column(DetailLineEntryNo; TempDetailBuffer."Entry No.")
                         {
                         }
@@ -610,6 +610,7 @@ report 50005 "VDC Picking List"
             STDR_ReportManagement.AddTranslValue(8, HeaderFds[5], 'Quantity');
             STDR_ReportManagement.AddTranslValue(9, HeaderFds[5], 'Unit of Measure');
             STDR_ReportManagement.AddTranslValue(10, HeaderFds[5], 'Quantity Handled');
+            STDR_ReportManagement.AddTranslValue(11, HeaderFds[5], 'Customer');
         end; /*with do*/
 
         GetExtraHeaderInformation();
@@ -620,6 +621,7 @@ report 50005 "VDC Picking List"
 
     procedure FillLineFds()
     var
+        Customer: Record Customer;
         CrossDockMark: Text;
     begin
         with TmpLine do begin
@@ -653,6 +655,10 @@ report 50005 "VDC Picking List"
             LineTxt[8] := STDR_ReportManagement.FormatQuantityDecimal(Quantity);
             LineTxt[9] := STDR_ReportManagement.GetUOMText("Unit of Measure Code");
             LineTxt[10] := '';
+            if "Destination Type" = "Destination Type"::Customer then
+                if Customer.Get("Destination No.") then
+                    LineTxt[10] := Customer.Name;
+
         end; /*with do*/
         STDR_ReportManagement.OnAfterFillLineFds(STDR_ReportSetup, STDR_ReportManagement.GetLanguageCode(), STDR_ReportManagement.GetReportNo(), Header, HeaderFds, Line, LineEntryNo, LineTypeNo, LineTxt, LineFormatTxt);
 

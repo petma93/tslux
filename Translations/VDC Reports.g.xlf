@@ -703,6 +703,91 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType TotalLbl</note>
         </trans-unit>
+        <trans-unit id="Report 1780819268 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales - Invoice</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 1727736516 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Extra Copies</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control NoOfExtraCopiesCtrl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 949370097 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Log Interaction</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control LogInteractionCtrl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 949370097 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Default,Yes,No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control LogInteractionCtrl - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 3539364029 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Archive Document</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ArchiveDocCtrl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 3539364029 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Default,Yes,No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ArchiveDocCtrl - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 1640818851 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Assembly Components</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ShowAsmInformationCtrl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 1640818851 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Default,Yes,No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ShowAsmInformationCtrl - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 264509820 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Serial/Lot Number</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ShowItemTrackingCtrl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 264509820 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Default,Yes,No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ShowItemTrackingCtrl - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 108509440 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Line Comments</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ShowLineCommentsCtrl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 108509440 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Default,Yes,No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ShowLineCommentsCtrl - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 3018662396 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Linked Line in Details</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ShowLinkedLineInDetailsCtrl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 3018662396 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Default,Yes,No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ShowLinkedLineInDetailsCtrl - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 351646793 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Lines Zerro Qty</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ShowZerroLinesCtrl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1780819268 - Control 351646793 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Default,Yes,No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Sales Invoice - Control ShowZerroLinesCtrl - Property OptionCaption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 2650456421 - Action 4019910672 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1302364990">
           <source>Transport Journey Document</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -817,6 +902,11 @@
           <source>No. of Packages</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension TableExtension50001 - Field No. of Packages - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1690710829 - Field 393517461 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2624270058">
+          <source>Destination Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension TableExtension50001 - Field DestinationName - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 1053014212 - Field 2133362361 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3893619904">
           <source>No. of Packages</source>

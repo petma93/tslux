@@ -11,7 +11,7 @@ report 50004 "Shipping Label"
     {
         dataitem(Header; "Warehouse Activity Header")
         {
-            DataItemTableView = SORTING (Type, "No.") WHERE (Type = FILTER (Pick | "Invt. Pick"));
+            DataItemTableView = SORTING(Type, "No.") WHERE(Type = FILTER(Pick | "Invt. Pick"));
             RequestFilterFields = "No.", "No. Printed";
             column(DocNo; "No.")
             { }
@@ -70,8 +70,8 @@ report 50004 "Shipping Label"
             dataitem(LineFilter; "Warehouse Activity Line")
             {
                 RequestFilterFields = "Line No.", "Item No.";
-                DataItemTableView = SORTING ("Activity Type", "No.", "Line No.") WHERE ("Action Type" = CONST (Take));
-                DataItemLink = "Activity Type" = FIELD (Type), "No." = FIELD ("No.");
+                DataItemTableView = SORTING("Activity Type", "No.", "Line No.") WHERE("Action Type" = CONST(Take));
+                DataItemLink = "Activity Type" = FIELD(Type), "No." = FIELD("No.");
                 trigger OnPreDataItem()
                 begin
                     CurrReport.Break();
@@ -79,14 +79,14 @@ report 50004 "Shipping Label"
             }
             dataitem(CopyLoop; "Integer")
             {
-                DataItemTableView = SORTING (Number);
+                DataItemTableView = SORTING(Number);
                 column(OutputNo; OutputNo)
                 {
                 }
                 dataitem(Line; "Integer")
                 {
                     DataItemLinkReference = Header;
-                    DataItemTableView = SORTING (Number);
+                    DataItemTableView = SORTING(Number);
                     column(LineEntryNo; LineEntryNo)
                     {
                     }
@@ -125,7 +125,7 @@ report 50004 "Shipping Label"
 
                     dataitem(DetailLineLoop; "Integer")
                     {
-                        DataItemTableView = SORTING (Number);
+                        DataItemTableView = SORTING(Number);
                         column(DetailLineEntryNo; Number)
                         {
                             //
@@ -211,6 +211,8 @@ report 50004 "Shipping Label"
                 // fill buffer with all lines to print. If no lines exists also skip header
                 if not FillWhseActLineBuffer(TmpLine, Header) then
                     CurrReport.SKIP();
+
+                TmpLine.SetCurrentKey(DestinationName, "Source No.");
 
                 // fill header fields
                 FillHeaderFds();
@@ -308,6 +310,9 @@ report 50004 "Shipping Label"
     procedure FillWhseActLineBuffer(var TmpLineBuffer2: Record "Warehouse Activity Line" temporary; Header2: Record "Warehouse Activity Header") LinesExist: Boolean
     var
         WhseActLine: Record "Warehouse Activity Line";
+        SalesHeader: Record "Sales Header";
+        TransferHeader: Record "Transfer Header";
+        Location: Record Location;
     begin
         with WhseActLine do begin
             TmpLineBuffer2.RESET();
@@ -365,9 +370,24 @@ report 50004 "Shipping Label"
                 until NEXT() = 0;
 
             TmpLineBuffer2.RESET();
+            if TmpLineBuffer2.FindSet() then
+                repeat
+                    case TmpLineBuffer2."Source Type" OF
+                        Database::"Sales Line":
+                            IF SalesHeader.Get(TmpLineBuffer2."Source Subtype", TmpLineBuffer2."Source No.") then
+                                TmpLineBuffer2.DestinationName := SalesHeader."Ship-to Name";
+                        Database::"Transfer Line":
+                            IF TransferHeader.Get(TmpLineBuffer2."Source No.") then begin
+                                location.Get(TransferHeader."Transfer-to Code");
+                                TmpLineBuffer2.DestinationName := location."Name";
+                            end;
+                    end;
+                    TmpLineBuffer2.Modify();
+                until TmpLineBuffer2.Next() = 0;
+
+            TmpLineBuffer2.RESET();
             exit(not TmpLineBuffer2.ISEMPTY());
         end; /*with do*/
-
     end;
 
     procedure ExamplAddDetailLines(var TheTempDetailBuffer: Record "STDR_Report Detail Line Buffer" temporary)

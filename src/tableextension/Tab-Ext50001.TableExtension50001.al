@@ -8,5 +8,10 @@ tableextension 50001 "TableExtension50001" extends "Warehouse Activity Line"
             DataClassification = CustomerContent;
             MinValue = 0;
         }
+        field(50001; DestinationName; Text[100])
+        {
+            Caption = 'Destination Name';
+            DataClassification = CustomerContent;
+        }
     }
 }

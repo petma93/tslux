@@ -8,37 +8,7 @@
           <target>&amp;Verzenden,Verzenden &amp;en factureren</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Custom Report Management - NamedType ShipInvoiceQst</note>
-        </trans-unit>
-        <trans-unit id="Report 433265336 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Whse. Receipt Dimension Label</source>
-          <target>Dimensie-etiket (Mag.-ontvangst)</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Whse. Rcpt. Dim. Label - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 4069987607 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Item Dimension Label</source>
-          <target>Dimensie-etiket (Artikel)</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Item Dim. Label - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 4069987607 - Control 2932782515 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Qty. Packed in Colli</source>
-          <target>Aantal verpakt in colli</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Item Dim. Label - Control QtyPackedColli - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 4069987607 - Control 4023335182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No. of Labels</source>
-          <target>Aantal etiketten</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Item Dim. Label - Control LabelQty - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 4069987607 - Control 3524296763 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No. of Extra Copies</source>
-          <target>Aantal extra exemplaren</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Item Dim. Label - Control NoOfExtraCopies - Property Caption</note>
-        </trans-unit>
+        </trans-unit>        
         <trans-unit id="Report 2404844238 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Combined Posted Whse. Shipment</source>
           <target>Geboekte verzamelmagazijnverzending</target>
@@ -128,6 +98,36 @@
           <target>Standaard (Ja),Nee,Ja</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Comb. Posted Whse. Shpt. - Control ShowZerroLines - Property OptionCaption</note>
+        </trans-unit>
+		<trans-unit id="Report 433265336 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Whse. Receipt Dimension Label</source>
+          <target>Dimensie-etiket (Mag.-ontvangst)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Whse. Rcpt. Dim. Label - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 4069987607 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Dimension Label</source>
+          <target>Dimensie-etiket (Artikel)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Item Dim. Label - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 4069987607 - Control 2932782515 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty. Packed in Colli</source>
+          <target>Aantal verpakt in colli</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Item Dim. Label - Control QtyPackedColli - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 4069987607 - Control 4023335182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Labels</source>
+          <target>Aantal etiketten</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Item Dim. Label - Control LabelQty - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 4069987607 - Control 3524296763 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Extra Copies</source>
+          <target>Aantal extra exemplaren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Item Dim. Label - Control NoOfExtraCopies - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 1195402496 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Transport Document</source>
@@ -843,6 +843,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Transport Journey Document - NamedType TotalLbl</note>
         </trans-unit>
+        <trans-unit id="PageExtension 2650456421 - Action 4019910672 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1302364990">
+          <source>Transport Journey Document</source>
+          <target>Transport Rittenblad</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension OUCTTransportInforDocExt - Action TransportJourneyDocument - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 1245944776 - Action 3229512621 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 4178721393">
           <source>&amp;Label</source>
           <target>&amp;Label</target>
@@ -962,12 +968,6 @@
           <target>Assemblage information van het inkooporder ophalen in Excel</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">PageExtension PurchaseOrderExt2 - Action Purchase Assembly Information - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="PageExtension 2650456421 - Action 4019910672 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1361707048">
-          <source>Transport Journey Document</source>
-          <target>Transport Rittenblad</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">PageExtension OUCTTransportInforDocExt - Action TransportJourneyDocument - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2328407446 - Field 222317169 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 862012238">
           <source>Transport Information</source>
