@@ -371,6 +371,9 @@ report 50007 "VDC Price List"
                 LastUpdatedAt := CurrentDateTime();
                 if GuiAllowed() then
                     Progress.Open(ProgressTxt);
+
+                if LanguageCode <> '' then
+                    CurrReport.LANGUAGE := Language.GetLanguageID(LanguageCode);
             end;
         }
     }
@@ -390,6 +393,12 @@ report 50007 "VDC Price List"
                     {
                         ApplicationArea = Basic, Suite;
                         Caption = 'Calculation Date';
+                    }
+                    field(Language; LanguageCode)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Language';
+                        TableRelation = Language;
                     }
                 }
             }
@@ -425,6 +434,7 @@ report 50007 "VDC Price List"
         PurchasePrice: Record "Purchase Price";
         ItemVendor: Record "Item Vendor";
         Vendor: Record Vendor;
+        Language: Record Language;
         PRFN_CallPerfionMgt: Codeunit "PRFN_Call Perfion Mgt";
         CalculateDate: Date;
         Progress: Dialog;
@@ -445,6 +455,7 @@ report 50007 "VDC Price List"
         WidthCaption: Text;
         LengthCaption: Text;
         QtyPerColloCaption: Text;
+        LanguageCode: Code[10];
         QtyPerCollo: Decimal;
         ProgressTxt: Label 'Progress @1@@@@@@@@@@@';
         GR1PriceCaption: Text;
@@ -535,7 +546,7 @@ report 50007 "VDC Price List"
 
     local procedure GetCaptions()
     begin
-        CurrReport.Language := 2067; //=nlb
+        //CurrReport.Language := 2067; //=nlb
         CalculateDateCaption := GetCaption('Calculate Date', 'Berekeningsdatum');
         NoCaption := GetFieldCaption(DATABASE::Item, Item.FieldNo("No."), 'Nr.');
         PictureCaption := GetFieldCaption(DATABASE::Item, Item.FieldNo(Picture), 'Foto');
@@ -600,7 +611,7 @@ report 50007 "VDC Price List"
     var
         STDR_ReportTranslationMgt: Codeunit "STDR_Report Translation Mgt";
     begin
-        Result := STDR_ReportTranslationMgt.GetTransl(report::"VDC Price List", 'NLB', ENUcaption);
+        Result := STDR_ReportTranslationMgt.GetTransl(report::"VDC Price List", LanguageCode, ENUcaption);
         if Result = '' then begin
             Result := DefaultNLBcaption;
             if Result = '' then
@@ -621,7 +632,7 @@ report 50007 "VDC Price List"
         RecRef.Open(TableNo);
         if RecRef.FieldExist(FieldNo) then begin
             FldRef := RecRef.Field(FieldNo);
-            Result := STDR_ReportTranslationMgt.GetTransl(report::"VDC Price List", 'NLB', FldRef.Name());
+            Result := STDR_ReportTranslationMgt.GetTransl(report::"VDC Price List", LanguageCode, FldRef.Name());
             if Result = '' then
                 Result := DefaultNLBcaption;
             if Result = '' then
@@ -688,12 +699,23 @@ report 50007 "VDC Price List"
     end;
 
     local procedure GetDesc()
+    var
+        ItemTranslation: Record "Item Translation";
     begin
         Descr := Item.Description;
         if Item."Description 2" <> '' then begin
             Descr := Item.Description + ' ' + Item."Description 2";
             if Item.Description = '' then
                 Descr := Item."Description 2";
+        end;
+
+        if ItemTranslation.Get(Item."No.", '', LanguageCode) then begin
+            Descr := ItemTranslation.Description;
+            if ItemTranslation."Description 2" <> '' then begin
+                Descr := ItemTranslation.Description + ' ' + ItemTranslation."Description 2";
+                if ItemTranslation.Description = '' then
+                    Descr := ItemTranslation."Description 2";
+            end;
         end;
     end;
 
@@ -836,5 +858,7 @@ report 50007 "VDC Price List"
         if PFLW_ProcessFlowLogEntry.FindFirst() then
             CreatedAt := DT2Date(PFLW_ProcessFlowLogEntry."Changed At");
     end;
+
+
 }
 

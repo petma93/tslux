@@ -590,7 +590,10 @@
                           </Paragraphs>
                           <ZIndex>25</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingRight>5pt</PaddingRight>
                           </Style>
@@ -619,7 +622,10 @@
                           </Paragraphs>
                           <ZIndex>24</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                             <PaddingRight>5pt</PaddingRight>
@@ -650,7 +656,10 @@
                           </Paragraphs>
                           <ZIndex>23</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                             <PaddingRight>5pt</PaddingRight>
@@ -679,7 +688,10 @@
                           </Paragraphs>
                           <ZIndex>21</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                             <PaddingRight>5pt</PaddingRight>
@@ -712,7 +724,7 @@
                           </Paragraphs>
                           <ZIndex>20</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                             <PaddingRight>5pt</PaddingRight>
@@ -741,7 +753,7 @@
                           </Paragraphs>
                           <ZIndex>19</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                             <PaddingRight>5pt</PaddingRight>
@@ -772,7 +784,7 @@
                           </Paragraphs>
                           <ZIndex>17</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                           </Style>
@@ -807,7 +819,10 @@
                           </Paragraphs>
                           <ZIndex>12</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingRight>5pt</PaddingRight>
                           </Style>
@@ -836,7 +851,7 @@
                           </Paragraphs>
                           <ZIndex>11</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                             <PaddingRight>5pt</PaddingRight>
@@ -867,7 +882,7 @@
                           </Paragraphs>
                           <ZIndex>10</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                             <PaddingRight>5pt</PaddingRight>
@@ -892,7 +907,7 @@
                           </Paragraphs>
                           <ZIndex>8</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                           </Style>
                         </Textbox>
@@ -923,7 +938,7 @@
                           </Paragraphs>
                           <ZIndex>7</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                             <PaddingRight>5pt</PaddingRight>
@@ -952,7 +967,7 @@
                           </Paragraphs>
                           <ZIndex>6</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                             <PaddingRight>5pt</PaddingRight>
@@ -983,7 +998,231 @@
                           </Paragraphs>
                           <ZIndex>4</ZIndex>
                           <Style>
-                            <BackgroundColor>=IIF(RowNumber("DataSet_Result") Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>5pt</PaddingLeft>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.35278cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingRight>5pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!DetailLineTxt03.Value</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>5pt</PaddingLeft>
+                            <PaddingRight>5pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox18">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!DetailLineTxt07.Value</Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox18</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>5pt</PaddingLeft>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox19">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!DetailLineTxt08.Value</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox19</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>5pt</PaddingLeft>
+                            <PaddingRight>5pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>5pt</PaddingLeft>
+                            <PaddingRight>5pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>5pt</PaddingLeft>
+                            <PaddingRight>5pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox21">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox21</rd:DefaultName>
+                          <Style>
+                            <BackgroundColor>=IIF(Fields!LineEntryNo.Value Mod 2 = 0,"#FFFFFF","#EFEFEF")</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>5pt</PaddingLeft>
                           </Style>
@@ -1019,30 +1258,27 @@
                   </Group>
                   <TablixMembers>
                     <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
                       <KeepTogether>true</KeepTogether>
                     </TablixMember>
                     <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
                       <KeepTogether>true</KeepTogether>
                     </TablixMember>
                     <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
                       <KeepTogether>true</KeepTogether>
                     </TablixMember>
                     <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
                       <KeepTogether>true</KeepTogether>
                     </TablixMember>
                     <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
                       <KeepTogether>true</KeepTogether>
                     </TablixMember>
-                    <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
+                    <TablixMember />
                     <TablixMember>
                       <Group Name="Table1_Details_Group">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!No_WhseRcptHeader.Value</GroupExpression>
+                          <GroupExpression>=Fields!Line_No_.Value</GroupExpression>
+                        </GroupExpressions>
                         <DataElementName>Detail</DataElementName>
                       </Group>
                       <TablixMembers>
@@ -1056,6 +1292,27 @@
                             <Hidden>=iif(Fields!Show1.Value,false,true)</Hidden>
                           </Visibility>
                         </TablixMember>
+                        <TablixMember>
+                          <TablixMembers>
+                            <TablixMember>
+                              <Group Name="No_WhseRcptHeader" />
+                              <SortExpressions>
+                                <SortExpression>
+                                  <Value>=Fields!No_WhseRcptHeader.Value</Value>
+                                </SortExpression>
+                                <SortExpression>
+                                  <Value>=Fields!Line_No_.Value</Value>
+                                </SortExpression>
+                                <SortExpression>
+                                  <Value>=Fields!DetailLineEntryNo.Value</Value>
+                                </SortExpression>
+                              </SortExpressions>
+                            </TablixMember>
+                          </TablixMembers>
+                          <Visibility>
+                            <Hidden>=iif(Fields!DetailLineTxt07.Value &lt;&gt; "",false,true) ''</Hidden>
+                          </Visibility>
+                        </TablixMember>
                       </TablixMembers>
                       <DataElementName>Detail_Collection</DataElementName>
                       <DataElementOutput>Output</DataElementOutput>
@@ -1066,12 +1323,12 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Height>2.46944cm</Height>
-            <Width>18.13061cm</Width>
+            <Height>2.82222cm</Height>
+            <Width>18.13062cm</Width>
             <Style />
           </Tablix>
         </ReportItems>
-        <Height>2.46944cm</Height>
+        <Height>2.82222cm</Height>
         <Style />
       </Body>
       <Width>18.13062cm</Width>
@@ -1499,6 +1756,12 @@ End Function
         <Field Name="WarehouseReceiptCaption">
           <DataField>WarehouseReceiptCaption</DataField>
         </Field>
+        <Field Name="Line_No_">
+          <DataField>Line_No_</DataField>
+        </Field>
+        <Field Name="LineEntryNo">
+          <DataField>LineEntryNo</DataField>
+        </Field>
         <Field Name="ShelfNo_WhseRcptLine">
           <DataField>ShelfNo_WhseRcptLine</DataField>
         </Field>
@@ -1531,6 +1794,42 @@ End Function
         </Field>
         <Field Name="BinCode_WhseRcptLine">
           <DataField>BinCode_WhseRcptLine</DataField>
+        </Field>
+        <Field Name="DetailLineEntryNo">
+          <DataField>DetailLineEntryNo</DataField>
+        </Field>
+        <Field Name="DetailLineType">
+          <DataField>DetailLineType</DataField>
+        </Field>
+        <Field Name="DetailLineTxt01">
+          <DataField>DetailLineTxt01</DataField>
+        </Field>
+        <Field Name="DetailLineTxt02">
+          <DataField>DetailLineTxt02</DataField>
+        </Field>
+        <Field Name="DetailLineTxt03">
+          <DataField>DetailLineTxt03</DataField>
+        </Field>
+        <Field Name="DetailLineTxt04">
+          <DataField>DetailLineTxt04</DataField>
+        </Field>
+        <Field Name="DetailLineTxt05">
+          <DataField>DetailLineTxt05</DataField>
+        </Field>
+        <Field Name="DetailLineTxt06">
+          <DataField>DetailLineTxt06</DataField>
+        </Field>
+        <Field Name="DetailLineTxt07">
+          <DataField>DetailLineTxt07</DataField>
+        </Field>
+        <Field Name="DetailLineTxt08">
+          <DataField>DetailLineTxt08</DataField>
+        </Field>
+        <Field Name="DetailLineTxt09">
+          <DataField>DetailLineTxt09</DataField>
+        </Field>
+        <Field Name="DetailLineTxt10">
+          <DataField>DetailLineTxt10</DataField>
         </Field>
       </Fields>
       <Query>

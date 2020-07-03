@@ -157,7 +157,7 @@ report 50005 "VDC Picking List"
 
                             // fill detailline fields
                             FillDetailLineFds();
-
+                            firstDetailLine := false;
                         end;
 
                         trigger OnPreDataItem()
@@ -167,6 +167,7 @@ report 50005 "VDC Picking List"
                             //Message(Format(TmpLine."Source Line No."));
                             STDR_ReportManagement.CollectLineComments(TempDetailBuffer, TmpLine."No.", TmpLine."Line No.");
                             STDR_ReportManagement.CollectItemResourceComments(TempDetailBuffer, TmpLine."No.", TmpLine."Line No.", 2, TmpLine."Item No.");
+                            GetBinInformation(TempDetailBuffer);
                             SetRange(Number, 1, TempDetailBuffer.Count);
 
                             SETRANGE(Number, 1, TempDetailBuffer.COUNT());
@@ -196,6 +197,8 @@ report 50005 "VDC Picking List"
                             CLEAR(STDR_ReportSetup."Picture 3");
                             CLEAR(STDR_ReportSetup."Picture 4");
                         end;
+
+                        firstDetailLine := true;
                     end;
 
                     trigger OnPreDataItem()
@@ -344,6 +347,7 @@ report 50005 "VDC Picking List"
         [InDataSet]
         BreakbulkFilterVisible: Boolean;
         FromInventory: Boolean;
+        firstDetailLine: Boolean;
         DocName: Text;
         HeaderFds: array[5] of Text;
         FontFamily: Text;
@@ -667,17 +671,22 @@ report 50005 "VDC Picking List"
     procedure FillDetailLineFds()
     var
         CrossDockMark: Text;
+        OtherBin: Label 'Other bins';
     begin
         with TempDetailBuffer do begin
             DetLineTypeNo := Type;
             CLEAR(DetLineTxt);
-            DetLineTxt[1] := STDR_ReportManagement.GetLineNo2(LineIndent, "No.", "Variant Code", "Cross-Reference No.", "Vendor Item No.", "Vendor No.", "Location Code");
+            if ("Bin Code" <> '') then
+                DetLineTxt[1] := "Bin Code"
+            else
+                DetLineTxt[1] := STDR_ReportManagement.GetLineNo2(LineIndent, "No.", "Variant Code", "Cross-Reference No.", "Vendor Item No.", "Vendor No.", "Location Code");
             DetLineTxt[2] := STDR_ReportManagement.GetDescFromTempDetailBuffer(TempDetailBuffer, LineIndent);
             DetLineTxt[3] := "Source No.";
             CrossDockMark := STDR_ReportManagement.SetCrossDockMark(TmpLine."Cross-Dock Information");
             if Header.Type in [Header.Type::"Put-away", Header.Type::Pick, Header.Type::Movement] then
                 DetLineTxt[4] := FORMAT("Action Type");
-            DetLineTxt[5] := "Bin Code";
+            if ("Bin Code" <> '') and (firstDetailLine = true) then
+                DetLineTxt[5] := OtherBin;
             case ItemTrackingType of
                 ItemTrackingType::Lot:
                     DetLineTxt[7] := "Lot No.";
@@ -752,6 +761,27 @@ report 50005 "VDC Picking List"
         end;
 
         STDR_ReportManagement.AddTranslValue(10, HeaderFds[5], 'No. of Packages');
+    end;
+
+    procedure GetBinInformation(var TheTempDetailBuffer: Record "STDR_Report Detail Line Buffer" temporary)
+    var
+        BinContent: Record "Bin Content";
+        QtyAvailToTake: Decimal;
+    begin
+        // Opzoeken op welke locaties het artikel ligt en deze weergeven in rapport
+        BinContent.SetRange("Location Code", TmpLine."Location Code");
+        BinContent.SetRange("Item No.", TmpLine."Item No.");
+        BinContent.SetFilter("Bin Code", '<> %1', TmpLine."Bin Code");
+        if BinContent.FindSet() then
+            repeat
+                STDR_ReportManagement.DetailLineAdd(TheTempDetailBuffer, TmpLine."No.", TmpLine."Line No.");
+                TheTempDetailBuffer.Type := TheTempDetailBuffer.Type::Resource;
+                TheTempDetailBuffer."Bin Code" := BinContent."Bin Code";
+                QtyAvailToTake := BinContent.CalcQtyAvailToTake(0);
+                TheTempDetailBuffer.Description := StrSubstNo('%1 %2', QtyAvailToTake, STDR_ReportManagement.GetUOMText(BinContent."Unit of Measure Code"));
+                if QtyAvailToTake <> 0 then
+                    TheTempDetailBuffer.INSERT();
+            until BinContent.Next() < 1;
     end;
 }
 

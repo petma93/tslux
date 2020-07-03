@@ -293,6 +293,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report VDC Picking List - Control SumUpLines - Property OptionCaption</note>
         </trans-unit>
+        <trans-unit id="Report 3257064846 - Method 3069660955 - NamedType 840538267" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Other bins</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Picking List - Method FillDetailLineFds - NamedType OtherBin</note>
+        </trans-unit>
         <trans-unit id="Report 3161839289 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>VDC Warehouse Receipt</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -313,6 +318,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report VDC Whse. - Receipt - NamedType WarehouseReceiptCaptionLbl</note>
         </trans-unit>
+        <trans-unit id="Report 3161839289 - Method 3069660955 - NamedType 1364699760" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Current bins</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Whse. - Receipt - Method FillDetailLineFds - NamedType CurrentBin</note>
+        </trans-unit>
         <trans-unit id="Report 3551028906 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>VDC Price List</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -327,6 +337,11 @@
           <source>Calculation Date</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report VDC Price List - Control CalculationDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3551028906 - Control 4093990710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Language</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report VDC Price List - Control Language - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 3551028906 - NamedType 2379887463" size-unit="char" translate="yes" xml:space="preserve">
           <source>Progress @1@@@@@@@@@@@</source>
