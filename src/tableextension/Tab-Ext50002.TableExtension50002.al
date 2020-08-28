@@ -8,5 +8,10 @@ tableextension 50002 "TableExtension50002" extends "Registered Whse. Activity Li
             DataClassification = CustomerContent;
             MinValue = 0;
         }
+        field(50001; DestinationName; Text[100])
+        {
+            Caption = 'Destination Name';
+            DataClassification = CustomerContent;
+        }
     }
 }
