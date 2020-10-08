@@ -41,7 +41,7 @@
                                 </TablixColumns>
                                 <TablixRows>
                                   <TablixRow>
-                                    <Height>2.19917cm</Height>
+                                    <Height>2cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
@@ -54,7 +54,7 @@
                                               </TablixColumns>
                                               <TablixRows>
                                                 <TablixRow>
-                                                  <Height>0.54979cm</Height>
+                                                  <Height>0.5cm</Height>
                                                   <TablixCells>
                                                     <TablixCell>
                                                       <CellContents>
@@ -67,7 +67,7 @@
                                                                   <Value>=Fields!CompanyAddr1.Value</Value>
                                                                   <Style>
                                                                     <FontFamily>=Fields!Font.value ''</FontFamily>
-                                                                    <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                                    <FontSize>9pt</FontSize>
                                                                     <FontWeight>Bold</FontWeight>
                                                                   </Style>
                                                                 </TextRun>
@@ -92,7 +92,7 @@
                                                   </TablixCells>
                                                 </TablixRow>
                                                 <TablixRow>
-                                                  <Height>0.54979cm</Height>
+                                                  <Height>0.5cm</Height>
                                                   <TablixCells>
                                                     <TablixCell>
                                                       <CellContents>
@@ -105,7 +105,7 @@
                                                                   <Value>=Fields!CompanyAddr2.Value</Value>
                                                                   <Style>
                                                                     <FontFamily>=Fields!Font.value ''</FontFamily>
-                                                                    <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                                    <FontSize>9pt</FontSize>
                                                                   </Style>
                                                                 </TextRun>
                                                               </TextRuns>
@@ -129,7 +129,7 @@
                                                   </TablixCells>
                                                 </TablixRow>
                                                 <TablixRow>
-                                                  <Height>0.54979cm</Height>
+                                                  <Height>0.5cm</Height>
                                                   <TablixCells>
                                                     <TablixCell>
                                                       <CellContents>
@@ -142,7 +142,7 @@
                                                                   <Value>=Fields!CompanyAddr3.Value</Value>
                                                                   <Style>
                                                                     <FontFamily>=Fields!Font.value ''</FontFamily>
-                                                                    <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                                    <FontSize>9pt</FontSize>
                                                                   </Style>
                                                                 </TextRun>
                                                               </TextRuns>
@@ -166,7 +166,7 @@
                                                   </TablixCells>
                                                 </TablixRow>
                                                 <TablixRow>
-                                                  <Height>0.54979cm</Height>
+                                                  <Height>0.5cm</Height>
                                                   <TablixCells>
                                                     <TablixCell>
                                                       <CellContents>
@@ -179,7 +179,7 @@
                                                                   <Value>=Fields!CompanyAddr4.Value</Value>
                                                                   <Style>
                                                                     <FontFamily>=Fields!Font.value ''</FontFamily>
-                                                                    <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                                    <FontSize>9pt</FontSize>
                                                                   </Style>
                                                                 </TextRun>
                                                               </TextRuns>
@@ -264,7 +264,7 @@
                                     </TablixCells>
                                   </TablixRow>
                                   <TablixRow>
-                                    <Height>0.6cm</Height>
+                                    <Height>0.5cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
@@ -278,7 +278,7 @@
                                                     <Value>=Fields!CompanyAddr5.Value</Value>
                                                     <Style>
                                                       <FontFamily>=Fields!Font.value ''</FontFamily>
-                                                      <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -337,7 +337,7 @@
                                     </TablixCells>
                                   </TablixRow>
                                   <TablixRow>
-                                    <Height>0.4cm</Height>
+                                    <Height>0.3cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
@@ -693,7 +693,7 @@
                                                     <Value>=Fields!ItemDescr.Value</Value>
                                                     <Style>
                                                       <FontFamily>=Fields!Font.value ''</FontFamily>
-                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                      <FontSize>9pt</FontSize>
                                                       <FontWeight>=Code.GetLineFontWeight(FIRST(Fields!LineFormatTxt.Value)) ''</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -723,7 +723,7 @@
                                     </TablixCells>
                                   </TablixRow>
                                   <TablixRow>
-                                    <Height>0.6cm</Height>
+                                    <Height>1cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
@@ -736,7 +736,7 @@
                                                     <Value>=Fields!RefCaption.Value &amp; ": " &amp; Fields!OrderNo.Value &amp; " " &amp; Fields!SourceRef.Value</Value>
                                                     <Style>
                                                       <FontFamily>=Fields!Font.value ''</FontFamily>
-                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                      <FontSize>9pt</FontSize>
                                                       <FontWeight>=Code.GetLineFontWeight(FIRST(Fields!LineFormatTxt.Value)) ''</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -779,7 +779,7 @@
                                                     <Value>=Fields!AssemblyRef.Value</Value>
                                                     <Style>
                                                       <FontFamily>=Fields!Font.value ''</FontFamily>
-                                                      <FontSize>=Fields!FontSize1.value ''</FontSize>
+                                                      <FontSize>9pt</FontSize>
                                                       <FontWeight>=Code.GetLineFontWeight(FIRST(Fields!LineFormatTxt.Value)) ''</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -815,7 +815,7 @@
                                                     <Value>=Fields!DetailLineEntryNo.Value &amp; "/" &amp; Fields!Qty.Value</Value>
                                                     <Style>
                                                       <FontFamily>=Fields!Font.value ''</FontFamily>
-                                                      <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -885,7 +885,7 @@
                                                     <Value>=Fields!AssemblyQty.Value '</Value>
                                                     <Style>
                                                       <FontFamily>=Fields!Font.value ''</FontFamily>
-                                                      <FontSize>=Fields!FontSize2.value ''</FontSize>
+                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -974,7 +974,7 @@
                                   </FilterValues>
                                 </Filter>
                               </Filters>
-                              <Height>9.19917cm</Height>
+                              <Height>9.2cm</Height>
                               <Width>3.77953in</Width>
                               <Style />
                             </Tablix>
