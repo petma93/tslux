@@ -380,13 +380,13 @@
                             </Textbox>
                             <Image Name="Image5">
                               <Source>Database</Source>
-                              <Value>=System.Convert.ToBase64String(Fields!barcode)</Value>
+                              <Value>=Fields!barcode.Value</Value>
                               <MIMEType>image/png</MIMEType>
                               <Sizing>FitProportional</Sizing>
-                              <Top>7.08051cm</Top>
-                              <Left>6.71097cm</Left>
-                              <Height>2.90215cm</Height>
-                              <Width>3.28903cm</Width>
+                              <Top>8.13104cm</Top>
+                              <Left>7.9598cm</Left>
+                              <Height>1.59762cm</Height>
+                              <Width>1.57453cm</Width>
                               <ZIndex>13</ZIndex>
                               <Style>
                                 <Border>

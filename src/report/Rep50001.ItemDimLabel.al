@@ -106,7 +106,7 @@ report 50001 "Item Dim. Label"
                 //PFRN_CallPerfionMgt.TempBlobLoadPerfionItemImageName('Image', "No.", "PRFN_Record ID", 'size=400x400', TmpBlob, false);
                 PFRN_CallPerfionMgt.TempBlobLoadPerfionItemImageName(stdr_ReportSetup."Custom Parameter1", "No.", "PRFN_Record ID", 'size=400x400', TmpBlob, false);
                 STDR_ReportSetup.CalcFields("Picture 4");
-                ReportFunctions.GenerateBarcode(tempPicture, '', 'qr', 'png', 3, 2, 0, false, 0, false, false);
+                ReportFunctions.GenerateBarcode(tempPicture, item."No.", 'qr', 'png', 4, 2, 0, false, 0, false, false);
 
                 GetDimensions();
                 GetTranslations();

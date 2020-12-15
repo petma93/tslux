@@ -395,6 +395,8 @@ codeunit 50003 "Custom Report Management"
             Size := 4;
         TextBld.Append('http://barcodes4.me/barcode/qr/');
         TextBld.Append(Barcode + '.' + Ext + '?');
+        TextBld.Append('value=' + Barcode);
+        /*
         TextBld.Append('?size=' + format(Size));
         if Resolution <> 0 then
             TextBld.Append('&ecclevel=' + format(Resolution));
@@ -409,20 +411,20 @@ codeunit 50003 "Custom Report Management"
             TextBld.Append('&IsBorderDrawn=1');
         // if reverseCol = true then
         //     TextBld.Append('&IsReverseColor=1');
-
+        */
         if TextBld.ToText() <> '' then
             CallWebService(itemPicBuf, TextBld.ToText(), Ext);
     end;
 
 
 
-    local procedure CallWebService(var itemPicbuf: Record "Item Picture Buffer" temporary; RequestStr: Text; ext: Text)
+    local procedure CallWebService(var TempPict: Record "Item Picture Buffer" temporary; RequestStr: Text; ext: Text)
     var
         HttpClt: HttpClient;
         HttpRspContent: HttpContent;
         HttpRspMessage: HttpResponseMessage;
         instr: InStream;
-        tempPict: Record "Item Picture Buffer" temporary;
+    //tempPict: Record "Item Picture Buffer" temporary;
 
 
     begin
@@ -439,9 +441,9 @@ codeunit 50003 "Custom Report Management"
             exit;
 
         TempPict.INIT;
-        TempPict."File Name" := 'Pict';
+        TempPict."File Name" := 'Pict.png';
 
-        TempPict.Picture.ImportStream(instr, '', ext);
+        TempPict.Picture.ImportStream(instr, 'barcode', ext);
         TempPict.Insert(false);
 
 
