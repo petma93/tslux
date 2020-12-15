@@ -380,4 +380,71 @@ codeunit 50003 "Custom Report Management"
             exit(Item.Description);
 
     end;
+
+    procedure GenerateBarcode(var itemPicBuf: record "Item Picture Buffer" temporary; Barcode: text; TypeBarcode: text; Ext: text;
+           Size: Integer; Resolution: integer; Margin: integer; ShowText: Boolean; TextSize: Integer;
+            DrawBorder: Boolean; reverseCol: Boolean);
+
+    var
+        requeststring: text;
+        TextBld: TextBuilder;
+
+    begin
+        clear(TextBld);
+        IF Size = 0 THEN
+            Size := 4;
+        TextBld.Append('http://barcodes4.me/barcode/qr/');
+        TextBld.Append(Barcode + '.' + Ext + '?');
+        TextBld.Append('?size=' + format(Size));
+        if Resolution <> 0 then
+            TextBld.Append('&ecclevel=' + format(Resolution));
+        if Margin <> 0 then
+            TextBld.Append('&margin=' + Format(Margin));
+        // if ShowText = true then begin
+        //     TextBld.Append('&IsTextDrawn=1');
+        //  if TextSize <> 0 then
+        //      TextBld.Append('&TextSize=' + Format(TextSize));
+        // end;
+        if DrawBorder = true then
+            TextBld.Append('&IsBorderDrawn=1');
+        // if reverseCol = true then
+        //     TextBld.Append('&IsReverseColor=1');
+
+        if TextBld.ToText() <> '' then
+            CallWebService(itemPicBuf, TextBld.ToText(), Ext);
+    end;
+
+
+
+    local procedure CallWebService(var itemPicbuf: Record "Item Picture Buffer" temporary; RequestStr: Text; ext: Text)
+    var
+        HttpClt: HttpClient;
+        HttpRspContent: HttpContent;
+        HttpRspMessage: HttpResponseMessage;
+        instr: InStream;
+        tempPict: Record "Item Picture Buffer" temporary;
+
+
+    begin
+        Clear(HttpClt);
+        HttpClt.DefaultRequestHeaders.Add('User-Agent', 'Dynamics 365');
+
+        if not HttpClt.Get(RequestStr, HttpRspMessage) then
+            Error('The call to the web service failed.');
+        if not HttpRspMessage.IsSuccessStatusCode then
+            error('The web service returned an error message:\\' + 'Status code: %1\' + 'Description: %2', HttpRspMessage.HttpStatusCode, HttpRspMessage.ReasonPhrase);
+
+        HttpRspContent := HttpRspMessage.Content;
+        if not HttpRspContent.ReadAs(instr) then
+            exit;
+
+        TempPict.INIT;
+        TempPict."File Name" := 'Pict';
+
+        TempPict.Picture.ImportStream(instr, '', ext);
+        TempPict.Insert(false);
+
+
+
+    end;
 }

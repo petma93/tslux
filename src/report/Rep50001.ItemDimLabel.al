@@ -37,16 +37,17 @@ report 50001 "Item Dim. Label"
             { }
             column(SmallPicture; stdr_ReportSetup."Picture 4")
             { }
+            column(barcode; tempPicture.Picture) { }
 
             dataitem(Copyloop; Integer)
             {
-                DataItemTableView = SORTING (Number);
+                DataItemTableView = SORTING(Number);
                 column(OutputNo; OutputNo)
                 {
                 }
                 dataitem(QtyLoop; Integer)
                 {
-                    DataItemTableView = SORTING (Number);
+                    DataItemTableView = SORTING(Number);
 
                     column(DocNo; DocNo)
                     { }
@@ -95,6 +96,8 @@ report 50001 "Item Dim. Label"
             end;
 
             trigger OnAfterGetRecord()
+            var
+                reportfunctions: Codeunit "Custom Report Management";
             begin
                 STDR_ReportManagement.SetCurrentRec('', '', Today(), '', Item);
                 STDR_ReportManagement.GetReportSetup(STDR_ReportSetup);
@@ -103,6 +106,7 @@ report 50001 "Item Dim. Label"
                 //PFRN_CallPerfionMgt.TempBlobLoadPerfionItemImageName('Image', "No.", "PRFN_Record ID", 'size=400x400', TmpBlob, false);
                 PFRN_CallPerfionMgt.TempBlobLoadPerfionItemImageName(stdr_ReportSetup."Custom Parameter1", "No.", "PRFN_Record ID", 'size=400x400', TmpBlob, false);
                 STDR_ReportSetup.CalcFields("Picture 4");
+                ReportFunctions.GenerateBarcode(tempPicture, '', 'qr', 'png', 3, 2, 0, false, 0, false, false);
 
                 GetDimensions();
                 GetTranslations();
@@ -166,6 +170,7 @@ report 50001 "Item Dim. Label"
         Height: Decimal;
         Width: Decimal;
         Length: Decimal;
+        tempPicture: Record "Item Picture Buffer" temporary;
 
 
     trigger OnPreReport()

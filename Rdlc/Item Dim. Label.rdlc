@@ -7,10 +7,76 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>774aa406-fdfe-4b5c-a1fa-3b68368e9d8d</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="ItemNo">
+          <DataField>ItemNo</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="DimensionString">
+          <DataField>DimensionString</DataField>
+        </Field>
+        <Field Name="ItemNoCaption">
+          <DataField>ItemNoCaption</DataField>
+        </Field>
+        <Field Name="DescriptionCaption">
+          <DataField>DescriptionCaption</DataField>
+        </Field>
+        <Field Name="DimensionCaption">
+          <DataField>DimensionCaption</DataField>
+        </Field>
+        <Field Name="ColliCaption">
+          <DataField>ColliCaption</DataField>
+        </Field>
+        <Field Name="PackagingCaption">
+          <DataField>PackagingCaption</DataField>
+        </Field>
+        <Field Name="FrontBackCaption">
+          <DataField>FrontBackCaption</DataField>
+        </Field>
+        <Field Name="CompInfoPicture">
+          <DataField>CompInfoPicture</DataField>
+        </Field>
+        <Field Name="ItemPicture">
+          <DataField>ItemPicture</DataField>
+        </Field>
+        <Field Name="SmallPicture">
+          <DataField>SmallPicture</DataField>
+        </Field>
+        <Field Name="barcode">
+          <DataField>barcode</DataField>
+        </Field>
+        <Field Name="OutputNo">
+          <DataField>OutputNo</DataField>
+        </Field>
+        <Field Name="DocNo">
+          <DataField>DocNo</DataField>
+        </Field>
+        <Field Name="LineEntryNo">
+          <DataField>LineEntryNo</DataField>
+        </Field>
+        <Field Name="QtyPurchUOM">
+          <DataField>QtyPurchUOM</DataField>
+        </Field>
+        <Field Name="Qty__to_Receive">
+          <DataField>Qty__to_Receive</DataField>
+        </Field>
+        <Field Name="LabelNo">
+          <DataField>LabelNo</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -168,7 +234,6 @@
                                 </Paragraph>
                               </Paragraphs>
                               <Top>7.53104cm</Top>
-                              <Left>0.65829cm</Left>
                               <Height>0.6cm</Height>
                               <Width>4.7225cm</Width>
                               <ZIndex>4</ZIndex>
@@ -198,7 +263,6 @@
                                 </Paragraph>
                               </Paragraphs>
                               <Top>8.13104cm</Top>
-                              <Left>0.65829cm</Left>
                               <Height>0.6cm</Height>
                               <Width>4.7225cm</Width>
                               <ZIndex>5</ZIndex>
@@ -260,7 +324,7 @@
                                 </Paragraph>
                               </Paragraphs>
                               <Top>7.53104cm</Top>
-                              <Left>5.38079cm</Left>
+                              <Left>4.7225cm</Left>
                               <Height>0.6cm</Height>
                               <Width>1.81208cm</Width>
                               <ZIndex>7</ZIndex>
@@ -290,7 +354,7 @@
                                 </Paragraph>
                               </Paragraphs>
                               <Top>8.13104cm</Top>
-                              <Left>5.38079cm</Left>
+                              <Left>4.7225cm</Left>
                               <Height>0.6cm</Height>
                               <Width>1.81208cm</Width>
                               <ZIndex>8</ZIndex>
@@ -381,6 +445,22 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <Image Name="Image5">
+                              <Source>Database</Source>
+                              <Value>=System.Convert.ToBase64String(Fields!barcode)</Value>
+                              <MIMEType>image/png</MIMEType>
+                              <Sizing>FitProportional</Sizing>
+                              <Top>7.08051cm</Top>
+                              <Left>6.71097cm</Left>
+                              <Height>2.90215cm</Height>
+                              <Width>3.28903cm</Width>
+                              <ZIndex>13</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Image>
                           </ReportItems>
                           <KeepTogether>true</KeepTogether>
                           <Style>
@@ -389,7 +469,6 @@
                             </Border>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -450,6 +529,12 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -489,68 +574,4 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="ItemNo">
-          <DataField>ItemNo</DataField>
-        </Field>
-        <Field Name="Description">
-          <DataField>Description</DataField>
-        </Field>
-        <Field Name="DimensionString">
-          <DataField>DimensionString</DataField>
-        </Field>
-        <Field Name="ItemNoCaption">
-          <DataField>ItemNoCaption</DataField>
-        </Field>
-        <Field Name="DescriptionCaption">
-          <DataField>DescriptionCaption</DataField>
-        </Field>
-        <Field Name="DimensionCaption">
-          <DataField>DimensionCaption</DataField>
-        </Field>
-        <Field Name="ColliCaption">
-          <DataField>ColliCaption</DataField>
-        </Field>
-        <Field Name="PackagingCaption">
-          <DataField>PackagingCaption</DataField>
-        </Field>
-        <Field Name="FrontBackCaption">
-          <DataField>FrontBackCaption</DataField>
-        </Field>
-        <Field Name="CompInfoPicture">
-          <DataField>CompInfoPicture</DataField>
-        </Field>
-        <Field Name="ItemPicture">
-          <DataField>ItemPicture</DataField>
-        </Field>
-        <Field Name="SmallPicture">
-          <DataField>SmallPicture</DataField>
-        </Field>
-        <Field Name="OutputNo">
-          <DataField>OutputNo</DataField>
-        </Field>
-        <Field Name="DocNo">
-          <DataField>DocNo</DataField>
-        </Field>
-        <Field Name="LineEntryNo">
-          <DataField>LineEntryNo</DataField>
-        </Field>
-        <Field Name="QtyPurchUOM">
-          <DataField>QtyPurchUOM</DataField>
-        </Field>
-        <Field Name="Qty__to_Receive">
-          <DataField>Qty__to_Receive</DataField>
-        </Field>
-        <Field Name="LabelNo">
-          <DataField>LabelNo</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>

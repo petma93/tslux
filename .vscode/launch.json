@@ -13,6 +13,21 @@
             "startupObjectType": "Page",
             "breakOnError": false,
             "schemaUpdateMode":"Synchronize"
+        },
+        {
+        "type": "al",
+        "request": "launch",
+        "name": "Docker",
+        "server": "http://vdc-web",
+        "serverInstance": "NAV",
+        "authentication": "UserPassword",
+        "startupObjectId": 50001,
+        "startupObjectType": "Report",
+        "schemaUpdateMode": "ForceSync",
+        "breakOnError": true,
+        "launchBrowser": true,
+        "enableLongRunningSqlStatements": true,
+        "enableSqlInformationDebugger": true
         }
     ]
 }
