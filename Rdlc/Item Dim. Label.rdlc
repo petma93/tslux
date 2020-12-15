@@ -10,73 +10,6 @@
       <rd:DataSourceID>774aa406-fdfe-4b5c-a1fa-3b68368e9d8d</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="ItemNo">
-          <DataField>ItemNo</DataField>
-        </Field>
-        <Field Name="Description">
-          <DataField>Description</DataField>
-        </Field>
-        <Field Name="DimensionString">
-          <DataField>DimensionString</DataField>
-        </Field>
-        <Field Name="ItemNoCaption">
-          <DataField>ItemNoCaption</DataField>
-        </Field>
-        <Field Name="DescriptionCaption">
-          <DataField>DescriptionCaption</DataField>
-        </Field>
-        <Field Name="DimensionCaption">
-          <DataField>DimensionCaption</DataField>
-        </Field>
-        <Field Name="ColliCaption">
-          <DataField>ColliCaption</DataField>
-        </Field>
-        <Field Name="PackagingCaption">
-          <DataField>PackagingCaption</DataField>
-        </Field>
-        <Field Name="FrontBackCaption">
-          <DataField>FrontBackCaption</DataField>
-        </Field>
-        <Field Name="CompInfoPicture">
-          <DataField>CompInfoPicture</DataField>
-        </Field>
-        <Field Name="ItemPicture">
-          <DataField>ItemPicture</DataField>
-        </Field>
-        <Field Name="SmallPicture">
-          <DataField>SmallPicture</DataField>
-        </Field>
-        <Field Name="barcode">
-          <DataField>barcode</DataField>
-        </Field>
-        <Field Name="OutputNo">
-          <DataField>OutputNo</DataField>
-        </Field>
-        <Field Name="DocNo">
-          <DataField>DocNo</DataField>
-        </Field>
-        <Field Name="LineEntryNo">
-          <DataField>LineEntryNo</DataField>
-        </Field>
-        <Field Name="QtyPurchUOM">
-          <DataField>QtyPurchUOM</DataField>
-        </Field>
-        <Field Name="Qty__to_Receive">
-          <DataField>Qty__to_Receive</DataField>
-        </Field>
-        <Field Name="LabelNo">
-          <DataField>LabelNo</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -529,12 +462,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -574,4 +501,71 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ItemNo">
+          <DataField>ItemNo</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="DimensionString">
+          <DataField>DimensionString</DataField>
+        </Field>
+        <Field Name="ItemNoCaption">
+          <DataField>ItemNoCaption</DataField>
+        </Field>
+        <Field Name="DescriptionCaption">
+          <DataField>DescriptionCaption</DataField>
+        </Field>
+        <Field Name="DimensionCaption">
+          <DataField>DimensionCaption</DataField>
+        </Field>
+        <Field Name="ColliCaption">
+          <DataField>ColliCaption</DataField>
+        </Field>
+        <Field Name="PackagingCaption">
+          <DataField>PackagingCaption</DataField>
+        </Field>
+        <Field Name="FrontBackCaption">
+          <DataField>FrontBackCaption</DataField>
+        </Field>
+        <Field Name="CompInfoPicture">
+          <DataField>CompInfoPicture</DataField>
+        </Field>
+        <Field Name="ItemPicture">
+          <DataField>ItemPicture</DataField>
+        </Field>
+        <Field Name="SmallPicture">
+          <DataField>SmallPicture</DataField>
+        </Field>
+        <Field Name="barcode">
+          <DataField>barcode</DataField>
+        </Field>
+        <Field Name="OutputNo">
+          <DataField>OutputNo</DataField>
+        </Field>
+        <Field Name="DocNo">
+          <DataField>DocNo</DataField>
+        </Field>
+        <Field Name="LineEntryNo">
+          <DataField>LineEntryNo</DataField>
+        </Field>
+        <Field Name="QtyPurchUOM">
+          <DataField>QtyPurchUOM</DataField>
+        </Field>
+        <Field Name="Qty__to_Receive">
+          <DataField>Qty__to_Receive</DataField>
+        </Field>
+        <Field Name="LabelNo">
+          <DataField>LabelNo</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>
