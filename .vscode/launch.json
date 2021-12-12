@@ -1,28 +1,15 @@
 {
-    "version": "0.2.0",
+    "version": "18.1.0",
     "configurations": [
-        {
-            "type": "al",
-            "request": "launch",
-            "name": "Triton CUS_VANDECASTEELE_BC14",
-            "server": "http://10.100.2.20",
-            "serverInstance": "CUS_VANDECASTEELE_BC14",
-            "port": 9059,
-            "authentication": "Windows",
-            "startupObjectId": 9313,
-            "startupObjectType": "Page",
-            "breakOnError": false,
-            "schemaUpdateMode":"Synchronize"
-        },
         {
         "type": "al",
         "request": "launch",
         "name": "Docker",
-        "server": "http://vdc-web",
-        "serverInstance": "NAV",
+        "server": "http://tslux",
+        "serverInstance": "BC",
         "authentication": "UserPassword",
-        "startupObjectId": 50001,
-        "startupObjectType": "Report",
+        "startupObjectId": 2002775,
+        "startupObjectType": "Page",
         "schemaUpdateMode": "ForceSync",
         "breakOnError": true,
         "launchBrowser": true,

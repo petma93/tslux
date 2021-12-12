@@ -1,62 +1,52 @@
 {
-  "id": "923a9e93-d0ae-4312-a8ab-01458f32b908",
-  "name": "VDC Reports",
-  "publisher": "Broad Horizon België",
-  "version": "1.0.20201215.0",
-  "brief": "VDC Reports",
-  "description": "Reports",
-  "privacyStatement": "https://www.broadhorizon.be/privacybeleid",
-  "EULA": "https://www.broadhorizon.be/EULA",
-  "help": "https://www.broadhorizon.be/contact",
-  "url": "https://www.broadhorizon.be",
-  "logo": "Media/BroadHorizon2.png",
+  "id": "aaa72b37-0071-489a-879f-4870d2182f26",
+  "name": "Web Export Status",
+  "publisher": "TLCC",
+  "version": "18.2.20211212.0",
+  "brief": "",
+  "description": "Web Export Status",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "./media/tlcc.tif",
   "dependencies": [
     {
-      "appId": "d8feaa8a-f09b-4472-841f-bdcfd63fcb64",
-      "name": "Standard Reports",
-      "publisher": "Broad Horizon België",
-      "version": "14.0.20200514.0"
+      "id": "3e19d553-26ac-44ea-bdce-8392c605917b",
+      "publisher": "Navitrans",
+      "name": "Navitrans 365 OnPrem",
+      "version": "18.2.0.15422"
     },
-    {
-      "appId": "e05de681-3b6f-4a28-9164-020b9744efb6",
-      "name": "Perfion sync",
-      "publisher": "Broad Horizon België",
-      "version": "14.0.20200612.0"
-    },
-    {
-      "appId": "e68105cb-2e46-4898-ab99-9a4a448a3742",
-      "name": "Transport Management",
-      "publisher": "Broad Horizon België",
-      "version": "14.0.20200519.0"
-    },
-    {
-      "appId": "cf280173-89ef-4b51-a3d8-7b55dc0ba23a",
-      "name": "VDC General Customizations",
-      "publisher": "Broad Horizon België",
-      "version": "1.0.20200609.0"
-    },
-    {
-      "appId": "4b767687-ff67-4fe4-97f6-ec8edd45873d",
-      "name": "Process Flow",
-      "publisher": "Broad Horizon België",
-      "version": "14.0.20200529.1"
-    }
+    {"id": "25f1cbff-7ee3-4fe1-aa54-400ab34da0b4",
+        "publisher": "Navitrans",
+        "name": "Navitrans 365 Core",
+        "version": "18.2.0.15419"
+      },
+      {
+        "id": "bda7621c-f747-4147-8d99-447d9122a73a",
+        "publisher": "Navitrans",
+        "name": "Navitrans 365 Transporeon Connector",
+        "version": "18.2.0.15433"
+      },
+      {
+        "id": "0d6519c0-93fa-42a6-9b69-49ed3fb5fa66",
+        "publisher": "Navitrans",
+        "name": "Navitrans 365 Base Application",
+        "version": "18.2.0.16161"
+      }
+
   ],
-  "screenshots": [
-    "Media/BroadHorizon.png"
-  ],
-  "platform": "14.0.0.0",
-  "application": "14.0.0.0",
+  "screenshots": [],
+  "platform": "18.0.0.0",
+  "application": "18.0.0.0",
   "idRanges": [
     {
-    "from": 50000,
-    "to": 50099
+      "from": 50000,
+      "to": 50100
     }
-],
-  "showMyCode": true,
-  "features": [
-    "TranslationFile"
   ],
-  "runtime": "3.0",
-  "target": "Internal"
+ 
+  "showMyCode": true,
+  "runtime": "4.1",
+  "target": "OnPrem"
 }
