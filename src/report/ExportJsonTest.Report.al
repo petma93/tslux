@@ -1,20 +1,21 @@
-report 50001 "reset web status export"
+report 50002 ExportJsonTest
 {
-    Caption = 'Reset Web Export';
+    Caption = 'ExportJsonTest';
     ApplicationArea = Basic, Suite;
 
     UsageCategory = ReportsAndAnalysis;
     ProcessingOnly = true;
     dataset
     {
-        dataitem(NVTStatusLog; "NVT Status Log")
+        dataitem(Integer; "Integer")
         {
-            DataItemTableView = SORTING() WHERE(Exp2Web = CONST(True));
+            DataItemTableView = SORTING(number) WHERE(number = CONST(1));
 
             trigger OnPreDataItem()
             begin
 
-                ModifyAll(Exp2Web, false);
+                codeunit.Run(50001);
+
 
             end;
         }

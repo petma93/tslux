@@ -4,7 +4,7 @@ pageextension 50000 "Web Status Ext" extends "NVT Statuses"
     {
         addlast(RepeaterControl)
         {
-            field(ExportWoei; "ExportWoei")
+            field(ExportWeb; "ExportWeb")
             {
                 ApplicationArea = All;
                 Visible = bolOperationalStatus;
@@ -12,18 +12,32 @@ pageextension 50000 "Web Status Ext" extends "NVT Statuses"
             }
 
 
-            field("Code Woei"; "Code Woei")
+            field("Code Web"; "Code Web")
             {
                 ApplicationArea = All;
                 Visible = bolOperationalStatus;
                 Caption = 'Code Web';
 
             }
-            field("Description Woei"; "Description Woei")
+            field("Description Web"; "Description Web")
             {
                 ApplicationArea = All;
                 Visible = bolOperationalStatus;
                 Caption = 'Description Web';
+
+            }
+            field(ExportWebOrder; ExportWebOrder)
+            {
+                ApplicationArea = All;
+                Visible = bolOperationalStatus;
+                Caption = 'Export WebOrder';
+
+            }
+            field("Description Status WebOrder"; "Description Status WebOrder")
+            {
+                ApplicationArea = All;
+                Visible = bolOperationalStatus;
+                Caption = 'Description Status WebOrder';
 
             }
         }
