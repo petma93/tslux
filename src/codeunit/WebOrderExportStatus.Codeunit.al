@@ -51,8 +51,10 @@ codeunit 50001 "WebOrder Export Status"
             tempStatus.DeleteAll();
 
         nvtStLog.reset;
+
         nvtStLog.SetCurrentKey("No. customer");
         nvtStLog.SetRange("No. customer", customer);
+        nvtStLog.SetRange("Status type", nvtStLog."Status type"::Operational);
         nvtStLog.SetFilter("Shipment No.", '<>%1', 0);
         nvtStLog.SetRange(ExpJson, false);
         nvtStLog.SETFILTER("Date status", '%1..', CALCDATE('-6M', TODAY));
@@ -78,7 +80,8 @@ codeunit 50001 "WebOrder Export Status"
                         json.add('OrderID', idummy)
                     else
                         json.add('OrderID', 0);
-                    json.add('CustomerID', tempStatus."No. customer");
+                    //json.add('CustomerID', tempStatus."No. customer");
+                    json.add('CustomerID', '123456'); //testen
                     json.add('Reference', shipment."File reference");
                     json.add('ShipmentID', shipment."Shipment No.");
                     json.add('DossierID', shipment."File No.");
@@ -86,14 +89,14 @@ codeunit 50001 "WebOrder Export Status"
                     json.add('StatusDescription', stdesc);
                     json.add('ShipmentType', 'Delivery');
                     json.add('LoadingName', shipment."Load address Name");
-                    json.add('LoadindAddress', shipment."Load address adress");
+                    json.add('LoadingAddress', shipment."Load address adress");
                     json.add('LoadingZipcode', shipment."Load address Post Code");
                     json.add('LoadingCity', shipment."Load address city");
                     json.add('LoadingCountryCode', shipment."Load address Country");
                     json.add('LoadingDate', FormatDate(shipment."Loading date"));
                     json.add('LoadingReference', shipment."Load reference");
                     json.add('UnloadingName', shipment."Unload address Name");
-                    json.add('UnloadindAddress', shipment."Unload Address address");
+                    json.add('UnloadingAddress', shipment."Unload Address address");
                     json.add('UnloadingZipcode', shipment."Unload address Post Code");
                     json.add('UnloadingCity', shipment."Unload address city");
                     json.add('UnloadingCountryCode', shipment."Unload address Country");
@@ -101,6 +104,10 @@ codeunit 50001 "WebOrder Export Status"
                     json.add('UnloadingReference', shipment."Unload reference");
 
                     Clear(goods);
+                    goods[1] := 0;
+                    goods[2] := 0;
+                    goods[3] := 0;
+                    goods[4] := 0;
                     ShipGoods.Reset();
                     ShipGoods.SETRANGe("Shipment No.", shipment."Shipment No.");
                     IF ShipGoods.FindFirst() THEN BEGIN
