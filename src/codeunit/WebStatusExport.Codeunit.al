@@ -91,7 +91,6 @@ codeunit 50000 "Web Status Export"
         PlanDate: Date;
         instr: InStream;
         outstr: OutStream;
-        TempBlob: Record TempBlob;
         OutputFile: File;
         FileName: text;
 
@@ -320,7 +319,7 @@ codeunit 50000 "Web Status Export"
         PlanDate: Date;
         instr: InStream;
         outstr: OutStream;
-        TempBlob: Record TempBlob;
+
         OutputFile: File;
         Filename: text;
 
