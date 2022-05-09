@@ -9,12 +9,12 @@ report 50001 "reset web status export"
     {
         dataitem(NVTStatusLog; "NVT Status Log")
         {
-            DataItemTableView = SORTING() WHERE(Exp2Web = CONST(True));
+            DataItemTableView = SORTING() WHERE(Exp2Woei = CONST(True));
 
             trigger OnPreDataItem()
             begin
 
-                ModifyAll(Exp2Web, false);
+                ModifyAll(Exp2Woei, false);
 
             end;
         }

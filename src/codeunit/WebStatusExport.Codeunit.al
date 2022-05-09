@@ -28,7 +28,7 @@ codeunit 50000 "Web Status Export"
 
         Status.RESET;
         Status.SETRANGE(Type, Status.Type::Operational);
-        Status.SETRANGE("ExportWeb", TRUE);
+        Status.SETRANGE("ExportWoei", TRUE);
         IF Status.FINDFIRST THEN BEGIN
             REPEAT
                 ref := 'tracktrace_' + Status.Code + '_';
@@ -41,9 +41,9 @@ codeunit 50000 "Web Status Export"
                     filename := ComTools.GetNewFilename(1, Code, '', ref, '');
                     //filename := ComTools.GetFileName(filename, "Path New Files");
 
-                    CreateXmlDocDetail(Status.Code, format(Status."Code Web"), status."Description Web", pathname, FileName);
+                    CreateXmlDocDetail(Status.Code, format(Status."Code Woei"), status."Description Woei", pathname, FileName);
                 END ELSE
-                    CreateXmlDocDetail(Status.Code, format(Status."Code Web"), status."Description Web", PathName, FileName);
+                    CreateXmlDocDetail(Status.Code, format(Status."Code Woei"), status."Description Woei", PathName, FileName);
 
             UNTIL Status.NEXT = 0;
         END;
@@ -100,7 +100,7 @@ codeunit 50000 "Web Status Export"
         StatusLog.SETCURRENTKEY("Status type");
         StatusLog.SETRANGE("Status type", StatusLog."Status type"::Operational);
         StatusLog.SETRANGE("Code status", pStatus);
-        StatusLog.SETRANGE(Exp2Web, FALSE);
+        StatusLog.SETRANGE(Exp2Woei, FALSE);
         StatusLog.SETFILTER("Date status", '%1..', CALCDATE('-1M', TODAY));
         IF StatusLog.FINDFIRST THEN BEGIN
             REPEAT
@@ -332,7 +332,7 @@ codeunit 50000 "Web Status Export"
         StatusLog.SETCURRENTKEY("Status type");
         StatusLog.SETRANGE("Status type", StatusLog."Status type"::Operational);
         StatusLog.SETRANGE("Code status", Status);
-        StatusLog.SETRANGE(Exp2Web, FALSE);
+        StatusLog.SETRANGE(Exp2Woei, FALSE);
         StatusLog.SETFILTER("Date status", '%1..', CALCDATE('-1M', TODAY));
         IF StatusLog.FINDFIRST THEN BEGIN
             REPEAT
@@ -549,8 +549,8 @@ codeunit 50000 "Web Status Export"
 
 
                 IF StatusLog2.GET(StatusLog."Log No.") THEN BEGIN
-                    StatusLog2.Exp2Web := TRUE;
-                    StatusLog2."Exp2Web datetime" := CURRENTDATETIME;
+                    StatusLog2.Exp2Woei := TRUE;
+                    StatusLog2."Exp2Woei datetime" := CURRENTDATETIME;
                     StatusLog2.MODIFY;
                     COMMIT;
                 END;
