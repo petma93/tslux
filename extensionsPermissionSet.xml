@@ -22,7 +22,7 @@
       <SecurityFilter />
     </Permission>
     <Permission>
-      <ObjectID>50001</ObjectID>
+      <ObjectID>50002</ObjectID>
       <ObjectType>3</ObjectType>
       <ReadPermission>0</ReadPermission>
       <InsertPermission>0</InsertPermission>
@@ -42,7 +42,7 @@
       <SecurityFilter />
     </Permission>
     <Permission>
-      <ObjectID>50002</ObjectID>
+      <ObjectID>50001</ObjectID>
       <ObjectType>3</ObjectType>
       <ReadPermission>0</ReadPermission>
       <InsertPermission>0</InsertPermission>
