@@ -80,8 +80,8 @@ codeunit 50001 "WebOrder Export Status"
                         json.add('OrderID', idummy)
                     else
                         json.add('OrderID', 0);
-                    //json.add('CustomerID', tempStatus."No. customer");
-                    json.add('CustomerID', '123456'); //testen
+                    json.add('CustomerID', tempStatus."No. customer");
+                    //json.add('CustomerID', '123456'); //testen
                     json.add('Reference', shipment."File reference");
                     json.add('ShipmentID', shipment."Shipment No.");
                     json.add('DossierID', shipment."File No.");

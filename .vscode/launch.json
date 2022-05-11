@@ -5,7 +5,7 @@
         "type": "al",
         "request": "launch",
         "name": "Docker",
-        "server": "http://TSLUX",
+        "server": "http://tslux",
         "serverInstance": "BC",
         "authentication": "UserPassword",
         "startupObjectId": 2002775,
