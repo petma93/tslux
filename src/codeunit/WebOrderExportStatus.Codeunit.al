@@ -200,10 +200,11 @@ codeunit 50001 "WebOrder Export Status"
 
         Client.DefaultRequestHeaders.Add('Authorization', AuthString);
         Client.Send(Request, ResponseMessage);
-
-        message(FORMAt(ResponseMessage.HttpStatusCode) + '\' + ResponseMessage.ReasonPhrase);
-        ResponseMessage.Content.ReadAs(jsontext);
-        Message(jsonText);
+        IF FORMAt(ResponseMessage.HttpStatusCode) <> '200' THEN BEGIN
+            message(FORMAt(ResponseMessage.HttpStatusCode) + '\' + ResponseMessage.ReasonPhrase);
+            ResponseMessage.Content.ReadAs(jsontext);
+            Message(jsonText);
+        END
 
         /*
         
