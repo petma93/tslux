@@ -1,4 +1,4 @@
-pageextension 50002 ExportStatusCustParam extends "NVT Cust. param - General"
+pageextension 50002 "ExportStatusCustParam" extends "NVT Cust. param - General"
 {
     layout
     {

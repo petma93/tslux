@@ -55,6 +55,7 @@ codeunit 50001 "WebOrder Export Status"
         nvtStLog.SetCurrentKey("No. customer");
         nvtStLog.SetRange("No. customer", customer);
         nvtStLog.SetRange("Status type", nvtStLog."Status type"::Operational);
+        nvtStLog.setrange("Code status", status);
         nvtStLog.SetFilter("Shipment No.", '<>%1', 0);
         nvtStLog.SetRange(ExpJson, false);
         nvtStLog.SETFILTER("Date status", '%1..', CALCDATE('-6M', TODAY));
@@ -145,6 +146,17 @@ codeunit 50001 "WebOrder Export Status"
         Clear(str);
         jarray.WriteTo(str);
         SendWebReq(str);
+
+        tempStatus.RESET;
+        IF tempStatus.FindFirst() Then begin
+            repeat
+                if nvtStLog.get(tempStatus."Log No.") then begin
+                    nvtStLog.ExpJson := true;
+                    nvtStLog."ExpJson datetime" := CurrentDateTime;
+                    nvtStLog.Modify(false);
+                end;
+            until tempStatus.next = 0;
+        end;
 
 
     end;

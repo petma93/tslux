@@ -1,4 +1,4 @@
-report 50002 ExportJsonTest
+report 50002 "ExportJsonTest"
 {
     Caption = 'ExportJsonTest';
     ApplicationArea = Basic, Suite;

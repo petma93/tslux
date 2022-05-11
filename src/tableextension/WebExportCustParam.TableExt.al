@@ -1,4 +1,4 @@
-tableextension 50002 WebExportCustParam extends "NVT Customer Tpt Parameter"
+tableextension 50002 "WebExportCustParam" extends "NVT Customer Tpt Parameter"
 {
     fields
     {
